@@ -1,0 +1,44 @@
+{
+  "destination": "New York City",
+  "start_date": "2026-06-10",
+  "end_date": "2026-06-12",
+  "daily_minutes_budget": 480,
+  "travel_mode": "DRIVE",
+  "stops": [
+    {
+      "name": "Statue of Liberty Ferry",
+      "address": "Battery Park, New York, NY",
+      "visit_minutes": 150,
+      "required": true,
+      "category": "landmark"
+    },
+    {
+      "name": "9/11 Memorial & Museum",
+      "address": "180 Greenwich St, New York, NY 10007",
+      "visit_minutes": 120,
+      "required": true,
+      "category": "museum"
+    },
+    {
+      "name": "Chelsea Market",
+      "address": "75 9th Ave, New York, NY 10011",
+      "visit_minutes": 90,
+      "required": false,
+      "category": "food"
+    },
+    {
+      "name": "The Metropolitan Museum of Art",
+      "address": "1000 5th Ave, New York, NY 10028",
+      "visit_minutes": 180,
+      "required": true,
+      "category": "museum"
+    },
+    {
+      "name": "Top of the Rock",
+      "address": "30 Rockefeller Plaza, New York, NY 10112",
+      "visit_minutes": 90,
+      "required": false,
+      "category": "viewpoint"
+    }
+  ]
+}
