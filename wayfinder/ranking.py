@@ -195,3 +195,179 @@ class GeminiRanker:
             a.score        = round(rating_score + pop_score, 2)
             a.score_reason = f"Heuristic score based on rating ({a.rating}/5) and {a.num_reviews:,} reviews"
             a.ranker_used  = "heuristic"
+
+
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# OPTION 2 – CUSTOM ML RANKER  (alternative – uncomment to use)
+# ══════════════════════════════════════════════════════════════════════════════
+#
+# HOW TO SWITCH:
+#   In wayfinder/pipeline.py change:
+#       from .ranking import LLMRanker as Ranker
+#   to:
+#       from .ranking import MLRanker as Ranker
+#
+# TRAINING YOUR OWN MODEL:
+#   Collect (attraction_features, user_enjoyed: bool) pairs from real users.
+#   Then call:
+#       ranker = MLRanker()
+#       ranker.fit(attractions_list, labels)
+#       ranker.save("model.pkl")
+#   After that, MLRanker.rank() works without any API calls.
+#
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# import math
+# import pickle
+# from pathlib import Path
+#
+# # sklearn is optional – only needed for MLRanker
+# try:
+#     import numpy as np
+#     from sklearn.linear_model import LogisticRegression
+#     from sklearn.preprocessing import StandardScaler
+#     from sklearn.pipeline import Pipeline
+#     _SKLEARN_AVAILABLE = True
+# except ImportError:
+#     _SKLEARN_AVAILABLE = False
+#
+#
+# PRICE_LEVEL_MAP = {"$": 0, "$$": 1, "$$$": 2, "$$$$": 3, "": 1}
+# BUDGET_MAP      = {"budget": 0, "mid-range": 1, "luxury": 2}
+# VIBE_KEYWORDS   = {
+#     "adventure":  ["outdoor", "hiking", "extreme", "sport", "kayak"],
+#     "culture":    ["museum", "gallery", "temple", "heritage", "historic"],
+#     "food":       ["restaurant", "cuisine", "market", "food", "chef"],
+#     "relaxation": ["spa", "beach", "park", "garden", "resort"],
+#     "nightlife":  ["bar", "club", "pub", "cocktail", "rooftop"],
+# }
+#
+#
+# class MLRanker:
+#     """
+#     Lightweight scikit-learn ranker.
+#
+#     Feature vector per attraction (7 dimensions):
+#       [0] normalized rating        (rating / 5)
+#       [1] log popularity           (log1p(num_reviews) / log1p(100_000))
+#       [2] price fit                (1 - |price_encoded - budget_encoded| / 3)
+#       [3] vibe tag overlap         (# matching vibe keywords / total subcats)
+#       [4] dietary conflict         (1 = conflict found, 0 = safe)
+#       [5] is_attraction category   (1/0)
+#       [6] is_restaurant category   (1/0)
+#     """
+#
+#     MODEL_PATH = Path("wayfinder_ml_model.pkl")
+#
+#     def __init__(self):
+#         if not _SKLEARN_AVAILABLE:
+#             raise ImportError(
+#                 "scikit-learn and numpy are required for MLRanker.\n"
+#                 "Install with: pip install scikit-learn numpy"
+#             )
+#         self._model: Pipeline | None = None
+#         if self.MODEL_PATH.exists():
+#             self.load(str(self.MODEL_PATH))
+#
+#     # ── public ─────────────────────────────────────────────────────────────
+#     def rank(self, attractions: list[Attraction],
+#              prefs: UserPreferences,
+#              batch_size: int = 10) -> list[Attraction]:
+#         """
+#         Score attractions and return sorted high → low.
+#         Falls back to heuristic scoring if no model is trained yet.
+#         """
+#         if self._model is None:
+#             print("  [ML] No trained model found – using heuristic scoring.")
+#             return self._heuristic_rank(attractions, prefs)
+#
+#         X = np.array([self._featurize(a, prefs) for a in attractions])
+#         # predict_proba[:,1] = probability of "user would enjoy this"
+#         scores = self._model.predict_proba(X)[:, 1]
+#         for a, s in zip(attractions, scores):
+#             a.score        = round(float(s) * 10, 2)  # scale to 0–10
+#             a.score_reason = "ML model prediction"
+#             a.ranker_used  = "ml"
+#
+#         return sorted(attractions, key=lambda a: a.score, reverse=True)
+#
+#     def fit(self, attractions: list[Attraction],
+#             labels: list[int],
+#             prefs: UserPreferences) -> None:
+#         """
+#         Train the model.
+#         labels[i] = 1 if the user enjoyed attractions[i], 0 otherwise.
+#         """
+#         X = np.array([self._featurize(a, prefs) for a in attractions])
+#         y = np.array(labels)
+#         self._model = Pipeline([
+#             ("scaler", StandardScaler()),
+#             ("clf",    LogisticRegression(max_iter=500)),
+#         ])
+#         self._model.fit(X, y)
+#         self.save(str(self.MODEL_PATH))
+#         print(f"  [ML] Model trained on {len(labels)} examples and saved.")
+#
+#     def save(self, path: str) -> None:
+#         with open(path, "wb") as f:
+#             pickle.dump(self._model, f)
+#
+#     def load(self, path: str) -> None:
+#         with open(path, "rb") as f:
+#             self._model = pickle.load(f)
+#         print(f"  [ML] Loaded trained model from {path}")
+#
+#     # ── feature engineering ────────────────────────────────────────────────
+#     def _featurize(self, a: Attraction, prefs: UserPreferences) -> list[float]:
+#         # [0] normalized rating
+#         rating_norm = a.rating / 5.0
+#
+#         # [1] log-scaled popularity (caps at ~100k reviews → 1.0)
+#         pop_norm = math.log1p(a.num_reviews) / math.log1p(100_000)
+#
+#         # [2] price fit (closer to user's budget tier = higher score)
+#         price_enc  = PRICE_LEVEL_MAP.get(a.price_level, 1)
+#         budget_enc = BUDGET_MAP.get(prefs.budget, 1)
+#         price_fit  = 1.0 - abs(price_enc - budget_enc) / 3.0
+#
+#         # [3] vibe keyword overlap
+#         vibe_score = 0.0
+#         all_tags   = " ".join(a.subcategories + a.cuisine_types).lower()
+#         for keyword_group in prefs.vibe.lower().split(","):
+#             kw = keyword_group.strip()
+#             matching = VIBE_KEYWORDS.get(kw, [kw])
+#             hits = sum(1 for m in matching if m in all_tags)
+#             vibe_score += hits / max(len(matching), 1)
+#         vibe_score = min(vibe_score, 1.0)   # cap at 1
+#
+#         # [4] dietary conflict flag  (1 = bad, 0 = ok)
+#         from .filters import AttractionFilter
+#         filt    = AttractionFilter(prefs)
+#         conflict = 0.0 if filt.passes(a) else 1.0
+#
+#         # [5-6] category flags
+#         cat = a.category.lower()
+#         is_attraction  = 1.0 if "attraction" in cat else 0.0
+#         is_restaurant  = 1.0 if "restaurant" in cat else 0.0
+#
+#         return [rating_norm, pop_norm, price_fit,
+#                 vibe_score, conflict, is_attraction, is_restaurant]
+#
+#     # ── heuristic fallback (no trained model needed) ───────────────────────
+#     def _heuristic_rank(self, attractions: list[Attraction],
+#                         prefs: UserPreferences) -> list[Attraction]:
+#         """
+#         Simple weighted formula used when no model.pkl exists yet.
+#         Good enough for demos; replace with a trained model for production.
+#         """
+#         for a in attractions:
+#             feats  = self._featurize(a, prefs)
+#             # weights: rating, popularity, price_fit, vibe, -conflict, +attraction, +restaurant
+#             weights = [0.35, 0.20, 0.15, 0.20, -0.30, 0.05, 0.05]
+#             raw     = sum(f * w for f, w in zip(feats, weights))
+#             a.score        = round(max(0.0, min(10.0, raw * 10)), 2)
+#             a.score_reason = "heuristic score (no trained model)"
+#             a.ranker_used  = "heuristic"
+#         return sorted(attractions, key=lambda a: a.score, reverse=True)

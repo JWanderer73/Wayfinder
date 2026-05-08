@@ -18,7 +18,7 @@ from .hotels import HotelFinder
 
 # ← SWAP HERE to use the ML ranker instead:
 #   from .ranking import MLRanker as Ranker
-from .ranking_gemini import GeminiRanker as Ranker
+from .ranking import GeminiRanker as Ranker
 
 
 def generate_recommendations(
