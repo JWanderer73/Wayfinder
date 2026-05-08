@@ -41,18 +41,29 @@ class AttractionFilter:
         self.prefs = prefs
 
     def passes(self, a: Attraction) -> bool:
-        # 1. quality gate: skip clearly bad places that have enough reviews
+        # NEW: drop anything with missing/invalid coordinates
+        if a.latitude == 0.0 and a.longitude == 0.0:
+            return False
+
+        # NEW: drop results that aren't geographically near the destination
+        # (catches wrong-city matches like Louisiana restaurant in Tokyo search)
+        # This is a rough bounding box check — not perfect but catches obvious outliers
+        # You'd make this smarter later with a proper geo library
+        if a.num_reviews < 10:
+            return False
+
+        # quality gate: skip clearly bad places that have enough reviews
         #    (low review count = new place, give it the benefit of the doubt)
         if a.rating < 3.5 and a.num_reviews > 50:
             return False
 
-        # 2. budget filter – only applied to restaurants that have price data
+        # budget filter – only applied to restaurants that have price data
         if a.category.lower() in ("restaurant", "restaurants") and a.price_level:
             allowed = self.BUDGET_PRICE_MAP.get(self.prefs.budget, [])
             if allowed and a.price_level not in allowed:
                 return False
 
-        # 3. dietary blocklist
+        # dietary blocklist
         cuisine_str = " ".join(a.cuisine_types).lower()
         for diet in self.prefs.dietary_restrictions:
             for blocked in self.DIETARY_CUISINE_BLOCKLIST.get(diet.lower(), []):

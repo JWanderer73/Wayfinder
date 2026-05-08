@@ -5,10 +5,11 @@ Hotel search via TripAdvisor, filtered by budget tier.
 """
 from __future__ import annotations
 import time
+import requests
 
 from .models import Attraction, UserPreferences
 from .tripadvisor import TripAdvisorClient, parse_attraction
-
+from .filters import generate_booking_links
 
 # Maps budget string → subcategory keywords we prefer
 BUDGET_HOTEL_SUBCATS: dict[str, list[str]] = {
@@ -52,6 +53,18 @@ class HotelFinder:
             if preferred:
                 hotels = preferred
 
+
         ranked = sorted(hotels, key=lambda h: h.rating, reverse=True)[:top_n]
+
+        # attach booking links to hotels too
+        for h in ranked:
+            h.booking_links = {
+                "TripAdvisor": h.web_url,
+                "Google Maps": f"https://www.google.com/maps/search/?api=1&query={h.latitude},{h.longitude}",
+                "Booking.com": f"https://www.booking.com/search.html?ss={requests.utils.quote(h.name)}",
+                "Hotels.com": f"https://www.hotels.com/search.do?q-destination={requests.utils.quote(h.name)}",
+            }
+            h.booking_url = h.web_url
+
         print(f"  [hotels] returning {len(ranked)} hotels")
         return ranked
