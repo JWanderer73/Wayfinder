@@ -24,11 +24,19 @@ class GoogleMapsClient:
         destination_hint: str | None = None,
         region_code: str | None = None,
     ) -> ResolvedStop:
+        if stop.visit_minutes is None and stop.anchor_kind is not None:
+            visit_minutes = 0
+            visit_minutes_source = stop.visit_minutes_source or "anchor"
+        else:
+            visit_minutes = stop.visit_minutes if stop.visit_minutes is not None else 90
+            visit_minutes_source = stop.visit_minutes_source or "heuristic"
         if stop.latitude is not None and stop.longitude is not None:
             return ResolvedStop.from_stop_input(
                 stop,
                 latitude=stop.latitude,
                 longitude=stop.longitude,
+                visit_minutes=visit_minutes,
+                visit_minutes_source=visit_minutes_source,
                 formatted_address=stop.address,
                 source_query=stop.query_text(destination_hint),
             )
@@ -38,6 +46,8 @@ class GoogleMapsClient:
             stop,
             latitude=geocode["latitude"],
             longitude=geocode["longitude"],
+            visit_minutes=visit_minutes,
+            visit_minutes_source=visit_minutes_source,
             formatted_address=geocode["formatted_address"],
             place_id=geocode.get("place_id"),
             source_query=geocode["query"],

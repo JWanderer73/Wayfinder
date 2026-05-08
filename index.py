@@ -5,6 +5,7 @@ import json
 import os
 import sys
 
+from wayfinder.duration import DurationEstimator, OpenAIDurationClient
 from wayfinder.google_maps import GoogleMapsClient, GoogleMapsError
 from wayfinder.models import TripRequest
 from wayfinder.spatial import SpatialPlanner
@@ -28,6 +29,24 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def build_duration_estimator(trip: TripRequest) -> DurationEstimator:
+    if not trip.use_llm_duration_estimates:
+        return DurationEstimator(use_llm=False)
+
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+    model = trip.llm_duration_model or os.getenv("WAYFINDER_DURATION_MODEL")
+    if not openai_api_key or not model:
+        return DurationEstimator(use_llm=True, llm_client=None)
+
+    return DurationEstimator(
+        use_llm=True,
+        llm_client=OpenAIDurationClient(
+            api_key=openai_api_key,
+            model=model,
+        ),
+    )
+
+
 def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
@@ -44,7 +63,11 @@ def main() -> int:
         payload = json.load(handle)
 
     trip = TripRequest.from_dict(payload)
-    planner = SpatialPlanner(GoogleMapsClient(api_key=api_key))
+    duration_estimator = build_duration_estimator(trip)
+    planner = SpatialPlanner(
+        GoogleMapsClient(api_key=api_key),
+        duration_estimator=duration_estimator,
+    )
 
     try:
         itinerary = planner.build_plan(trip)
