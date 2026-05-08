@@ -165,26 +165,12 @@ Free tier: **5,000 requests/month**
 
 Free tier: **1,500 requests/day** — more than enough for this project.
 
-### Anthropic (Claude) API Key (alternative — ~$5 free credits)
-
-> Only needed if using the Claude ranker instead of Gemini.
-
-1. Go to **https://console.anthropic.com**
-2. Sign up (separate from your Claude.ai chat account)
-3. Click **"API Keys"** in the left sidebar → **"Create Key"**
-4. Copy the key
-
-New accounts get ~$5 in free credits automatically, no card required.
-
 ### Setting Your Keys
 
 **Mac / Linux:**
 ```bash
 export TRIPADVISOR_API_KEY="paste-your-key-here"
 export GEMINI_API_KEY="paste-your-key-here"
-
-# Only needed if using Claude ranker:
-# export ANTHROPIC_API_KEY="paste-your-key-here"
 ```
 
 **Windows (Command Prompt):**
@@ -204,18 +190,6 @@ $env:GEMINI_API_KEY="paste-your-key-here"
 ---
 
 ## Running the Code
-
-### Default ranker is Claude. Switch to Gemini first (it's free):
-
-Open `wayfinder/pipeline.py` and change **line 21**:
-
-```python
-# BEFORE (uses Claude — costs money after $5 free credits)
-from .ranking import LLMRanker as Ranker
-
-# AFTER (uses Gemini — free)
-from .ranking_gemini import GeminiRanker as Ranker
-```
 
 ### Option A — Run with a JSON input file
 
@@ -383,22 +357,14 @@ Check `test_output.json` — it should contain `attractions`, `hotels`, `gaps`, 
 One line in `wayfinder/pipeline.py` (line 21) controls which ranker runs:
 
 ```python
-# Use Claude (Anthropic) — default, costs money after free credits
-from .ranking import LLMRanker as Ranker
-
 # Use Gemini (Google) — free, 1500 req/day
 from .ranking_gemini import GeminiRanker as Ranker
 
 # Use custom ML model — totally free, no internet needed at runtime
 # from .ranking import MLRanker as Ranker
-# (scroll down in ranking.py and uncomment the MLRanker class)
+# (scroll down in ranking_gemini.py and uncomment the MLRanker class)
 ```
 
-| Ranker | Cost | Requires | Best for |
-|--------|------|----------|----------|
-| `LLMRanker` (Claude) | ~$5 free credits | `ANTHROPIC_API_KEY` | Best quality |
-| `GeminiRanker` | Free forever | `GEMINI_API_KEY` | Daily development |
-| `MLRanker` | Free forever | Nothing (runs locally) | Offline / no keys |
 
 ---
 
@@ -469,12 +435,6 @@ Each full run uses:
 - 1 call for completeness check
 
 **Total per run: 3–5 calls** — the free tier is essentially unlimited for this project.
-
-### Anthropic / Claude (free credits: ~$5)
-
-Each ranking call costs roughly $0.003–0.01 depending on batch size.
-$5 of credits = approximately 500–1,000 ranking runs.
-
 ---
 
 ## Troubleshooting
