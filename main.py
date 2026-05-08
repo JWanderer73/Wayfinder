@@ -146,14 +146,6 @@ def main() -> int:
         )
         return 1
 
-    # LLM ranker needs Anthropic key; give a helpful message if missing
-    if not os.getenv("ANTHROPIC_API_KEY"):
-        print(
-            "Warning: ANTHROPIC_API_KEY is not set.\n"
-            "The LLM ranker will fail. Set the key or switch to MLRanker in pipeline.py.",
-            file=sys.stderr,
-        )
-
     # ── load from JSON file or CLI args ──────────────────────────────────────
     if args.input:
         try:
