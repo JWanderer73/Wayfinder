@@ -27,7 +27,7 @@ Wayfinder is one component of a larger AI travel planning system. Its responsibi
 - **Input:** Destination city, travel dates, budget, vibe, dietary restrictions, must-see attractions
 - **Output:** A ranked list of top attractions + hotels + booking links, ready for the routing/map stage
 
-The system is designed so the **AI ranker is swappable** — you can use Claude (Anthropic), Gemini (Google, free), or a custom ML model, all with a one-line change.
+The system is designed so the **AI ranker is swappable** — you can use Gemini (Google, free) or a custom ML model, all with a one-line change.
 
 ---
 
@@ -52,10 +52,12 @@ User Input (city, preferences, dietary restrictions)
      (e.g. steakhouse blocked for vegans)
         │
         ▼
-③ RANK — AI Scoring (LLM or ML model)
+③ RANK — AI Scoring (Gemini or custom ML model)
    • Each attraction gets a score 0–10 based on how well it fits the
      traveler's vibe, budget, and dietary needs
    • Batched in groups of 10 to reduce API calls
+   • Retries up to 3 times if Gemini returns malformed JSON
+   • Falls back to heuristic scoring if all retries fail
         │
         ▼
 ④ PIN — Required Attractions Locked to Top
@@ -97,11 +99,12 @@ wayfinder/              ← main Python package
 ├── filters.py          ← rule-based filter + booking link generator
 ├── hotels.py           ← hotel search, filtered by budget tier
 ├── pipeline.py         ← orchestrates all 7 steps, called by main.py
-├── ranking.py          ← LLMRanker (Claude) + MLRanker (commented out)
-└── ranking_gemini.py   ← GeminiRanker (free alternative to Claude)
+└── ranking.py          ← GeminiRanker (active) + MLRanker (commented out)
 
 main.py                 ← CLI entry point (the file you run)
 example_trip.json       ← sample input file for testing
+.env                    ← your API keys (never commit this)
+.gitignore              ← ensures .env and other junk never gets committed
 ```
 
 ---
@@ -111,24 +114,30 @@ example_trip.json       ← sample input file for testing
 ### 1. Prerequisites
 - Python 3.11 or higher
 - A TripAdvisor API key (free)
-- Either a Gemini API key (free) OR an Anthropic API key (~$5 free credits)
+- A Gemini API key (free)
 
 ### 2. Install dependencies
 
 ```bash
-pip install requests anthropic google-genai
+pip install requests google-genai
 ```
 
-> If you get a permissions error on Linux/Mac, add `--break-system-packages` or use a virtual environment.
+### 3. Clone the project
 
-### 3. Clone / download the project
+```bash
+git clone https://github.com/JWanderer73/Wayfinder.git
+cd Wayfinder
+```
 
 Make sure your folder looks like this before running anything:
 
 ```
-your-project/
+Wayfinder/
 ├── main.py
 ├── example_trip.json
+├── .env
+├── .gitignore
+├── README.md
 └── wayfinder/
     ├── __init__.py
     ├── models.py
@@ -136,8 +145,7 @@ your-project/
     ├── filters.py
     ├── hotels.py
     ├── pipeline.py
-    ├── ranking.py
-    └── ranking_gemini.py
+    └── ranking.py
 ```
 
 ---
@@ -148,15 +156,13 @@ your-project/
 
 1. Go to **https://www.tripadvisor.com/developers**
 2. Click **"Get Started"** and create an account
-3. Create a new project — you can put your project name and a basic description
-4. For "API key restriction" leave it **blank** for development (or add your IP addresses)
+3. Create a new project
+4. Leave the "API key restriction" field **blank** for development
 5. Copy the key
 
 Free tier: **5,000 requests/month**
 
-### Gemini API Key (recommended — completely free)
-
-> Use this if you don't want to pay anything. Your Gemini Pro subscription does NOT include API access — this is a separate free product.
+### Gemini API Key (required — completely free)
 
 1. Go to **https://aistudio.google.com**
 2. Sign in with your Google account
@@ -165,37 +171,46 @@ Free tier: **5,000 requests/month**
 
 Free tier: **1,500 requests/day** — more than enough for this project.
 
+> Note: Your Gemini Pro consumer subscription does NOT include API access. This is a separate free product at aistudio.google.com.
+
 ### Setting Your Keys
+
+Create a `.env` file in the project root:
+
+```
+TRIPADVISOR_API_KEY=your_tripadvisor_key_here
+GEMINI_API_KEY=your_gemini_key_here
+```
+
+Then load it into your terminal before running:
 
 **Mac / Linux:**
 ```bash
-export TRIPADVISOR_API_KEY="paste-your-key-here"
-export GEMINI_API_KEY="paste-your-key-here"
-```
-
-**Windows (Command Prompt):**
-```cmd
-set TRIPADVISOR_API_KEY=paste-your-key-here
-set GEMINI_API_KEY=paste-your-key-here
+export TRIPADVISOR_API_KEY="your_key"
+export GEMINI_API_KEY="your_key"
 ```
 
 **Windows (PowerShell):**
 ```powershell
-$env:TRIPADVISOR_API_KEY="paste-your-key-here"
-$env:GEMINI_API_KEY="paste-your-key-here"
+Get-Content .env | ForEach-Object {
+    $parts = $_ -split '=', 2
+    if ($parts.Count -eq 2 -and -not $parts[0].StartsWith('#')) {
+        [System.Environment]::SetEnvironmentVariable($parts[0].Trim(), $parts[1].Trim())
+    }
+}
 ```
 
-> **Important:** Never paste your API keys directly into the code files. Always use environment variables so you don't accidentally commit them to GitHub.
+> **Important:** Never paste API keys directly into code files or share them in chat. The `.gitignore` blocks `.env` from ever being committed to GitHub.
 
 ---
 
 ## Running the Code
 
-### Option A — Run with a JSON input file
+### Option A — Run with a JSON input file (recommended)
 
-This is the cleanest way. Edit `example_trip.json` with your destination and preferences, then run:
+Edit `example_trip.json` with your destination and preferences, then run:
 
-```bash
+```powershell
 python main.py --input example_trip.json --pretty
 ```
 
@@ -216,23 +231,18 @@ The JSON file format:
 
 ### Option B — Run with command-line flags
 
-```bash
+```powershell
 python main.py --city "Tokyo, Japan" --pretty
 ```
 
 With full preferences:
-```bash
-python main.py \
-  --city "Tokyo, Japan" \
-  --budget mid-range \
-  --vibe "food, culture" \
-  --dietary vegetarian \
-  --required "Senso-ji Temple" "Shibuya Crossing" \
-  --dates 2025-07-10 2025-07-17 \
-  --travelers 2 \
-  --k 10 \
-  --pretty
+```powershell
+python main.py --city "Tokyo, Japan" --budget mid-range --vibe "food, culture" --dietary vegetarian --required "Senso-ji Temple" "Shibuya Crossing" --k 10 --pretty
 ```
+
+### What `--pretty` does
+
+`--pretty` formats the JSON output with indentation so it's readable in the terminal. Without it, everything prints on one line — useful when the output is being piped into another script or stage of the pipeline.
 
 ### All available flags
 
@@ -254,7 +264,7 @@ python main.py \
 
 ### Save results to a file
 
-```bash
+```powershell
 python main.py --input example_trip.json --pretty --output results.json
 ```
 
@@ -264,16 +274,13 @@ python main.py --input example_trip.json --pretty --output results.json
 
 ### Step 1 — Test imports only (no API keys needed)
 
-This confirms the code is set up correctly before you even have keys:
-
-```bash
+```powershell
 python -c "
 from wayfinder.models import Attraction, UserPreferences
 from wayfinder.tripadvisor import TripAdvisorClient
 from wayfinder.filters import AttractionFilter, generate_booking_links
 from wayfinder.hotels import HotelFinder
-from wayfinder.ranking import LLMRanker
-from wayfinder.ranking_gemini import GeminiRanker
+from wayfinder.ranking import GeminiRanker
 from wayfinder.pipeline import generate_recommendations
 print('All imports OK')
 "
@@ -283,88 +290,64 @@ Expected output: `All imports OK`
 
 ### Step 2 — Test the filter logic (no API keys needed)
 
-```bash
+```powershell
 python -c "
 from wayfinder.models import Attraction, UserPreferences
 from wayfinder.filters import AttractionFilter, generate_booking_links
 
 prefs = UserPreferences(destination='Tokyo', budget='mid-range', vibe='culture')
 
-# a good attraction — should pass
 good = Attraction('1', 'Senso-ji Temple', 'Attraction', ['Temple'],
                   4.8, 50000, 'Asakusa', 35.71, 139.79, 'http://example.com')
 
-# a bad restaurant for a vegan — should be blocked
 bad = Attraction('2', 'Tokyo Steakhouse', 'Restaurant', ['Steakhouse'],
                  4.5, 2000, 'Shinjuku', 35.69, 139.70, 'http://example.com',
                  cuisine_types=['Steakhouse'])
 prefs.dietary_restrictions = ['vegan']
 
 filt = AttractionFilter(prefs)
-assert filt.passes(good) == True,  'Good attraction should pass'
-assert filt.passes(bad)  == False, 'Steakhouse should fail for vegan'
+assert filt.passes(good) == True
+assert filt.passes(bad)  == False
 
-# test booking links
 links = generate_booking_links(good, prefs)
 assert 'Viator' in links
 assert 'Google Maps' in links
-print('Filter tests passed')
+print('All filter tests passed')
 print('Booking links:', list(links.keys()))
 "
 ```
 
-Expected output:
-```
-Filter tests passed
-Booking links: ['Viator', 'GetYourGuide', 'Google Maps']
-```
+### Step 3 — Quick live test (minimal API calls)
 
-### Step 3 — Test the CLI help (no API keys needed)
-
-```bash
-python main.py --help
+```powershell
+python main.py --city "New York" --k 5 --no-hotels --no-completeness --pretty
 ```
 
-### Step 4 — Test with real API keys
+### Step 4 — Full run
 
-Once you have both keys set, do a quick smoke test with `--no-completeness` and `--no-hotels` to minimize API calls:
-
-```bash
-python main.py \
-  --city "New York" \
-  --budget mid-range \
-  --vibe "culture, food" \
-  --k 5 \
-  --no-hotels \
-  --no-completeness \
-  --pretty
+```powershell
+python main.py --input example_trip.json --pretty --output results.json
 ```
-
-You should see progress logs, then a JSON block with 5 ranked attractions.
-
-### Step 5 — Full run with your example file
-
-```bash
-python main.py --input example_trip.json --pretty --output test_output.json
-```
-
-Check `test_output.json` — it should contain `attractions`, `hotels`, `gaps`, and `api_calls`.
 
 ---
 
 ## Switching the AI Ranker
 
-One line in `wayfinder/pipeline.py` (line 21) controls which ranker runs:
+One line in `wayfinder/pipeline.py` controls which ranker runs:
 
 ```python
-# Use Gemini (Google) — free, 1500 req/day
-from .ranking_gemini import GeminiRanker as Ranker
+# CURRENT (Gemini — free, 1500 req/day)
+from .ranking import GeminiRanker as Ranker
 
-# Use custom ML model — totally free, no internet needed at runtime
+# ALTERNATIVE (custom ML model — free, runs locally, no API needed)
+# Uncomment MLRanker at the bottom of ranking.py, then change the line above to:
 # from .ranking import MLRanker as Ranker
-# (scroll down in ranking_gemini.py and uncomment the MLRanker class)
 ```
 
+| Ranker | Cost | Requires | Best for |
+|--------|------|----------|----------|
+| `GeminiRanker` | Free (1,500 req/day) | `GEMINI_API_KEY` | Default — smart, free |
+| `MLRanker` | Free forever | Nothing | Offline / no internet |
 
 ---
 
@@ -375,14 +358,14 @@ The JSON output always has this structure:
 ```json
 {
   "destination": "Tokyo, Japan",
-  "preferences": ["culture", "food"],
+  "preferences": ["culture", "food", "anime"],
   "results": {
     "attractions": [
       {
-        "location_id": "123456",
+        "location_id": "320447",
         "name": "Senso-ji Temple",
         "category": "Attraction",
-        "subcategories": ["Temple", "Historic Site"],
+        "subcategories": ["Sights & Landmarks", "Attractions"],
         "rating": 4.8,
         "num_reviews": 52000,
         "address": "2-3-1 Asakusa, Taito City, Tokyo",
@@ -391,7 +374,8 @@ The JSON output always has this structure:
         "web_url": "https://www.tripadvisor.com/...",
         "photo_url": "https://...",
         "price_level": "$",
-        "score": 9.2,
+        "hours": { "weekday_text": ["Monday: 06:00 - 17:00", "..."] },
+        "score": 9.5,
         "score_reason": "Perfect match for cultural exploration vibe",
         "ranker_used": "gemini",
         "booking_url": "https://www.tripadvisor.com/...",
@@ -403,14 +387,19 @@ The JSON output always has this structure:
         }
       }
     ],
-    "hotels": [ ... ],
-    "gaps": "Looks complete.",
-    "api_calls": 87
+    "hotels": [ "... same structure, top 5 by rating ..." ],
+    "gaps": "• Akihabara missing for anime vibe\n• No ramen restaurant included",
+    "api_calls": 61
   }
 }
 ```
 
-This JSON is designed to be consumed by the next stage of the pipeline (routing + map display).
+### What the routing/map stage needs from each attraction
+- `latitude` + `longitude` — to plot on map and compute routes
+- `name` + `address` — for display labels
+- `hours` — to schedule visits in time order
+- `score` — to prioritize stops when clustering by day
+- `booking_links` — to surface in the final UI
 
 ---
 
@@ -418,44 +407,75 @@ This JSON is designed to be consumed by the next stage of the pipeline (routing 
 
 ### TripAdvisor (free tier: 5,000 calls/month)
 
-Each full run uses approximately:
-- 1 call per search query (2 categories = 2 calls)
-- 1 call per attraction detail fetch (~20 per category)
-- 1 call per photo fetch (~20 per category)
-- ~15 calls for hotel search
+| Action | Calls used |
+|--------|-----------|
+| Search per category (2 categories) | 2 |
+| Detail fetch per attraction (~20 per category) | ~40 |
+| Photo fetch per attraction | ~40 |
+| Hotel search | ~15 |
+| **Total per full run** | **~100 calls** |
 
-**Total per run: ~100–130 calls** → you can run ~40 full searches per month for free.
-
-To reduce usage, use `--no-hotels` (saves ~15 calls) and lower `--k`.
+You can run ~50 full searches per month on the free tier. Use `--no-hotels` to save ~15 calls per run.
 
 ### Gemini (free tier: 1,500 requests/day)
 
-Each full run uses:
-- 2–4 calls for ranking (batches of 10 attractions)
-- 1 call for completeness check
+| Action | Calls used |
+|--------|-----------|
+| Ranking (batches of 10) | 2–4 |
+| Completeness check | 1 |
+| **Total per full run** | **3–5 calls** |
 
-**Total per run: 3–5 calls** — the free tier is essentially unlimited for this project.
+Essentially unlimited on the free tier for this project.
+
 ---
 
 ## Troubleshooting
 
-**`Missing TRIPADVISOR_API_KEY`**
-You forgot to set the environment variable. Run `export TRIPADVISOR_API_KEY="your_key"` in the same terminal window before running the script.
+**`ModuleNotFoundError: No module named 'wayfinder'`**
+You're in the wrong folder or the `wayfinder/` subfolder got renamed. Run `ls` — you should see both `main.py` and a `wayfinder/` folder. If the folder is named `wayfinder_tripadvisor`, rename it:
+```powershell
+Rename-Item wayfinder_tripadvisor wayfinder
+```
 
 **`GEMINI_API_KEY is not set`**
-Same issue — run `export GEMINI_API_KEY="your_key"` first.
+Load your `.env` file first using the PowerShell snippet in the Setup section above, or set it manually:
+```powershell
+$env:GEMINI_API_KEY="your_key"
+```
 
-**`ModuleNotFoundError: No module named 'wayfinder'`**
-You're running `main.py` from the wrong directory. Make sure you `cd` into the folder that contains both `main.py` and the `wayfinder/` folder before running.
+**`TRIPADVISOR_API_KEY is not set`**
+```powershell
+$env:TRIPADVISOR_API_KEY="your_key"
+```
 
 **`ModuleNotFoundError: No module named 'google.genai'`**
-Run `pip install google-genai` first.
+```powershell
+pip install google-genai
+```
 
-**TripAdvisor returns 401 Unauthorized**
-Your API key is wrong or not set correctly. Double-check it has no extra spaces or quotes.
+**`404 NOT_FOUND` from Gemini**
+The model name in `ranking.py` doesn't match what your account has access to. Run this to see available models:
+```powershell
+python -c "from google import genai; import os; client = genai.Client(api_key=os.environ['GEMINI_API_KEY']); [print(m.name) for m in client.models.list()]"
+```
+Then update the model name in `wayfinder/ranking.py`.
 
-**TripAdvisor returns 429 Too Many Requests**
-You've hit the rate limit. Wait a minute and try again, or reduce the number of attractions fetched by lowering the `results[:20]` limit in `tripadvisor.py`.
+**`429 RESOURCE_EXHAUSTED` from Gemini**
+You've hit the daily free tier limit. Wait until midnight Pacific time and try again.
 
-**JSON decode error from the ranker**
-The AI returned malformed JSON. This is rare but can happen. Just re-run — it's non-deterministic and usually works on the next attempt.
+**`401 Unauthorized` from TripAdvisor**
+Your TripAdvisor key is wrong or expired. Regenerate it at https://www.tripadvisor.com/developers.
+
+**`429 Too Many Requests` from TripAdvisor**
+You're hitting the per-minute rate limit. Wait 60 seconds and retry.
+
+**JSON decode error from ranker**
+Gemini occasionally returns malformed JSON. The code automatically retries up to 3 times and falls back to heuristic scoring if needed — so the pipeline won't crash from this.
+
+**Git push rejected (non-fast-forward)**
+```powershell
+git stash
+git pull --rebase
+git stash pop
+git push
+```
