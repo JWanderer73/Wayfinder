@@ -8,7 +8,6 @@ import requests
 from datetime import datetime, timezone
 
 
-API_KEY = "AIzaSyAaDKEi5MvuhU7ZwyNtxcqeRxD0SwLl2vc"
 ENDPOINT = "https://routeoptimization.googleapis.com/v1/projects/wayfindertrial:optimizeTours"
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
