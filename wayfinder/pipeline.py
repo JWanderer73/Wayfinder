@@ -1,57 +1,96 @@
-from wayfinder.tripadvisor import fetch_tripadvisor_data
-from wayfinder.ranking import score_places_ml
+"""
+wayfinder/pipeline.py
+──────────────────────
+Orchestrates the full recommendation pipeline:
+  fetch → filter → rank → pin required → attach links → hotel search → gap check
+
+Swap rankers by changing the import line marked with ← SWAP HERE.
+"""
+from __future__ import annotations
+import os
+from dataclasses import asdict
+
+from .models import Attraction, UserPreferences
+from .tripadvisor import TripAdvisorClient, fetch_attractions
+from .filters import AttractionFilter, generate_booking_links
+from .hotels import HotelFinder
+
+# ← SWAP HERE to use the ML ranker instead:
+#   from .ranking import MLRanker as Ranker
+from .ranking import GeminiRanker as Ranker
 
 
-# match preference to tags
-def match(pref, tags):
-    return any(pref in t or t in pref for t in tags)
+def generate_recommendations(
+    city: str,
+    preferences: list[str] | None = None,
+    k: int = 10,
+    budget: str = "mid-range",
+    vibe: str = "",
+    dietary_restrictions: list[str] | None = None,
+    required_attractions: list[str] | None = None,
+    travel_dates: tuple[str, str] = ("", ""),
+    num_travelers: int = 2,
+    categories: list[str] | None = None,
+    check_completeness: bool = True,
+    include_hotels: bool = True,
+) -> dict:
+    """
+    Full pipeline entry point.
 
+    Returns dict with keys: attractions, hotels, gaps, api_calls.
+    """
+    if preferences:
+        combined_vibe = ", ".join(filter(None, [vibe] + list(preferences)))
+    else:
+        combined_vibe = vibe
 
-# filter places
-def filter_places(data, preferences):
-    if not preferences:
-        return data
+    prefs = UserPreferences(
+        destination          = city,
+        travel_dates         = travel_dates,
+        budget               = budget,
+        vibe                 = combined_vibe,
+        dietary_restrictions = list(dietary_restrictions or []),
+        required_attractions = list(required_attractions or []),
+        num_travelers        = num_travelers,
+    )
 
-    filtered = [
-        p for p in data
-        if any(match(pref.lower(), [t.lower() for t in p.get("tags", [])]) for pref in preferences)
-    ]
+    api_key = os.environ["TRIPADVISOR_API_KEY"]
+    ta      = TripAdvisorClient(api_key)
 
-    if not filtered:
-        return data
+    print(f"\n Fetching attractions for: {city}")
+    raw = fetch_attractions(ta, prefs, categories=categories)
 
-    return filtered
+    filtered = AttractionFilter(prefs).filter(raw)
 
+    ranker = Ranker()
+    print(f" Ranking {len(filtered)} attractions with {ranker.__class__.__name__}...")
+    ranked = ranker.rank(filtered, prefs)
 
-# convert to stops
-def convert_to_stops(places):
-    stops = []
+    req_lower  = {n.lower() for n in prefs.required_attractions}
+    pinned     = [a for a in ranked if a.name.lower() in req_lower]
+    rest       = [a for a in ranked if a.name.lower() not in req_lower]
+    top: list[Attraction] = (pinned + rest)[:k]
 
-    for p in places:
-        tags = p.get("tags", [])
+    for a in top:
+        links          = generate_booking_links(a, prefs)
+        a.booking_links = links
+        if not a.booking_url and links.get("TripAdvisor"):
+            a.booking_url = links["TripAdvisor"]
 
-        stops.append({
-            "name": p.get("name"),
-            "address": p.get("address", ""),
-            "visit_minutes": 90,
-            "required": False,
-            "category": tags[0] if tags else "general"
-        })
+    gaps = ""
+    if check_completeness and isinstance(ranker, Ranker) and hasattr(ranker, "check_completeness"):
+        print(" Checking completeness...")
+        gaps = ranker.check_completeness(top, prefs)
 
-    return stops
+    hotel_list: list[Attraction] = []
+    if include_hotels:
+        hotel_list = HotelFinder(ta).find_hotels(prefs)
 
+    print(f"\n Done. {ta._call_count} TripAdvisor API calls used.")
 
-# main pipeline
-def generate_recommendations(city, preferences, k=5):
-    data = fetch_tripadvisor_data(city)
-
-    if not data:
-        print("No data returned from API")
-        return []
-
-    filtered = filter_places(data, preferences)
-    ranked = score_places_ml(filtered, preferences)
-
-    top_k = ranked[:k]
-
-    return convert_to_stops(top_k)
+    return {
+        "attractions": [a.to_dict() for a in top],
+        "hotels":      [h.to_dict() for h in hotel_list],
+        "gaps":        gaps,
+        "api_calls":   ta._call_count,
+    }

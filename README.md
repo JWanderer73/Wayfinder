@@ -1,63 +1,101 @@
 # Wayfinder
 
-Wayfinder is an AI-assisted travel planner. This repo currently focuses on the `routing / spatial` backend layer and now supports:
+AI-powered travel planning: attraction recommendations + day-by-day spatial routing.
 
-- geocoding attractions with Google Maps
-- duration estimation with heuristic defaults and an optional OpenAI hook
-- clustering by geography, daily minutes, and soft max items per day
-- local latitude/longitude routing to avoid route-matrix API calls
-- fixed anchor locations like hotels
-- meal or activity anchor times such as lunch at `12:30`
-- fixed meal buffers: `60` minutes for lunch and `120` minutes for dinner
-- travel redundancy so the schedule is less rushed
-- user removal of activities before routing
-- warnings for overloaded days and out-of-the-way stops
+---
 
-## Current Planner Flow
+## Two Pipelines
 
-1. Load a trip request from JSON.
-2. Filter out user-removed or excluded activities.
-3. Fill missing visit durations with heuristics or an optional LLM estimate.
-4. Geocode only stops that do not already include `latitude` and `longitude`.
-5. Cluster stops into day buckets with geography plus time/item balancing.
-6. Build a local per-day distance matrix from coordinates.
-7. Pick walking, public transit, or driving estimates from distance and requested mode.
-8. Order each day with graph heuristics and basic anchored scheduling.
-9. Return a day-by-day schedule with warnings and local distance matrices.
+| Command | What it does | Key API |
+|---------|-------------|---------|
+| `python index.py recommend` | Fetch attractions from TripAdvisor, rank with Gemini AI, return hotels + booking links | TripAdvisor + Gemini |
+| `python index.py plan` | Build a day-by-day spatial itinerary, geocode stops, cluster by time/distance | Google Maps + OpenAI (optional) |
 
-## Project Files
-
-- [index.py](/Users/jackgui/Desktop/Wayfinder/index.py)
-- [sample_trip.json](/Users/jackgui/Desktop/Wayfinder/sample_trip.json)
-- [wayfinder/models.py](/Users/jackgui/Desktop/Wayfinder/wayfinder/models.py)
-- [wayfinder/google_maps.py](/Users/jackgui/Desktop/Wayfinder/wayfinder/google_maps.py)
-- [wayfinder/duration.py](/Users/jackgui/Desktop/Wayfinder/wayfinder/duration.py)
-- [wayfinder/spatial.py](/Users/jackgui/Desktop/Wayfinder/wayfinder/spatial.py)
+---
 
 ## Setup
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-export GOOGLE_MAPS_API_KEY='your-google-key'
-python3 index.py sample_trip.json --pretty
-```
+### Prerequisites
+- Python 3.11+
+- API keys for the pipelines you want to use (see below)
 
-`GOOGLE_MAPS_API_KEY` is only required when an input stop is missing coordinates. If every active stop and anchor has `latitude` and `longitude`, the sample can run without Google API calls.
-
-Optional LLM duration estimates:
+### Install dependencies
 
 ```bash
-export OPENAI_API_KEY='your-openai-key'
-export WAYFINDER_DURATION_MODEL='your-openai-model'
+pip install requests google-genai scikit-learn
 ```
 
-If `use_llm_duration_estimates` is `true` in the trip request and those environment variables are set, Wayfinder will try to estimate missing activity durations with OpenAI. If not, it falls back to heuristics.
+### API keys
 
-## Input Shape
+**Recommend pipeline:**
+```bash
+export TRIPADVISOR_API_KEY="your_key"   # tripadvisor.com/developers (free: 5k/month)
+export GEMINI_API_KEY="your_key"        # aistudio.google.com (free: 1500/day)
+```
 
-Minimal example:
+**Plan pipeline:**
+```bash
+export GOOGLE_MAPS_API_KEY="your_key"   # only needed for stops missing coordinates
+export OPENAI_API_KEY="your_key"        # optional: LLM duration estimates
+```
+
+---
+
+## Recommend – Travel Attraction Recommender
+
+Fetches real attractions from TripAdvisor, filters and ranks them with Gemini AI, finds hotels, and generates booking links.
+
+### Quick start
+
+```bash
+# by city
+python index.py recommend --city "Tokyo, Japan" --pretty
+
+# from JSON file
+python index.py recommend --input example_trip.json --pretty
+```
+
+### Input JSON format
+
+```json
+{
+  "destination": "Tokyo, Japan",
+  "preferences": ["culture", "food", "anime"],
+  "budget": "mid-range",
+  "vibe": "cultural exploration, street food",
+  "dietary_restrictions": ["vegetarian"],
+  "required_attractions": ["Senso-ji Temple", "Shibuya Crossing"],
+  "k": 10
+}
+```
+
+### Pipeline steps
+
+1. **Fetch** — TripAdvisor search (attractions + restaurants)
+2. **Filter** — drop low-rated places; filter dietary conflicts
+3. **Rank** — Gemini scores each attraction 0–10 for fit
+4. **Pin** — required attractions always appear in output
+5. **Links** — TripAdvisor, Viator, GetYourGuide, Google Maps, OpenTable
+6. **Completeness** — Gemini checks for obvious gaps
+7. **Hotels** — top 5 by rating, filtered by budget tier
+
+### Switching the ranker
+
+In `wayfinder/pipeline.py`, change the import line marked `← SWAP HERE` to use the offline ML ranker instead of Gemini.
+
+---
+
+## Plan – Spatial Itinerary Planner
+
+Builds a day-by-day schedule from a list of stops, geocoding missing coordinates and clustering by geography + time budget.
+
+### Quick start
+
+```bash
+python index.py plan sample_trip.json --pretty
+```
+
+### Input JSON format
 
 ```json
 {
@@ -65,19 +103,11 @@ Minimal example:
   "daily_minutes_budget": 480,
   "day_start_time": "09:00",
   "transport_mode": "auto",
-  "lunch_minutes": 60,
-  "dinner_minutes": 120,
-  "daily_redundancy_minutes": 45,
-  "travel_buffer_ratio": 0.15,
-  "max_stops_per_day": 3,
   "anchor_location": {
     "name": "Hotel Beacon",
     "latitude": 40.7807066,
     "longitude": -73.9810319
   },
-  "excluded_stop_names": ["Top of the Rock"],
-  "end_each_day_at_anchor": true,
-  "use_llm_duration_estimates": false,
   "stops": [
     {
       "name": "Chelsea Market",
@@ -98,44 +128,14 @@ Minimal example:
 }
 ```
 
-Useful stop-level fields:
+### What it produces
 
-- `visit_minutes`: explicit duration from the user
-- `latitude` and `longitude`: preferred input because it avoids a geocoding API call
-- `enabled`: set to `false` to remove an activity
-- `fixed_day`: pin an activity to a specific day number
-- `preferred_start_time`: soft anchor like lunch at `12:30`
-- `time_window_start` and `time_window_end`: basic visit window
-- `anchor_kind`: label such as `meal` or `hotel`
+- Day-by-day schedule with arrival/departure times
+- Local distance matrix (no Google API calls when coordinates are provided)
+- Transport mode selection: walk / transit / drive based on distance
+- Warnings for overloaded days and out-of-the-way stops
 
-## What The New Heuristics Do
-
-- `Clustering by number of items`: each day now tries to stay near a soft max number of stops as well as the daily time budget.
-- `Specific location anchor`: a hotel or home base can be used as the start of each day, and optionally the end too.
-- `Activity duration defaults`: missing times use category and keyword defaults such as museums `150` minutes and food stops `75` minutes.
-- `Restaurant anchors`: stops with `preferred_start_time` are placed into the day around that target time when possible.
-- `Out-of-the-way warnings`: large detours are flagged in the returned schedule.
-- `API-cost-aware routing`: routing uses local distance estimates, so Google API calls scale with unresolved coordinates, not route pairs.
-- `Transport selection`: `transport_mode: "auto"` walks for close stops, uses transit for medium distances, and drives for longer distances.
-- `Time redundancy`: each day reserves lunch, dinner, daily slack, and a buffer on every travel leg.
-
-## API Complexity
-
-With coordinates provided, routing does not call Google Maps. The Google API call count is:
-
-```text
-O(u)
-```
-
-where `u` is the number of active stops and anchors missing coordinates.
-
-The local distance matrix still does pairwise work per day:
-
-```text
-O(sum(k_i^2))
-```
-
-where `k_i` is the number of stops in day `i`, but that work happens locally and is not billed as Google API usage.
+---
 
 ## Tests
 
@@ -143,9 +143,24 @@ where `k_i` is the number of stops in day `i`, but that work happens locally and
 python3 -m unittest discover
 ```
 
-## Current Limits
+---
 
-- This is still a heuristic planner, not a full time-window solver.
-- Traffic-aware time-dependent routing is not implemented yet.
-- Opening hours are not yet fetched automatically.
-- Local travel times are estimates from distance, not live traffic or exact transit schedules.
+## File Structure
+
+```
+index.py                    ← CLI entry point (subcommands: plan / recommend)
+sample_trip.json            ← sample input for the plan pipeline
+example_trip.json           ← sample input for the recommend pipeline
+wayfinder/
+├── models.py               ← data classes for both pipelines
+├── tripadvisor.py          ← TripAdvisor API client
+├── filters.py              ← rule-based filter + booking link generator
+├── hotels.py               ← hotel search
+├── pipeline.py             ← recommend pipeline orchestration
+├── ranking.py              ← GeminiRanker (+ commented MLRanker)
+├── spatial.py              ← plan pipeline: clustering + scheduling
+├── routing.py              ← graph-based route ordering
+├── google_maps.py          ← Google Maps geocoding client
+├── duration.py             ← visit duration estimator
+└── review.py               ← LLM cluster review
+```

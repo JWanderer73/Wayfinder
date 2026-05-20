@@ -1,9 +1,52 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 from datetime import date
 from typing import Any
 
+
+# ── Recommendation models (Attraction pipeline) ───────────────────────────────
+
+@dataclass
+class UserPreferences:
+    """All user-supplied inputs for the recommendation pipeline."""
+    destination: str
+    travel_dates: tuple[str, str] = ("", "")
+    budget: str = "mid-range"
+    vibe: str = ""
+    dietary_restrictions: list[str] = field(default_factory=list)
+    required_attractions: list[str] = field(default_factory=list)
+    num_travelers: int = 2
+
+
+@dataclass
+class Attraction:
+    """One point of interest returned from TripAdvisor + enriched by the pipeline."""
+    location_id: str
+    name: str
+    category: str
+    subcategories: list[str]
+    rating: float
+    num_reviews: int
+    address: str
+    latitude: float
+    longitude: float
+    web_url: str
+    photo_url: str = ""
+    price_level: str = ""
+    cuisine_types: list[str] = field(default_factory=list)
+    hours: dict = field(default_factory=dict)
+    booking_url: str = ""
+    booking_links: dict = field(default_factory=dict)
+    score: float = 0.0
+    score_reason: str = ""
+    ranker_used: str = ""
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+# ── Spatial planning models (routing/scheduling pipeline) ─────────────────────
 
 @dataclass(slots=True)
 class StopInput:
@@ -357,13 +400,13 @@ class TripRequest:
         return parse_clock_time(self.day_start_time) or 9 * 60
 
 
+# ── Shared helpers ────────────────────────────────────────────────────────────
+
 def parse_clock_time(raw_value: str | None) -> int | None:
     if not raw_value:
         return None
     hours_str, minutes_str = raw_value.split(":", maxsplit=1)
-    hours = int(hours_str)
-    minutes = int(minutes_str)
-    return hours * 60 + minutes
+    return int(hours_str) * 60 + int(minutes_str)
 
 
 def format_clock_time(total_minutes: int | None) -> str | None:

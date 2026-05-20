@@ -1,102 +1,144 @@
+"""
+wayfinder/tripadvisor.py
+─────────────────────────
+Thin wrapper around TripAdvisor Content API v1.
+Tracks call count vs. the 5,000-request free-tier limit.
+"""
+from __future__ import annotations
 import os
-import requests
 import time
 
-BASE_URL = "https://api.content.tripadvisor.com/api/v1/location"
+import requests
+
+from .models import Attraction, UserPreferences
+
+TA_BASE = "https://api.content.tripadvisor.com/api/v1"
 
 
-# load api key
-def get_api_key():
-    key = os.getenv("TRIPADVISOR_API_KEY")
-    if not key:
-        raise ValueError("Missing TRIPADVISOR_API_KEY")
-    return key
+class TripAdvisorClient:
+    """All raw HTTP calls to TripAdvisor live here."""
+
+    def __init__(self, api_key: str | None = None):
+        self.api_key = api_key or os.environ["TRIPADVISOR_API_KEY"]
+        self.session = requests.Session()
+        self.session.headers.update({"accept": "application/json"})
+        self._call_count = 0
+
+    def _get(self, endpoint: str, params: dict) -> dict:
+        params = dict(params)
+        params["key"] = self.api_key
+        url = f"{TA_BASE}/{endpoint}"
+        resp = self.session.get(url, params=params, timeout=15)
+        self._call_count += 1
+        resp.raise_for_status()
+        return resp.json()
+
+    def search_locations(self, query: str, category: str = "attractions",
+                         language: str = "en") -> list[dict]:
+        data = self._get("location/search", {
+            "searchQuery": query,
+            "category":    category,
+            "language":    language,
+        })
+        return data.get("data", [])
+
+    def get_location_details(self, location_id: str,
+                             language: str = "en") -> dict:
+        return self._get(f"location/{location_id}/details", {
+            "language": language,
+            "currency": "USD",
+        })
+
+    def search_nearby(self, lat: float, lon: float,
+                      category: str = "attractions",
+                      radius: int = 5, unit: str = "km") -> list[dict]:
+        data = self._get("location/nearby_search", {
+            "latLong":    f"{lat},{lon}",
+            "category":   category,
+            "radius":     radius,
+            "radiusUnit": unit,
+        })
+        return data.get("data", [])
+
+    def get_photos(self, location_id: str, limit: int = 1) -> list[str]:
+        data = self._get(f"location/{location_id}/photos", {"limit": limit})
+        urls: list[str] = []
+        for item in data.get("data", []):
+            for size in ("original", "large", "medium"):
+                img = item.get("images", {}).get(size, {})
+                if img.get("url"):
+                    urls.append(img["url"])
+                    break
+        return urls
+
+    def get_reviews(self, location_id: str, limit: int = 5) -> list[str]:
+        data = self._get(f"location/{location_id}/reviews", {"limit": limit})
+        return [r.get("text", "") for r in data.get("data", [])]
 
 
-# search locations
-def search_locations(query, category="attractions", limit=10):
-    url = f"{BASE_URL}/search"
+def parse_attraction(raw: dict, details: dict) -> Attraction:
+    """Merge a search-result stub + details response into an Attraction."""
+    addr_obj  = details.get("address_obj", {})
+    subcats   = [s.get("localized_name", "") for s in details.get("subcategory", [])]
+    cuisines  = [c.get("localized_name", "") for c in details.get("cuisine", [])]
 
-    params = {
-        "key": get_api_key(),
-        "searchQuery": query,
-        "category": category,
-        "language": "en"
-    }
-
-    response = requests.get(url, params=params)
-    response.raise_for_status()
-
-    data = response.json().get("data", [])
-    return data[:limit]
-
-
-# get location details
-def get_location_details(location_id):
-    url = f"{BASE_URL}/{location_id}/details"
-
-    params = {
-        "key": get_api_key(),
-        "language": "en",
-        "currency": "USD"
-    }
-
-    response = requests.get(url, params=params)
-    response.raise_for_status()
-
-    return response.json()
+    return Attraction(
+        location_id   = details.get("location_id") or raw.get("location_id", ""),
+        name          = details.get("name")         or raw.get("name", ""),
+        category      = (details.get("category") or {}).get("localized_name", ""),
+        subcategories = subcats,
+        rating        = float(details.get("rating")      or 0),
+        num_reviews   = int(  details.get("num_reviews") or 0),
+        address       = addr_obj.get("address_string", ""),
+        latitude      = float(details.get("latitude")  or 0),
+        longitude     = float(details.get("longitude") or 0),
+        web_url       = details.get("web_url", ""),
+        price_level   = details.get("price_level", ""),
+        cuisine_types = cuisines,
+        hours         = details.get("hours", {}),
+        booking_url   = (details.get("booking") or {}).get("url", ""),
+    )
 
 
-# extract tags for ml
-def extract_tags(details):
-    tags = set()
+def fetch_attractions(ta: TripAdvisorClient,
+                      prefs: UserPreferences,
+                      categories: list[str] | None = None,
+                      max_per_category: int = 20,
+                      sleep_s: float = 0.15) -> list[Attraction]:
+    """Fetch Attraction objects from TripAdvisor for all requested categories."""
+    if categories is None:
+        categories = ["attractions", "restaurants"]
 
-    if details.get("category"):
-        tags.add(details["category"].get("name", "").lower())
+    attractions: list[Attraction] = []
 
-    for sub in details.get("subcategory", []):
-        tags.add(sub.get("name", "").lower())
+    for cat in categories:
+        print(f"  [TA] searching '{cat}' in {prefs.destination}...")
+        results = ta.search_locations(prefs.destination, category=cat)
+        for r in results[:max_per_category]:
+            try:
+                details = ta.get_location_details(r["location_id"])
+                a = parse_attraction(r, details)
+                photos = ta.get_photos(r["location_id"], limit=1)
+                if photos:
+                    a.photo_url = photos[0]
+                attractions.append(a)
+                time.sleep(sleep_s)
+            except Exception as exc:
+                print(f"    skip '{r.get('name', '?')}': {exc}")
 
-    for group in details.get("groups", []):
-        for cat in group.get("categories", []):
-            tags.add(cat.get("name", "").lower())
+    fetched_names = {a.name.lower() for a in attractions}
+    for req in prefs.required_attractions:
+        if req.lower() not in fetched_names:
+            print(f"  [TA] required '{req}' not in results – explicit search...")
+            results = ta.search_locations(req, category="attractions")
+            for r in results[:3]:
+                try:
+                    details = ta.get_location_details(r["location_id"])
+                    attractions.append(parse_attraction(r, details))
+                    time.sleep(sleep_s)
+                except Exception:
+                    pass
 
-    return list(filter(None, tags))
-
-
-# normalize data
-def normalize_place(details):
-    return {
-        "name": details.get("name"),
-        "location_id": details.get("location_id"),
-        "rating": details.get("rating", 0),
-        "num_reviews": int(details.get("num_reviews", 0) or 0),
-        "address": details.get("address_obj", {}).get("address_string"),
-        "tags": extract_tags(details)
-    }
-
-
-# main fetch function
-def fetch_tripadvisor_data(city, limit=10):
-    results = []
-
-    search_results = search_locations(city, limit=limit)
-
-    for place in search_results:
-        location_id = place.get("location_id")
-
-        if not location_id:
-            continue
-
-        try:
-            details = get_location_details(location_id)
-            normalized = normalize_place(details)
-            results.append(normalized)
-
-            time.sleep(0.2)
-
-        except Exception as e:
-            print(f"Skipping {location_id}: {e}")
-            continue
-
-    return results
+    print(f"  [TA] fetched {len(attractions)} raw locations "
+          f"({ta._call_count} API calls used)")
+    return attractions
