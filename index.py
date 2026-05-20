@@ -3,30 +3,14 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 
 from wayfinder.duration import DurationEstimator, OpenAIDurationClient
 from wayfinder.google_maps import GoogleMapsClient, GoogleMapsError
 from wayfinder.models import TripRequest
+from wayfinder.pipeline import generate_recommendations
 from wayfinder.review import OpenAIPlanningReviewer
 from wayfinder.spatial import SpatialPlanner
-
-
-def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
-        description="Generate a starter day-by-day spatial plan for Wayfinder."
-    )
-    parser.add_argument(
-        "input",
-        nargs="?",
-        default="sample_trip.json",
-        help="Path to a JSON trip request file.",
-    )
-    parser.add_argument(
-        "--pretty",
-        action="store_true",
-        help="Pretty-print the resulting itinerary JSON.",
-    )
-    return parser
 
 
 def build_duration_estimator(trip: TripRequest) -> DurationEstimator:
@@ -62,10 +46,7 @@ def build_planning_reviewer(trip: TripRequest) -> OpenAIPlanningReviewer | None:
     )
 
 
-def main() -> int:
-    parser = build_parser()
-    args = parser.parse_args()
-
+def cmd_plan(args: argparse.Namespace) -> int:
     with open(args.input, "r", encoding="utf-8") as handle:
         payload = json.load(handle)
 
@@ -89,6 +70,72 @@ def main() -> int:
     else:
         print(json.dumps(output))
     return 0
+
+
+def cmd_recommend(args: argparse.Namespace) -> int:
+    if not os.getenv("TRIPADVISOR_API_KEY"):
+        print("Missing TRIPADVISOR_API_KEY", file=sys.stderr)
+        return 1
+
+    if args.input:
+        try:
+            with open(args.input, "r", encoding="utf-8") as f:
+                payload = json.load(f)
+
+            city = payload.get("destination")
+            preferences = payload.get("preferences", [])
+            k = payload.get("k", args.k)
+
+            if not city:
+                print("JSON must include 'destination'", file=sys.stderr)
+                return 1
+
+        except Exception as e:
+            print(f"Error reading input file: {e}", file=sys.stderr)
+            return 1
+    else:
+        if not args.city:
+            print("Provide --input or --city", file=sys.stderr)
+            return 1
+
+        city = args.city
+        preferences = args.preferences
+        k = args.k
+
+    results = generate_recommendations(city=city, preferences=preferences, k=k)
+
+    output = {"destination": city, "preferences": preferences, "results": results}
+    if args.pretty:
+        print(json.dumps(output, indent=2))
+    else:
+        print(json.dumps(output))
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Wayfinder travel planning CLI")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    plan_parser = subparsers.add_parser("plan", help="Build a day-by-day spatial itinerary")
+    plan_parser.add_argument(
+        "input",
+        nargs="?",
+        default="sample_trip.json",
+        help="Path to a JSON trip request file.",
+    )
+    plan_parser.add_argument("--pretty", action="store_true", help="Pretty-print output.")
+
+    rec_parser = subparsers.add_parser("recommend", help="Generate ranked travel recommendations")
+    rec_parser.add_argument("--input", help="Path to JSON file with destination and preferences")
+    rec_parser.add_argument("--city", help="Destination city")
+    rec_parser.add_argument("--preferences", nargs="*", default=[], help="User preferences")
+    rec_parser.add_argument("--k", type=int, default=5, help="Number of recommendations")
+    rec_parser.add_argument("--pretty", action="store_true", help="Pretty-print output.")
+
+    args = parser.parse_args()
+    if args.command == "plan":
+        return cmd_plan(args)
+    return cmd_recommend(args)
 
 
 if __name__ == "__main__":
