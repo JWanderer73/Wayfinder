@@ -3,11 +3,11 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import sys
 
 from wayfinder.duration import DurationEstimator, OpenAIDurationClient
 from wayfinder.google_maps import GoogleMapsClient, GoogleMapsError
 from wayfinder.models import TripRequest
+from wayfinder.review import OpenAIPlanningReviewer
 from wayfinder.spatial import SpatialPlanner
 
 
@@ -47,17 +47,24 @@ def build_duration_estimator(trip: TripRequest) -> DurationEstimator:
     )
 
 
+def build_planning_reviewer(trip: TripRequest) -> OpenAIPlanningReviewer | None:
+    if not trip.use_llm_cluster_review:
+        return None
+
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+    model = trip.llm_review_model or os.getenv("WAYFINDER_REVIEW_MODEL")
+    if not openai_api_key or not model:
+        return None
+
+    return OpenAIPlanningReviewer(
+        api_key=openai_api_key,
+        model=model,
+    )
+
+
 def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
-
-    api_key = os.getenv("GOOGLE_MAPS_API_KEY")
-    if not api_key:
-        print(
-            "Missing GOOGLE_MAPS_API_KEY. Export it before running this script.",
-            file=sys.stderr,
-        )
-        return 1
 
     with open(args.input, "r", encoding="utf-8") as handle:
         payload = json.load(handle)
@@ -65,8 +72,9 @@ def main() -> int:
     trip = TripRequest.from_dict(payload)
     duration_estimator = build_duration_estimator(trip)
     planner = SpatialPlanner(
-        GoogleMapsClient(api_key=api_key),
+        GoogleMapsClient(api_key=os.getenv("GOOGLE_MAPS_API_KEY")),
         duration_estimator=duration_estimator,
+        planning_reviewer=build_planning_reviewer(trip),
     )
 
     try:

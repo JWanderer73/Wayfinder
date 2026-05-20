@@ -79,6 +79,7 @@ class ResolvedStop:
     time_window_end_minute: int | None = None
     anchor_kind: str | None = None
     priority: int = 0
+    selected_transport_mode: str | None = None
 
     @classmethod
     def from_stop_input(
@@ -146,6 +147,7 @@ class ResolvedStop:
             "time_window_end": format_clock_time(self.time_window_end_minute),
             "anchor_kind": self.anchor_kind,
             "priority": self.priority,
+            "selected_transport_mode": self.selected_transport_mode,
         }
 
 
@@ -156,6 +158,8 @@ class MatrixCell:
     duration_seconds: float
     distance_meters: float
     condition: str
+    transport_mode: str = "unknown"
+    cost_estimate: float = 0.0
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -164,6 +168,8 @@ class MatrixCell:
             "duration_seconds": self.duration_seconds,
             "distance_meters": self.distance_meters,
             "condition": self.condition,
+            "transport_mode": self.transport_mode,
+            "cost_estimate": self.cost_estimate,
         }
 
 
@@ -174,6 +180,9 @@ class ScheduledVisit:
     start_time: str
     departure_time: str
     travel_minutes_from_previous: int
+    travel_buffer_minutes: int = 0
+    transport_mode_from_previous: str | None = None
+    distance_meters_from_previous: float = 0.0
     wait_minutes: int = 0
     warnings: list[str] = field(default_factory=list)
 
@@ -184,6 +193,9 @@ class ScheduledVisit:
             "start_time": self.start_time,
             "departure_time": self.departure_time,
             "travel_minutes_from_previous": self.travel_minutes_from_previous,
+            "travel_buffer_minutes": self.travel_buffer_minutes,
+            "transport_mode_from_previous": self.transport_mode_from_previous,
+            "distance_meters_from_previous": self.distance_meters_from_previous,
             "wait_minutes": self.wait_minutes,
             "warnings": list(self.warnings),
         }
@@ -195,7 +207,11 @@ class DayPlan:
     scheduled_visits: list[ScheduledVisit]
     total_visit_minutes: int
     total_travel_minutes: int
+    total_travel_buffer_minutes: int
     total_wait_minutes: int
+    lunch_minutes: int
+    dinner_minutes: int
+    redundancy_minutes: int
     total_minutes: int
     warnings: list[str] = field(default_factory=list)
     ordered_stop_ids: list[str] = field(default_factory=list)
@@ -211,7 +227,11 @@ class DayPlan:
             "scheduled_visits": [visit.to_dict() for visit in self.scheduled_visits],
             "total_visit_minutes": self.total_visit_minutes,
             "total_travel_minutes": self.total_travel_minutes,
+            "total_travel_buffer_minutes": self.total_travel_buffer_minutes,
             "total_wait_minutes": self.total_wait_minutes,
+            "lunch_minutes": self.lunch_minutes,
+            "dinner_minutes": self.dinner_minutes,
+            "redundancy_minutes": self.redundancy_minutes,
             "total_minutes": self.total_minutes,
             "warnings": list(self.warnings),
             "ordered_stop_ids": list(self.ordered_stop_ids),
@@ -262,6 +282,15 @@ class TripRequest:
     daily_minutes_budget: int = 480
     day_start_time: str = "09:00"
     travel_mode: str = "DRIVE"
+    routing_strategy: str = "distance"
+    transport_mode: str = "auto"
+    lunch_minutes: int = 60
+    dinner_minutes: int = 120
+    include_lunch_buffer: bool = True
+    include_dinner_buffer: bool = True
+    travel_buffer_ratio: float = 0.15
+    minimum_travel_buffer_minutes: int = 5
+    daily_redundancy_minutes: int = 45
     region_code: str | None = None
     max_stops_per_day: int | None = None
     excluded_stop_names: list[str] = field(default_factory=list)
@@ -269,6 +298,8 @@ class TripRequest:
     end_each_day_at_anchor: bool = False
     use_llm_duration_estimates: bool = False
     llm_duration_model: str | None = None
+    use_llm_cluster_review: bool = False
+    llm_review_model: str | None = None
 
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "TripRequest":
@@ -293,6 +324,15 @@ class TripRequest:
             daily_minutes_budget=int(payload.get("daily_minutes_budget", 480)),
             day_start_time=payload.get("day_start_time", "09:00"),
             travel_mode=payload.get("travel_mode", "DRIVE"),
+            routing_strategy=payload.get("routing_strategy", "distance"),
+            transport_mode=payload.get("transport_mode", payload.get("travel_mode", "auto")),
+            lunch_minutes=int(payload.get("lunch_minutes", 60)),
+            dinner_minutes=int(payload.get("dinner_minutes", 120)),
+            include_lunch_buffer=bool(payload.get("include_lunch_buffer", True)),
+            include_dinner_buffer=bool(payload.get("include_dinner_buffer", True)),
+            travel_buffer_ratio=float(payload.get("travel_buffer_ratio", 0.15)),
+            minimum_travel_buffer_minutes=int(payload.get("minimum_travel_buffer_minutes", 5)),
+            daily_redundancy_minutes=int(payload.get("daily_redundancy_minutes", 45)),
             region_code=payload.get("region_code"),
             max_stops_per_day=_coerce_optional_int(payload.get("max_stops_per_day")),
             excluded_stop_names=[str(item) for item in payload.get("excluded_stop_names", [])],
@@ -300,6 +340,8 @@ class TripRequest:
             end_each_day_at_anchor=bool(payload.get("end_each_day_at_anchor", False)),
             use_llm_duration_estimates=bool(payload.get("use_llm_duration_estimates", False)),
             llm_duration_model=payload.get("llm_duration_model"),
+            use_llm_cluster_review=bool(payload.get("use_llm_cluster_review", False)),
+            llm_review_model=payload.get("llm_review_model"),
         )
 
     def inferred_num_days(self) -> int:

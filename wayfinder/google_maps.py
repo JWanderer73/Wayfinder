@@ -14,7 +14,7 @@ class GoogleMapsError(RuntimeError):
 
 @dataclass(slots=True)
 class GoogleMapsClient:
-    api_key: str
+    api_key: str | None
     timeout_seconds: int = 20
 
     def resolve_stop(
@@ -54,6 +54,11 @@ class GoogleMapsClient:
         )
 
     def geocode(self, query: str, *, region_code: str | None = None) -> dict[str, Any]:
+        if not self.api_key:
+            raise GoogleMapsError(
+                f"Cannot geocode '{query}' because GOOGLE_MAPS_API_KEY is not configured."
+            )
+
         params = {"address": query, "key": self.api_key}
         if region_code:
             params["region"] = region_code
