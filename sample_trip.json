@@ -1,0 +1,91 @@
+{
+  "destination": "New York City",
+  "start_date": "2026-06-10",
+  "end_date": "2026-06-12",
+  "daily_minutes_budget": 480,
+  "day_start_time": "09:00",
+  "travel_mode": "auto",
+  "transport_mode": "auto",
+  "routing_strategy": "distance",
+  "lunch_minutes": 60,
+  "dinner_minutes": 120,
+  "daily_redundancy_minutes": 45,
+  "travel_buffer_ratio": 0.15,
+  "minimum_travel_buffer_minutes": 5,
+  "max_stops_per_day": 3,
+  "excluded_stop_names": [
+    "Top of the Rock"
+  ],
+  "anchor_location": {
+    "name": "Hotel Beacon",
+    "address": "2130 Broadway, New York, NY 10023",
+    "latitude": 40.78070659999999,
+    "longitude": -73.98103189999999,
+    "anchor_kind": "hotel"
+  },
+  "end_each_day_at_anchor": true,
+  "use_llm_duration_estimates": false,
+  "use_llm_cluster_review": false,
+  "stops": [
+    {
+      "id": "liberty",
+      "name": "Statue of Liberty Ferry",
+      "address": "Battery Park, New York, NY",
+      "latitude": 40.70293119999999,
+      "longitude": -74.0153603,
+      "visit_minutes": 150,
+      "required": true,
+      "category": "landmark"
+    },
+    {
+      "id": "museum-911",
+      "name": "9/11 Memorial & Museum",
+      "address": "180 Greenwich St, New York, NY 10007",
+      "latitude": 40.711576,
+      "longitude": -74.0132769,
+      "visit_minutes": 120,
+      "required": true,
+      "category": "museum"
+    },
+    {
+      "id": "chelsea-lunch",
+      "name": "Chelsea Market",
+      "address": "75 9th Ave, New York, NY 10011",
+      "latitude": 40.7424509,
+      "longitude": -74.0059581,
+      "required": false,
+      "category": "food",
+      "preferred_start_time": "12:30",
+      "anchor_kind": "meal"
+    },
+    {
+      "id": "met",
+      "name": "The Metropolitan Museum of Art",
+      "address": "1000 5th Ave, New York, NY 10028",
+      "latitude": 40.7790613,
+      "longitude": -73.9627407,
+      "visit_minutes": 180,
+      "required": true,
+      "category": "museum"
+    },
+    {
+      "id": "top-rock",
+      "name": "Top of the Rock",
+      "address": "30 Rockefeller Plaza, New York, NY 10112",
+      "latitude": 40.7593755,
+      "longitude": -73.9799726,
+      "visit_minutes": 90,
+      "required": false,
+      "category": "viewpoint"
+    },
+    {
+      "id": "high-line",
+      "name": "The High Line",
+      "address": "New York, NY 10011",
+      "latitude": 40.7464969,
+      "longitude": -74.0094471,
+      "category": "park",
+      "notes": "A walkable elevated park, usually a shorter stop."
+    }
+  ]
+}
