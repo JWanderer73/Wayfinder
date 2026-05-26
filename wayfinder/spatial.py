@@ -38,6 +38,8 @@ class SpatialPlanner:
         active_stop_inputs, removed_stops = filter_active_stops(
             trip.stops,
             excluded_stop_names=trip.excluded_stop_names,
+            preferred_categories=trip.preferred_categories,
+            excluded_categories=trip.excluded_categories,
         )
         if not active_stop_inputs:
             return ItineraryPlan(
@@ -93,6 +95,7 @@ class SpatialPlanner:
             lunch_minutes=trip.lunch_minutes if trip.include_lunch_buffer else 0,
             dinner_minutes=trip.dinner_minutes if trip.include_dinner_buffer else 0,
             daily_redundancy_minutes=trip.daily_redundancy_minutes,
+            method=trip.clustering_method,
         )
 
         day_start_minute = trip.day_start_minute()
@@ -151,6 +154,15 @@ class SpatialPlanner:
             planning_notes.append(
                 f"Soft max stops per day was set to {trip.max_stops_per_day}."
             )
+        planning_notes.append(f"Clustering method: {trip.clustering_method}.")
+        if trip.preferred_categories:
+            planning_notes.append(
+                f"Preferred categories filter: {', '.join(trip.preferred_categories)}."
+            )
+        if trip.excluded_categories:
+            planning_notes.append(
+                f"Excluded categories filter: {', '.join(trip.excluded_categories)}."
+            )
         if anchor_location is not None:
             planning_notes.append(
                 f"Using '{anchor_location.name}' as the daily anchor location."
@@ -192,16 +204,27 @@ def filter_active_stops(
     stops: list[StopInput],
     *,
     excluded_stop_names: list[str],
+    preferred_categories: list[str] | None = None,
+    excluded_categories: list[str] | None = None,
 ) -> tuple[list[StopInput], list[str]]:
     excluded = {name.casefold() for name in excluded_stop_names}
+    preferred = {category.casefold() for category in preferred_categories or []}
+    excluded_category_set = {category.casefold() for category in excluded_categories or []}
     active: list[StopInput] = []
     removed: list[str] = []
     for stop in stops:
+        category = (stop.category or "").casefold()
         if not stop.enabled:
             removed.append(f"{stop.name} (disabled)")
             continue
         if stop.name.casefold() in excluded:
             removed.append(f"{stop.name} (excluded)")
+            continue
+        if category in excluded_category_set and not stop.required:
+            removed.append(f"{stop.name} (excluded category: {stop.category})")
+            continue
+        if preferred and category not in preferred and not stop.required:
+            removed.append(f"{stop.name} (outside preferred categories)")
             continue
         active.append(stop)
     return active, removed
@@ -245,6 +268,7 @@ def cluster_stops_by_day(
     lunch_minutes: int = 0,
     dinner_minutes: int = 0,
     daily_redundancy_minutes: int = 0,
+    method: str = "best_point",
 ) -> list[list[int]]:
     if not stops:
         return []
@@ -255,6 +279,14 @@ def cluster_stops_by_day(
         1,
         daily_minutes_budget - lunch_minutes - dinner_minutes - daily_redundancy_minutes,
     )
+    if method in {"best_point", "k_medoids", "medoid"}:
+        return cluster_stops_by_best_points(
+            stops,
+            num_days=num_days,
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+        )
+
     clusters: list[list[int]] = [[] for _ in range(num_days)]
     cluster_minutes = [0 for _ in range(num_days)]
     cluster_items = [0 for _ in range(num_days)]
@@ -327,6 +359,216 @@ def cluster_stops_by_day(
         cluster_items[best_cluster] += 1
 
     return [sorted(cluster) for cluster in clusters if cluster]
+
+
+def cluster_stops_by_best_points(
+    stops: list[ResolvedStop],
+    *,
+    num_days: int,
+    effective_daily_budget: int,
+    target_items_per_day: int,
+) -> list[list[int]]:
+    clusters: list[list[int]] = [[] for _ in range(num_days)]
+    cluster_minutes = [0 for _ in range(num_days)]
+    cluster_items = [0 for _ in range(num_days)]
+    assigned: set[int] = set()
+
+    for index, stop in enumerate(stops):
+        if stop.fixed_day is None:
+            continue
+        day_index = min(num_days, max(1, stop.fixed_day)) - 1
+        clusters[day_index].append(index)
+        cluster_minutes[day_index] += stop.visit_minutes
+        cluster_items[day_index] += 1
+        assigned.add(index)
+
+    empty_days = [day_index for day_index, cluster in enumerate(clusters) if not cluster]
+    seeds = best_point_seeds(
+        stops,
+        count=min(len(empty_days), len(stops) - len(assigned)),
+        disallowed=assigned,
+    )
+    for day_index, seed_index in zip(empty_days, seeds):
+        clusters[day_index].append(seed_index)
+        cluster_minutes[day_index] += stops[seed_index].visit_minutes
+        cluster_items[day_index] += 1
+        assigned.add(seed_index)
+
+    while len(assigned) < len(stops):
+        made_progress = False
+        for cluster_index, cluster in enumerate(clusters):
+            candidate = best_candidate_for_cluster(
+                stops,
+                assigned=assigned,
+                cluster=cluster,
+                current_minutes=cluster_minutes[cluster_index],
+                current_items=cluster_items[cluster_index],
+                effective_daily_budget=effective_daily_budget,
+                target_items_per_day=target_items_per_day,
+                require_fit=True,
+            )
+            if candidate is None:
+                continue
+            clusters[cluster_index].append(candidate)
+            cluster_minutes[cluster_index] += stops[candidate].visit_minutes
+            cluster_items[cluster_index] += 1
+            assigned.add(candidate)
+            made_progress = True
+
+        if made_progress:
+            continue
+
+        candidate_cluster = best_overflow_assignment(
+            stops,
+            clusters=clusters,
+            assigned=assigned,
+            cluster_minutes=cluster_minutes,
+            cluster_items=cluster_items,
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+        )
+        if candidate_cluster is None:
+            break
+        candidate, cluster_index = candidate_cluster
+        clusters[cluster_index].append(candidate)
+        cluster_minutes[cluster_index] += stops[candidate].visit_minutes
+        cluster_items[cluster_index] += 1
+        assigned.add(candidate)
+
+    return [sorted(cluster) for cluster in clusters if cluster]
+
+
+def best_point_seeds(
+    stops: list[ResolvedStop],
+    *,
+    count: int,
+    disallowed: set[int],
+) -> list[int]:
+    candidates = [index for index in range(len(stops)) if index not in disallowed]
+    if not candidates or count <= 0:
+        return []
+
+    first_seed = max(candidates, key=lambda index: stop_value_score(stops[index]))
+    seeds = [first_seed]
+
+    while len(seeds) < count and len(seeds) < len(candidates):
+        next_seed = max(
+            (index for index in candidates if index not in seeds),
+            key=lambda index: (
+                min(
+                    haversine_meters(
+                        stops[index].latitude,
+                        stops[index].longitude,
+                        stops[seed].latitude,
+                        stops[seed].longitude,
+                    )
+                    for seed in seeds
+                )
+                + stop_value_score(stops[index]) * 100
+            ),
+        )
+        seeds.append(next_seed)
+
+    return seeds
+
+
+def best_candidate_for_cluster(
+    stops: list[ResolvedStop],
+    *,
+    assigned: set[int],
+    cluster: list[int],
+    current_minutes: int,
+    current_items: int,
+    effective_daily_budget: int,
+    target_items_per_day: int,
+    require_fit: bool,
+) -> int | None:
+    if not cluster:
+        return None
+
+    centroid_lat, centroid_lng = cluster_centroid(cluster, stops)
+    best_candidate = None
+    best_score = float("inf")
+    for candidate in range(len(stops)):
+        if candidate in assigned:
+            continue
+        minute_overflow = max(
+            0,
+            current_minutes + stops[candidate].visit_minutes - effective_daily_budget,
+        )
+        item_overflow = max(0, current_items + 1 - target_items_per_day)
+        if require_fit and (minute_overflow > 0 or item_overflow > 0):
+            continue
+
+        distance = haversine_meters(
+            stops[candidate].latitude,
+            stops[candidate].longitude,
+            centroid_lat,
+            centroid_lng,
+        )
+        score = (
+            distance
+            + minute_overflow * 250
+            + item_overflow * 4_000
+            - stop_value_score(stops[candidate]) * 100
+        )
+        if score < best_score:
+            best_score = score
+            best_candidate = candidate
+
+    return best_candidate
+
+
+def best_overflow_assignment(
+    stops: list[ResolvedStop],
+    *,
+    clusters: list[list[int]],
+    assigned: set[int],
+    cluster_minutes: list[int],
+    cluster_items: list[int],
+    effective_daily_budget: int,
+    target_items_per_day: int,
+) -> tuple[int, int] | None:
+    best_assignment = None
+    best_score = float("inf")
+    for cluster_index, cluster in enumerate(clusters):
+        candidate = best_candidate_for_cluster(
+            stops,
+            assigned=assigned,
+            cluster=cluster,
+            current_minutes=cluster_minutes[cluster_index],
+            current_items=cluster_items[cluster_index],
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+            require_fit=False,
+        )
+        if candidate is None:
+            continue
+        centroid_lat, centroid_lng = cluster_centroid(cluster, stops)
+        distance = haversine_meters(
+            stops[candidate].latitude,
+            stops[candidate].longitude,
+            centroid_lat,
+            centroid_lng,
+        )
+        minute_overflow = max(
+            0,
+            cluster_minutes[cluster_index] + stops[candidate].visit_minutes - effective_daily_budget,
+        )
+        item_overflow = max(0, cluster_items[cluster_index] + 1 - target_items_per_day)
+        score = distance + minute_overflow * 250 + item_overflow * 4_000
+        if score < best_score:
+            best_score = score
+            best_assignment = (candidate, cluster_index)
+
+    return best_assignment
+
+
+def stop_value_score(stop: ResolvedStop) -> float:
+    required_bonus = 80 if stop.required else 0
+    priority_bonus = max(0, stop.priority) * 10
+    duration_bonus = min(stop.visit_minutes, 180) / 30
+    return required_bonus + priority_bonus + duration_bonus
 
 
 def farthest_first_seeds(

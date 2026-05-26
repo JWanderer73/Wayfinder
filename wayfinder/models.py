@@ -294,6 +294,9 @@ class TripRequest:
     region_code: str | None = None
     max_stops_per_day: int | None = None
     excluded_stop_names: list[str] = field(default_factory=list)
+    preferred_categories: list[str] = field(default_factory=list)
+    excluded_categories: list[str] = field(default_factory=list)
+    clustering_method: str = "best_point"
     anchor_location: StopInput | None = None
     end_each_day_at_anchor: bool = False
     use_llm_duration_estimates: bool = False
@@ -336,6 +339,9 @@ class TripRequest:
             region_code=payload.get("region_code"),
             max_stops_per_day=_coerce_optional_int(payload.get("max_stops_per_day")),
             excluded_stop_names=[str(item) for item in payload.get("excluded_stop_names", [])],
+            preferred_categories=normalize_string_list(payload.get("preferred_categories", [])),
+            excluded_categories=normalize_string_list(payload.get("excluded_categories", [])),
+            clustering_method=payload.get("clustering_method", "best_point"),
             anchor_location=anchor_location,
             end_each_day_at_anchor=bool(payload.get("end_each_day_at_anchor", False)),
             use_llm_duration_estimates=bool(payload.get("use_llm_duration_estimates", False)),
@@ -385,3 +391,11 @@ def _coerce_optional_int(value: Any) -> int | None:
     if value in (None, ""):
         return None
     return int(value)
+
+
+def normalize_string_list(raw_values: Any) -> list[str]:
+    if raw_values is None:
+        return []
+    if isinstance(raw_values, str):
+        raw_values = [raw_values]
+    return [str(value).strip().lower() for value in raw_values if str(value).strip()]

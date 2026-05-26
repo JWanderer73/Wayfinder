@@ -13,6 +13,16 @@
   "travel_buffer_ratio": 0.15,
   "minimum_travel_buffer_minutes": 5,
   "max_stops_per_day": 3,
+  "clustering_method": "best_point",
+  "preferred_categories": [
+    "landmark",
+    "museum",
+    "food",
+    "park"
+  ],
+  "excluded_categories": [
+    "nightlife"
+  ],
   "excluded_stop_names": [
     "Top of the Rock"
   ],

@@ -11,6 +11,8 @@ from wayfinder.routing import (
     travel_buffer_minutes,
 )
 from wayfinder.spatial import SpatialPlanner, estimate_days_from_budget
+from wayfinder.spatial import cluster_stops_by_day, filter_active_stops
+from wayfinder.models import StopInput
 
 
 def stop(
@@ -121,6 +123,40 @@ class RoutingTest(unittest.TestCase):
         self.assertEqual(plan.days[0].redundancy_minutes, 45)
         self.assertGreater(plan.days[0].total_travel_buffer_minutes, 0)
         self.assertIn("latitude/longitude", " ".join(plan.planning_notes))
+
+    def test_category_preferences_filter_optional_stops(self) -> None:
+        active, removed = filter_active_stops(
+            [
+                StopInput(name="Museum", category="museum", required=True),
+                StopInput(name="Mall", category="shopping"),
+                StopInput(name="Park", category="park"),
+            ],
+            excluded_stop_names=[],
+            preferred_categories=["museum", "park"],
+            excluded_categories=[],
+        )
+
+        self.assertEqual([stop.name for stop in active], ["Museum", "Park"])
+        self.assertEqual(removed, ["Mall (outside preferred categories)"])
+
+    def test_best_point_clustering_keeps_nearby_stops_together(self) -> None:
+        stops = [
+            stop("North Museum", 40.0, -74.0, visit_minutes=60),
+            stop("North Park", 40.001, -74.0, visit_minutes=60),
+            stop("South Museum", 41.0, -74.0, visit_minutes=60),
+            stop("South Park", 41.001, -74.0, visit_minutes=60),
+        ]
+
+        clusters = cluster_stops_by_day(
+            stops,
+            num_days=2,
+            daily_minutes_budget=300,
+            max_stops_per_day=2,
+            method="best_point",
+        )
+
+        cluster_sets = {frozenset(cluster) for cluster in clusters}
+        self.assertEqual(cluster_sets, {frozenset({0, 1}), frozenset({2, 3})})
 
 
 if __name__ == "__main__":

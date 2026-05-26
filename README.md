@@ -5,6 +5,8 @@ Wayfinder is an AI-assisted travel planner. This repo currently focuses on the `
 - geocoding attractions with Google Maps
 - duration estimation with heuristic defaults and an optional OpenAI hook
 - clustering by geography, daily minutes, and soft max items per day
+- preference filters for attraction categories
+- best-point clustering, similar to a lightweight k-medoids approach
 - local latitude/longitude routing to avoid route-matrix API calls
 - fixed anchor locations like hotels
 - meal or activity anchor times such as lunch at `12:30`
@@ -17,13 +19,15 @@ Wayfinder is an AI-assisted travel planner. This repo currently focuses on the `
 
 1. Load a trip request from JSON.
 2. Filter out user-removed or excluded activities.
-3. Fill missing visit durations with heuristics or an optional LLM estimate.
-4. Geocode only stops that do not already include `latitude` and `longitude`.
-5. Cluster stops into day buckets with geography plus time/item balancing.
-6. Build a local per-day distance matrix from coordinates.
-7. Pick walking, public transit, or driving estimates from distance and requested mode.
-8. Order each day with graph heuristics and basic anchored scheduling.
-9. Return a day-by-day schedule with warnings and local distance matrices.
+3. Apply category preferences such as museums, parks, food, or landmarks.
+4. Fill missing visit durations with heuristics or an optional LLM estimate.
+5. Geocode only stops that do not already include `latitude` and `longitude`.
+6. Cluster stops into day buckets with geography plus time/item balancing.
+7. Use best-point clustering by default: choose a strong seed attraction for each day, then add nearby stops until time or item limits get tight.
+8. Build a local per-day distance matrix from coordinates.
+9. Pick walking, public transit, or driving estimates from distance and requested mode.
+10. Order each day with graph heuristics and basic anchored scheduling.
+11. Return a day-by-day schedule with warnings and local distance matrices.
 
 ## Project Files
 
@@ -69,6 +73,9 @@ Minimal example:
   "dinner_minutes": 120,
   "daily_redundancy_minutes": 45,
   "travel_buffer_ratio": 0.15,
+  "clustering_method": "best_point",
+  "preferred_categories": ["museum", "food", "park"],
+  "excluded_categories": ["nightlife"],
   "max_stops_per_day": 3,
   "anchor_location": {
     "name": "Hotel Beacon",
@@ -103,6 +110,7 @@ Useful stop-level fields:
 - `visit_minutes`: explicit duration from the user
 - `latitude` and `longitude`: preferred input because it avoids a geocoding API call
 - `enabled`: set to `false` to remove an activity
+- `category`: used by the preference filter
 - `fixed_day`: pin an activity to a specific day number
 - `preferred_start_time`: soft anchor like lunch at `12:30`
 - `time_window_start` and `time_window_end`: basic visit window
@@ -110,7 +118,9 @@ Useful stop-level fields:
 
 ## What The New Heuristics Do
 
-- `Clustering by number of items`: each day now tries to stay near a soft max number of stops as well as the daily time budget.
+- `Preference filtering`: optional attractions outside `preferred_categories` can be removed before routing, while required attractions are preserved.
+- `Best-point clustering`: each day starts from a high-value seed attraction, then adds nearby attractions while there is enough activity time and item capacity.
+- `Clustering by number of items`: each day tries to stay near a soft max number of stops as well as the daily time budget.
 - `Specific location anchor`: a hotel or home base can be used as the start of each day, and optionally the end too.
 - `Activity duration defaults`: missing times use category and keyword defaults such as museums `150` minutes and food stops `75` minutes.
 - `Restaurant anchors`: stops with `preferred_start_time` are placed into the day around that target time when possible.
