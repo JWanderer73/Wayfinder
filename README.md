@@ -1,6 +1,11 @@
 # Wayfinder
 
-Wayfinder is an AI-assisted travel planner. This repo currently focuses on the `routing / spatial` backend layer and now supports:
+Wayfinder is an AI-assisted travel planner with two backend paths:
+
+- `python3 index.py plan`: spatial routing and day-by-day itinerary generation
+- `python3 index.py recommend`: TripAdvisor attraction fetching plus Gemini ranking
+
+The spatial planner supports:
 
 - geocoding attractions with Google Maps
 - duration estimation with heuristic defaults and an optional OpenAI hook
@@ -45,10 +50,20 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 export GOOGLE_MAPS_API_KEY='your-google-key'
-python3 index.py sample_trip.json --pretty
+python3 index.py plan sample_trip.json --pretty
 ```
 
 `GOOGLE_MAPS_API_KEY` is only required when an input stop is missing coordinates. If every active stop and anchor has `latitude` and `longitude`, the sample can run without Google API calls.
+
+Recommendation pipeline API keys:
+
+```bash
+export TRIPADVISOR_API_KEY='your-tripadvisor-key'
+export GEMINI_API_KEY='your-gemini-key'
+python3 index.py recommend --input example_trip.json --pretty
+```
+
+TripAdvisor calls happen only in the `recommend` command. The `plan` command does not call TripAdvisor or Gemini.
 
 Optional LLM duration estimates:
 

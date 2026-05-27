@@ -1,8 +1,49 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from datetime import date
 from typing import Any
+
+
+@dataclass
+class UserPreferences:
+    """User inputs for the attraction recommendation pipeline."""
+
+    destination: str
+    travel_dates: tuple[str, str] = ("", "")
+    budget: str = "mid-range"
+    vibe: str = ""
+    dietary_restrictions: list[str] = field(default_factory=list)
+    required_attractions: list[str] = field(default_factory=list)
+    num_travelers: int = 2
+
+
+@dataclass
+class Attraction:
+    """A TripAdvisor place enriched by filtering, ranking, and booking links."""
+
+    location_id: str
+    name: str
+    category: str
+    subcategories: list[str]
+    rating: float
+    num_reviews: int
+    address: str
+    latitude: float
+    longitude: float
+    web_url: str
+    photo_url: str = ""
+    price_level: str = ""
+    cuisine_types: list[str] = field(default_factory=list)
+    hours: dict = field(default_factory=dict)
+    booking_url: str = ""
+    booking_links: dict = field(default_factory=dict)
+    score: float = 0.0
+    score_reason: str = ""
+    ranker_used: str = ""
+
+    def to_dict(self) -> dict:
+        return asdict(self)
 
 
 @dataclass(slots=True)
