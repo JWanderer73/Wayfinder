@@ -139,7 +139,7 @@ def build_parser() -> argparse.ArgumentParser:
     plan_parser.add_argument(
         "input",
         nargs="?",
-        default="sample_trip.json",
+        default="trips/paris_test.json",
         help="Path to a JSON trip request file.",
     )
     plan_parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON.")

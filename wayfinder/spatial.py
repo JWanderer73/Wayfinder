@@ -77,15 +77,25 @@ class SpatialPlanner:
         )
 
         num_days = max(1, min(len(resolved_stops), trip.inferred_num_days()))
-        if num_days == 1 and resolved_stops:
-            estimated_days = estimate_days_from_budget(
-                resolved_stops,
-                daily_minutes_budget=trip.daily_minutes_budget,
-                lunch_minutes=trip.lunch_minutes if trip.include_lunch_buffer else 0,
-                dinner_minutes=trip.dinner_minutes if trip.include_dinner_buffer else 0,
-                daily_redundancy_minutes=trip.daily_redundancy_minutes,
+        estimated_days = estimate_days_from_budget(
+            resolved_stops,
+            daily_minutes_budget=trip.daily_minutes_budget,
+            lunch_minutes=trip.lunch_minutes if trip.include_lunch_buffer else 0,
+            dinner_minutes=trip.dinner_minutes if trip.include_dinner_buffer else 0,
+            daily_redundancy_minutes=trip.daily_redundancy_minutes,
+        )
+        should_expand_days = (
+            num_days == 1
+            or any(
+                stop.visit_minutes_source == "heuristic_redundancy"
+                for stop in resolved_stops
             )
-            num_days = max(1, estimated_days)
+        )
+        if should_expand_days:
+            num_days = min(
+                max_available_days(trip, stop_count=len(resolved_stops)),
+                max(num_days, estimated_days),
+            )
 
         day_clusters = cluster_stops_by_day(
             resolved_stops,
@@ -186,6 +196,10 @@ class SpatialPlanner:
                     )
                 except PlanningReviewError as exc:
                     planning_notes.append(f"LLM cluster review failed: {exc}")
+        if len(days) > trip.inferred_num_days():
+            planning_notes.append(
+                f"Expanded from {trip.inferred_num_days()} to {len(days)} day(s) because duration estimates would overload the original plan."
+            )
 
         return ItineraryPlan(
             destination=trip.destination,
@@ -257,6 +271,14 @@ def estimate_days_from_budget(
     total_minutes = visit_minutes + travel_minutes
     effective_daily_budget = max(1, daily_minutes_budget - lunch_minutes - dinner_minutes - daily_redundancy_minutes)
     return max(1, math.ceil(total_minutes / effective_daily_budget))
+
+
+def max_available_days(trip: TripRequest, *, stop_count: int) -> int:
+    if trip.start_date and trip.end_date:
+        date_days = (trip.end_date - trip.start_date).days + 1
+        if date_days > 0:
+            return max(1, min(stop_count, date_days))
+    return max(1, stop_count)
 
 
 def cluster_stops_by_day(
@@ -387,6 +409,7 @@ def cluster_stops_by_best_points(
         stops,
         count=min(len(empty_days), len(stops) - len(assigned)),
         disallowed=assigned,
+        effective_daily_budget=effective_daily_budget,
     )
     for day_index, seed_index in zip(empty_days, seeds):
         clusters[day_index].append(seed_index)
@@ -443,13 +466,29 @@ def best_point_seeds(
     *,
     count: int,
     disallowed: set[int],
+    effective_daily_budget: int | None = None,
 ) -> list[int]:
     candidates = [index for index in range(len(stops)) if index not in disallowed]
     if not candidates or count <= 0:
         return []
 
-    first_seed = max(candidates, key=lambda index: stop_value_score(stops[index]))
-    seeds = [first_seed]
+    long_activity_cutoff = (
+        max(180, effective_daily_budget * 0.75)
+        if effective_daily_budget is not None
+        else float("inf")
+    )
+    seeds = sorted(
+        (
+            index
+            for index in candidates
+            if stops[index].visit_minutes >= long_activity_cutoff
+        ),
+        key=lambda index: (stops[index].visit_minutes, stop_value_score(stops[index])),
+        reverse=True,
+    )[:count]
+
+    if not seeds:
+        seeds = [max(candidates, key=lambda index: stop_value_score(stops[index]))]
 
     while len(seeds) < count and len(seeds) < len(candidates):
         next_seed = max(

@@ -37,11 +37,23 @@ The spatial planner supports:
 ## Project Files
 
 - [index.py](/Users/jackgui/Desktop/Wayfinder/index.py)
-- [sample_trip.json](/Users/jackgui/Desktop/Wayfinder/sample_trip.json)
+- [trips/paris_test.json](/Users/jackgui/Desktop/Wayfinder/trips/paris_test.json)
+- [trips/paris_result.json](/Users/jackgui/Desktop/Wayfinder/trips/paris_result.json)
+- [trips/tokyo_test.json](/Users/jackgui/Desktop/Wayfinder/trips/tokyo_test.json)
+- [trips/tokyo_result.json](/Users/jackgui/Desktop/Wayfinder/trips/tokyo_result.json)
 - [wayfinder/models.py](/Users/jackgui/Desktop/Wayfinder/wayfinder/models.py)
 - [wayfinder/google_maps.py](/Users/jackgui/Desktop/Wayfinder/wayfinder/google_maps.py)
 - [wayfinder/duration.py](/Users/jackgui/Desktop/Wayfinder/wayfinder/duration.py)
 - [wayfinder/spatial.py](/Users/jackgui/Desktop/Wayfinder/wayfinder/spatial.py)
+
+## Reference Trips
+
+- `trips/paris_test.json`: teammate-provided Paris recommendation payload.
+- `trips/paris_result.json`: compact Paris planner output for reference.
+- `trips/tokyo_test.json`: teammate-provided Tokyo recommendation payload.
+- `trips/tokyo_result.json`: compact Tokyo planner output for reference.
+
+The result files intentionally omit bulky internal route matrices and keep the useful itinerary data: day totals, time-ordered stops, travel estimates, warnings, hotel anchor, ratings, photos, and booking links.
 
 ## Setup
 
@@ -50,17 +62,17 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 export GOOGLE_MAPS_API_KEY='your-google-key'
-python3 index.py plan sample_trip.json --pretty
+python3 index.py plan trips/tokyo_test.json --pretty
 ```
 
-`GOOGLE_MAPS_API_KEY` is only required when an input stop is missing coordinates. If every active stop and anchor has `latitude` and `longitude`, the sample can run without Google API calls.
+`GOOGLE_MAPS_API_KEY` is only required when an input stop is missing coordinates. The current Paris and Tokyo reference trips include `latitude` and `longitude`, so they can run without Google API calls.
 
 Recommendation pipeline API keys:
 
 ```bash
 export TRIPADVISOR_API_KEY='your-tripadvisor-key'
 export GEMINI_API_KEY='your-gemini-key'
-python3 index.py recommend --input example_trip.json --pretty
+python3 index.py recommend --city Tokyo --preferences culture food nightlife --required "Senso-ji Temple" "Shibuya Crossing" --pretty
 ```
 
 TripAdvisor calls happen only in the `recommend` command. The `plan` command does not call TripAdvisor or Gemini.
@@ -137,7 +149,7 @@ Useful stop-level fields:
 - `Best-point clustering`: each day starts from a high-value seed attraction, then adds nearby attractions while there is enough activity time and item capacity.
 - `Clustering by number of items`: each day tries to stay near a soft max number of stops as well as the daily time budget.
 - `Specific location anchor`: a hotel or home base can be used as the start of each day, and optionally the end too.
-- `Activity duration defaults`: missing times use category and keyword defaults such as museums `150` minutes and food stops `75` minutes.
+- `Activity duration defaults`: missing or recommendation-generated times use category and keyword defaults, then add a small redundancy buffer so every stop is not treated as the same `75` minute visit.
 - `Restaurant anchors`: stops with `preferred_start_time` are placed into the day around that target time when possible.
 - `Out-of-the-way warnings`: large detours are flagged in the returned schedule.
 - `API-cost-aware routing`: routing uses local distance estimates, so Google API calls scale with unresolved coordinates, not route pairs.

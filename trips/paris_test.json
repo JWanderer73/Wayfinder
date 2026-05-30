@@ -1,0 +1,1791 @@
+{
+  "trip_id": "5865ca1e85c2",
+  "destination": "Paris",
+  "preferences": {
+    "preferences": [],
+    "budget": "mid-range",
+    "vibe": "romance, art",
+    "dietary_restrictions": [],
+    "required_attractions": [],
+    "travel_dates": [
+      "",
+      ""
+    ],
+    "num_travelers": 2,
+    "trip_shape": "balanced"
+  },
+  "attractions": [
+    {
+      "location_id": "189683",
+      "name": "The Seine",
+      "category": "Attraction",
+      "subcategories": [
+        "Nature & Parks",
+        "Attractions"
+      ],
+      "rating": 4.6,
+      "num_reviews": 25838,
+      "address": "75001 Paris France",
+      "latitude": 48.858776,
+      "longitude": 2.335496,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189683-Reviews-The_Seine-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/09/e4/d4/38/river-seine.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189683-Reviews-The_Seine-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d189683-Reviews-The_Seine-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=The%20Seine&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=The%20Seine&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.858776,2.335496"
+      },
+      "duration_minutes": 75,
+      "place_id": "189683",
+      "score": 9.5,
+      "score_reason": "The Seine is inherently romantic, offering scenic strolls along its banks or charming river cruises, providing iconic Parisian views perfect for a couple seeking romance and beauty. It's a quintessential Paris experience.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": true,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "2613395",
+      "name": "Paris by Mouth",
+      "category": "Attraction",
+      "subcategories": [
+        "Food & Drink",
+        "Tours",
+        "Activities"
+      ],
+      "rating": 5.0,
+      "num_reviews": 4450,
+      "address": "75004 Paris France",
+      "latitude": 48.85627,
+      "longitude": 2.35661,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d2613395-Reviews-Paris_by_Mouth-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/32/5c/f2/33/we-taste-prize-winning.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 2,
+              "time": "0900"
+            },
+            "close": {
+              "day": 2,
+              "time": "1400"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1500"
+            },
+            "close": {
+              "day": 2,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0900"
+            },
+            "close": {
+              "day": 3,
+              "time": "1400"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1500"
+            },
+            "close": {
+              "day": 3,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0900"
+            },
+            "close": {
+              "day": 4,
+              "time": "1400"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1500"
+            },
+            "close": {
+              "day": 4,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0900"
+            },
+            "close": {
+              "day": 5,
+              "time": "1400"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1500"
+            },
+            "close": {
+              "day": 5,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "1400"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1500"
+            },
+            "close": {
+              "day": 6,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "1400"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: Closed",
+          "Tuesday: 09:00 - 14:00,  15:00 - 19:00",
+          "Wednesday: 09:00 - 14:00,  15:00 - 19:00",
+          "Thursday: 09:00 - 14:00,  15:00 - 19:00",
+          "Friday: 09:00 - 14:00,  15:00 - 19:00",
+          "Saturday: 09:00 - 14:00,  15:00 - 19:00",
+          "Sunday: 09:00 - 14:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: Closed",
+        "Tuesday: 09:00 - 14:00,  15:00 - 19:00",
+        "Wednesday: 09:00 - 14:00,  15:00 - 19:00",
+        "Thursday: 09:00 - 14:00,  15:00 - 19:00",
+        "Friday: 09:00 - 14:00,  15:00 - 19:00",
+        "Saturday: 09:00 - 14:00,  15:00 - 19:00",
+        "Sunday: 09:00 - 14:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d2613395-Reviews-Paris_by_Mouth-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d2613395-Reviews-Paris_by_Mouth-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Paris%20by%20Mouth&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Paris%20by%20Mouth&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.85627,2.35661"
+      },
+      "duration_minutes": 75,
+      "place_id": "2613395",
+      "score": 9.0,
+      "score_reason": "A food tour in Paris is a highly romantic and immersive experience, perfect for a couple. It offers a taste of local culture and potentially culinary art, fitting the mid-range budget and preferences.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "292257",
+      "name": "Le Marais",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions",
+        "Other"
+      ],
+      "rating": 4.6,
+      "num_reviews": 13024,
+      "address": "Paris France",
+      "latitude": 48.861237,
+      "longitude": 2.358197,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d292257-Reviews-Le_Marais-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/05/21/02/95/le-marais.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d292257-Reviews-Le_Marais-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d292257-Reviews-Le_Marais-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Le%20Marais&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Le%20Marais&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.861237,2.358197"
+      },
+      "duration_minutes": 75,
+      "place_id": "292257",
+      "score": 9.0,
+      "score_reason": "Le Marais is a historic and chic district known for its charming streets, art galleries, boutiques, and cafes, making it an ideal destination for a couple seeking both art and romance.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "188679",
+      "name": "Cathedrale Notre-Dame de Paris",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.6,
+      "num_reviews": 72329,
+      "address": "6 Parvis Notre-Dame Place Jean-Paul II, 75004 Paris France",
+      "latitude": 48.853,
+      "longitude": 2.3498,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0d/8d/a4/84/the-amazingly-detailed.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0750"
+            },
+            "close": {
+              "day": 1,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0750"
+            },
+            "close": {
+              "day": 2,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0750"
+            },
+            "close": {
+              "day": 3,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0750"
+            },
+            "close": {
+              "day": 4,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0750"
+            },
+            "close": {
+              "day": 5,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0815"
+            },
+            "close": {
+              "day": 6,
+              "time": "0730"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0815"
+            },
+            "close": {
+              "day": 7,
+              "time": "0730"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 07:50 - 19:00",
+          "Tuesday: 07:50 - 19:00",
+          "Wednesday: 07:50 - 19:00",
+          "Thursday: 07:50 - 19:00",
+          "Friday: 07:50 - 19:00",
+          "Saturday: 08:15 - 07:30",
+          "Sunday: 08:15 - 07:30"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 07:50 - 19:00",
+        "Tuesday: 07:50 - 19:00",
+        "Wednesday: 07:50 - 19:00",
+        "Thursday: 07:50 - 19:00",
+        "Friday: 07:50 - 19:00",
+        "Saturday: 08:15 - 07:30",
+        "Sunday: 08:15 - 07:30"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Cathedrale%20Notre-Dame%20de%20Paris&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Cathedrale%20Notre-Dame%20de%20Paris&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.853,2.3498"
+      },
+      "duration_minutes": 75,
+      "place_id": "188679",
+      "score": 7.9,
+      "score_reason": "Notre-Dame is an iconic Parisian landmark, embodying both historical grandeur and architectural art. It offers a culturally rich and romantic experience for a couple.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.6,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "12103860",
+      "name": "ExperienceFirst Paris",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities"
+      ],
+      "rating": 4.8,
+      "num_reviews": 20987,
+      "address": "75007 Paris France",
+      "latitude": 48.85694,
+      "longitude": 2.292087,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/10/53/67/7e/paristour1.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=ExperienceFirst%20Paris&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=ExperienceFirst%20Paris&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.85694,2.292087"
+      },
+      "duration_minutes": 75,
+      "place_id": "12103860",
+      "score": 7.0,
+      "score_reason": "As a highly-rated tour operator in Paris, 'ExperienceFirst' likely offers a variety of tours, some of which could perfectly align with romantic experiences or art-focused explorations for a couple. The exact content is unknown, hence a plausible score.",
+      "ranker_used": "gemini",
+      "confidence": 0.5,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "189193",
+      "name": "Galeries Lafayette Paris Haussmann",
+      "category": "Attraction",
+      "subcategories": [
+        "Shopping"
+      ],
+      "rating": 4.2,
+      "num_reviews": 8058,
+      "address": "40 Boulevard Haussmann, 75009 Paris France",
+      "latitude": 48.873596,
+      "longitude": 2.33215,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189193-Reviews-Galeries_Lafayette_Paris_Haussmann-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0c/aa/fb/74/underneath-the-glass.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "1000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "1100"
+            },
+            "close": {
+              "day": 7,
+              "time": "2000"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 10:00 - 20:30",
+          "Tuesday: 10:00 - 20:30",
+          "Wednesday: 10:00 - 20:30",
+          "Thursday: 10:00 - 20:30",
+          "Friday: 10:00 - 20:30",
+          "Saturday: 10:00 - 20:30",
+          "Sunday: 11:00 - 20:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 10:00 - 20:30",
+        "Tuesday: 10:00 - 20:30",
+        "Wednesday: 10:00 - 20:30",
+        "Thursday: 10:00 - 20:30",
+        "Friday: 10:00 - 20:30",
+        "Saturday: 10:00 - 20:30",
+        "Sunday: 11:00 - 20:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189193-Reviews-Galeries_Lafayette_Paris_Haussmann-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d189193-Reviews-Galeries_Lafayette_Paris_Haussmann-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Galeries%20Lafayette%20Paris%20Haussmann&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Galeries%20Lafayette%20Paris%20Haussmann&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.873596,2.33215"
+      },
+      "duration_minutes": 75,
+      "place_id": "189193",
+      "score": 6.0,
+      "score_reason": "While the dome architecture is visually appealing and artistic, Galeries Lafayette is primarily a shopping destination, which doesn't strongly align with the romantic or artistic vibe preference for a core activity.",
+      "ranker_used": "gemini",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": true,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "1008070",
+      "name": "Big Bus Paris",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities"
+      ],
+      "rating": 3.8,
+      "num_reviews": 7909,
+      "address": "75001 Paris France",
+      "latitude": 48.86527,
+      "longitude": 2.33439,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/15/99/36/c0/at-the-champs-de-mars.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0900"
+            },
+            "close": {
+              "day": 1,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0900"
+            },
+            "close": {
+              "day": 2,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0900"
+            },
+            "close": {
+              "day": 3,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0900"
+            },
+            "close": {
+              "day": 4,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0900"
+            },
+            "close": {
+              "day": 5,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "1700"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 09:00 - 17:00",
+          "Tuesday: 09:00 - 17:00",
+          "Wednesday: 09:00 - 17:00",
+          "Thursday: 09:00 - 17:00",
+          "Friday: 09:00 - 17:00",
+          "Saturday: 09:00 - 17:00",
+          "Sunday: 09:00 - 17:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 09:00 - 17:00",
+        "Tuesday: 09:00 - 17:00",
+        "Wednesday: 09:00 - 17:00",
+        "Thursday: 09:00 - 17:00",
+        "Friday: 09:00 - 17:00",
+        "Saturday: 09:00 - 17:00",
+        "Sunday: 09:00 - 17:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Big%20Bus%20Paris&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Big%20Bus%20Paris&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.86527,2.33439"
+      },
+      "duration_minutes": 75,
+      "place_id": "1008070",
+      "score": 3.4,
+      "score_reason": "A big bus tour is a practical way to see sights but lacks the intimacy and immersive quality that aligns with a romantic or artistic vibe for a couple.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.6,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "189229",
+      "name": "The Paris Catacombs",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.1,
+      "num_reviews": 8496,
+      "address": "1 Avenue du Colonel Henri Rol-Tanguy, 75014 Paris France",
+      "latitude": 48.83387,
+      "longitude": 2.332481,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0a/b2/de/87/sacro-cuore.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 2,
+              "time": "0945"
+            },
+            "close": {
+              "day": 2,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0945"
+            },
+            "close": {
+              "day": 3,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0945"
+            },
+            "close": {
+              "day": 4,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0945"
+            },
+            "close": {
+              "day": 5,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0945"
+            },
+            "close": {
+              "day": 6,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0945"
+            },
+            "close": {
+              "day": 7,
+              "time": "2030"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: Closed",
+          "Tuesday: 09:45 - 20:30",
+          "Wednesday: 09:45 - 20:30",
+          "Thursday: 09:45 - 20:30",
+          "Friday: 09:45 - 20:30",
+          "Saturday: 09:45 - 20:30",
+          "Sunday: 09:45 - 20:30"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: Closed",
+        "Tuesday: 09:45 - 20:30",
+        "Wednesday: 09:45 - 20:30",
+        "Thursday: 09:45 - 20:30",
+        "Friday: 09:45 - 20:30",
+        "Saturday: 09:45 - 20:30",
+        "Sunday: 09:45 - 20:30"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=The%20Paris%20Catacombs&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=The%20Paris%20Catacombs&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.83387,2.332481"
+      },
+      "duration_minutes": 75,
+      "place_id": "189229",
+      "score": 1.8,
+      "score_reason": "While a significant landmark, the Catacombs' grim and historical nature does not align with a romantic or artistic vibe, making it less suitable for a couple seeking those specific experiences.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 1.2,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    }
+  ],
+  "restaurants": [],
+  "hotels": [
+    {
+      "location_id": "188729",
+      "name": "Le Bristol Paris",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.9,
+      "num_reviews": 2458,
+      "address": "112 Rue du Faubourg Saint Honore 8th Arr., 75008 Paris France",
+      "latitude": 48.871685,
+      "longitude": 2.3148,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g187147-d188729-Reviews-Le_Bristol_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/32/09/03/05/le-bristol-paris-facade.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g187147-d188729-Reviews-Le_Bristol_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g187147-d188729-Reviews-Le_Bristol_Paris-Paris_Ile_de_France.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Le%20Bristol%20Paris",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Le%20Bristol%20Paris",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.871685,2.3148"
+      },
+      "duration_minutes": 90,
+      "place_id": "188729",
+      "score": 0.0,
+      "score_reason": "",
+      "ranker_used": "",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "222913",
+      "name": "Saint James Paris",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.8,
+      "num_reviews": 1866,
+      "address": "5 Place Du Chancelier Adenauer, 75116 Paris France",
+      "latitude": 48.870533,
+      "longitude": 2.279672,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g187147-d222913-Reviews-Saint_James_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2c/20/25/6a/saint-james-paris-facade.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g187147-d222913-Reviews-Saint_James_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g187147-d222913-Reviews-Saint_James_Paris-Paris_Ile_de_France.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Saint%20James%20Paris",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Saint%20James%20Paris",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.870533,2.279672"
+      },
+      "duration_minutes": 90,
+      "place_id": "222913",
+      "score": 0.0,
+      "score_reason": "",
+      "ranker_used": "",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "1959562",
+      "name": "Shangri-La Paris",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.7,
+      "num_reviews": 1975,
+      "address": "10 avenue d'Lena, 75116 Paris France",
+      "latitude": 48.863926,
+      "longitude": 2.293397,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g187147-d1959562-Reviews-Shangri_La_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/08/1a/82/df/shangri-la-hotel-paris.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g187147-d1959562-Reviews-Shangri_La_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g187147-d1959562-Reviews-Shangri_La_Paris-Paris_Ile_de_France.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Shangri-La%20Paris",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Shangri-La%20Paris",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.863926,2.293397"
+      },
+      "duration_minutes": 90,
+      "place_id": "1959562",
+      "score": 0.0,
+      "score_reason": "",
+      "ranker_used": "",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "6678144",
+      "name": "The Peninsula Paris",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.7,
+      "num_reviews": 1240,
+      "address": "19 Avenue Kleber, 75116 Paris France",
+      "latitude": 48.871025,
+      "longitude": 2.293691,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g187147-d6678144-Reviews-The_Peninsula_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2f/b8/9f/b1/the-peninsula-paris-drone.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g187147-d6678144-Reviews-The_Peninsula_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g187147-d6678144-Reviews-The_Peninsula_Paris-Paris_Ile_de_France.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=The%20Peninsula%20Paris",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=The%20Peninsula%20Paris",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.871025,2.293691"
+      },
+      "duration_minutes": 90,
+      "place_id": "6678144",
+      "score": 0.0,
+      "score_reason": "",
+      "ranker_used": "",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "188728",
+      "name": "Ritz Paris",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.5,
+      "num_reviews": 1061,
+      "address": "15, Place Vendome, 75001 Paris France",
+      "latitude": 48.868008,
+      "longitude": 2.328764,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g187147-d188728-Reviews-Ritz_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2c/20/22/6a/prestige-suite-windsor.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g187147-d188728-Reviews-Ritz_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g187147-d188728-Reviews-Ritz_Paris-Paris_Ile_de_France.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Ritz%20Paris",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Ritz%20Paris",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.868008,2.328764"
+      },
+      "duration_minutes": 90,
+      "place_id": "188728",
+      "score": 0.0,
+      "score_reason": "",
+      "ranker_used": "",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    }
+  ],
+  "candidate_pool": [
+    {
+      "location_id": "189683",
+      "name": "The Seine",
+      "category": "Attraction",
+      "subcategories": [
+        "Nature & Parks",
+        "Attractions"
+      ],
+      "rating": 4.6,
+      "num_reviews": 25838,
+      "address": "75001 Paris France",
+      "latitude": 48.858776,
+      "longitude": 2.335496,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189683-Reviews-The_Seine-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/09/e4/d4/38/river-seine.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189683-Reviews-The_Seine-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d189683-Reviews-The_Seine-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=The%20Seine&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=The%20Seine&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.858776,2.335496"
+      },
+      "duration_minutes": 75,
+      "place_id": "189683",
+      "score": 9.5,
+      "score_reason": "The Seine is inherently romantic, offering scenic strolls along its banks or charming river cruises, providing iconic Parisian views perfect for a couple seeking romance and beauty. It's a quintessential Paris experience.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": true,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "2613395",
+      "name": "Paris by Mouth",
+      "category": "Attraction",
+      "subcategories": [
+        "Food & Drink",
+        "Tours",
+        "Activities"
+      ],
+      "rating": 5.0,
+      "num_reviews": 4450,
+      "address": "75004 Paris France",
+      "latitude": 48.85627,
+      "longitude": 2.35661,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d2613395-Reviews-Paris_by_Mouth-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/32/5c/f2/33/we-taste-prize-winning.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 2,
+              "time": "0900"
+            },
+            "close": {
+              "day": 2,
+              "time": "1400"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1500"
+            },
+            "close": {
+              "day": 2,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0900"
+            },
+            "close": {
+              "day": 3,
+              "time": "1400"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1500"
+            },
+            "close": {
+              "day": 3,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0900"
+            },
+            "close": {
+              "day": 4,
+              "time": "1400"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1500"
+            },
+            "close": {
+              "day": 4,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0900"
+            },
+            "close": {
+              "day": 5,
+              "time": "1400"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1500"
+            },
+            "close": {
+              "day": 5,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "1400"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1500"
+            },
+            "close": {
+              "day": 6,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "1400"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: Closed",
+          "Tuesday: 09:00 - 14:00,  15:00 - 19:00",
+          "Wednesday: 09:00 - 14:00,  15:00 - 19:00",
+          "Thursday: 09:00 - 14:00,  15:00 - 19:00",
+          "Friday: 09:00 - 14:00,  15:00 - 19:00",
+          "Saturday: 09:00 - 14:00,  15:00 - 19:00",
+          "Sunday: 09:00 - 14:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: Closed",
+        "Tuesday: 09:00 - 14:00,  15:00 - 19:00",
+        "Wednesday: 09:00 - 14:00,  15:00 - 19:00",
+        "Thursday: 09:00 - 14:00,  15:00 - 19:00",
+        "Friday: 09:00 - 14:00,  15:00 - 19:00",
+        "Saturday: 09:00 - 14:00,  15:00 - 19:00",
+        "Sunday: 09:00 - 14:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d2613395-Reviews-Paris_by_Mouth-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d2613395-Reviews-Paris_by_Mouth-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Paris%20by%20Mouth&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Paris%20by%20Mouth&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.85627,2.35661"
+      },
+      "duration_minutes": 75,
+      "place_id": "2613395",
+      "score": 9.0,
+      "score_reason": "A food tour in Paris is a highly romantic and immersive experience, perfect for a couple. It offers a taste of local culture and potentially culinary art, fitting the mid-range budget and preferences.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "292257",
+      "name": "Le Marais",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions",
+        "Other"
+      ],
+      "rating": 4.6,
+      "num_reviews": 13024,
+      "address": "Paris France",
+      "latitude": 48.861237,
+      "longitude": 2.358197,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d292257-Reviews-Le_Marais-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/05/21/02/95/le-marais.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d292257-Reviews-Le_Marais-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d292257-Reviews-Le_Marais-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Le%20Marais&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Le%20Marais&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.861237,2.358197"
+      },
+      "duration_minutes": 75,
+      "place_id": "292257",
+      "score": 9.0,
+      "score_reason": "Le Marais is a historic and chic district known for its charming streets, art galleries, boutiques, and cafes, making it an ideal destination for a couple seeking both art and romance.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "188679",
+      "name": "Cathedrale Notre-Dame de Paris",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.6,
+      "num_reviews": 72329,
+      "address": "6 Parvis Notre-Dame Place Jean-Paul II, 75004 Paris France",
+      "latitude": 48.853,
+      "longitude": 2.3498,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0d/8d/a4/84/the-amazingly-detailed.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0750"
+            },
+            "close": {
+              "day": 1,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0750"
+            },
+            "close": {
+              "day": 2,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0750"
+            },
+            "close": {
+              "day": 3,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0750"
+            },
+            "close": {
+              "day": 4,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0750"
+            },
+            "close": {
+              "day": 5,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0815"
+            },
+            "close": {
+              "day": 6,
+              "time": "0730"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0815"
+            },
+            "close": {
+              "day": 7,
+              "time": "0730"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 07:50 - 19:00",
+          "Tuesday: 07:50 - 19:00",
+          "Wednesday: 07:50 - 19:00",
+          "Thursday: 07:50 - 19:00",
+          "Friday: 07:50 - 19:00",
+          "Saturday: 08:15 - 07:30",
+          "Sunday: 08:15 - 07:30"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 07:50 - 19:00",
+        "Tuesday: 07:50 - 19:00",
+        "Wednesday: 07:50 - 19:00",
+        "Thursday: 07:50 - 19:00",
+        "Friday: 07:50 - 19:00",
+        "Saturday: 08:15 - 07:30",
+        "Sunday: 08:15 - 07:30"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Cathedrale%20Notre-Dame%20de%20Paris&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Cathedrale%20Notre-Dame%20de%20Paris&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.853,2.3498"
+      },
+      "duration_minutes": 75,
+      "place_id": "188679",
+      "score": 7.9,
+      "score_reason": "Notre-Dame is an iconic Parisian landmark, embodying both historical grandeur and architectural art. It offers a culturally rich and romantic experience for a couple.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.6,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "12103860",
+      "name": "ExperienceFirst Paris",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities"
+      ],
+      "rating": 4.8,
+      "num_reviews": 20987,
+      "address": "75007 Paris France",
+      "latitude": 48.85694,
+      "longitude": 2.292087,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/10/53/67/7e/paristour1.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=ExperienceFirst%20Paris&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=ExperienceFirst%20Paris&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.85694,2.292087"
+      },
+      "duration_minutes": 75,
+      "place_id": "12103860",
+      "score": 7.0,
+      "score_reason": "As a highly-rated tour operator in Paris, 'ExperienceFirst' likely offers a variety of tours, some of which could perfectly align with romantic experiences or art-focused explorations for a couple. The exact content is unknown, hence a plausible score.",
+      "ranker_used": "gemini",
+      "confidence": 0.5,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "189193",
+      "name": "Galeries Lafayette Paris Haussmann",
+      "category": "Attraction",
+      "subcategories": [
+        "Shopping"
+      ],
+      "rating": 4.2,
+      "num_reviews": 8058,
+      "address": "40 Boulevard Haussmann, 75009 Paris France",
+      "latitude": 48.873596,
+      "longitude": 2.33215,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189193-Reviews-Galeries_Lafayette_Paris_Haussmann-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0c/aa/fb/74/underneath-the-glass.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "1000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "1100"
+            },
+            "close": {
+              "day": 7,
+              "time": "2000"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 10:00 - 20:30",
+          "Tuesday: 10:00 - 20:30",
+          "Wednesday: 10:00 - 20:30",
+          "Thursday: 10:00 - 20:30",
+          "Friday: 10:00 - 20:30",
+          "Saturday: 10:00 - 20:30",
+          "Sunday: 11:00 - 20:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 10:00 - 20:30",
+        "Tuesday: 10:00 - 20:30",
+        "Wednesday: 10:00 - 20:30",
+        "Thursday: 10:00 - 20:30",
+        "Friday: 10:00 - 20:30",
+        "Saturday: 10:00 - 20:30",
+        "Sunday: 11:00 - 20:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189193-Reviews-Galeries_Lafayette_Paris_Haussmann-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d189193-Reviews-Galeries_Lafayette_Paris_Haussmann-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Galeries%20Lafayette%20Paris%20Haussmann&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Galeries%20Lafayette%20Paris%20Haussmann&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.873596,2.33215"
+      },
+      "duration_minutes": 75,
+      "place_id": "189193",
+      "score": 6.0,
+      "score_reason": "While the dome architecture is visually appealing and artistic, Galeries Lafayette is primarily a shopping destination, which doesn't strongly align with the romantic or artistic vibe preference for a core activity.",
+      "ranker_used": "gemini",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": true,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "1008070",
+      "name": "Big Bus Paris",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities"
+      ],
+      "rating": 3.8,
+      "num_reviews": 7909,
+      "address": "75001 Paris France",
+      "latitude": 48.86527,
+      "longitude": 2.33439,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/15/99/36/c0/at-the-champs-de-mars.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0900"
+            },
+            "close": {
+              "day": 1,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0900"
+            },
+            "close": {
+              "day": 2,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0900"
+            },
+            "close": {
+              "day": 3,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0900"
+            },
+            "close": {
+              "day": 4,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0900"
+            },
+            "close": {
+              "day": 5,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "1700"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 09:00 - 17:00",
+          "Tuesday: 09:00 - 17:00",
+          "Wednesday: 09:00 - 17:00",
+          "Thursday: 09:00 - 17:00",
+          "Friday: 09:00 - 17:00",
+          "Saturday: 09:00 - 17:00",
+          "Sunday: 09:00 - 17:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 09:00 - 17:00",
+        "Tuesday: 09:00 - 17:00",
+        "Wednesday: 09:00 - 17:00",
+        "Thursday: 09:00 - 17:00",
+        "Friday: 09:00 - 17:00",
+        "Saturday: 09:00 - 17:00",
+        "Sunday: 09:00 - 17:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Big%20Bus%20Paris&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Big%20Bus%20Paris&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.86527,2.33439"
+      },
+      "duration_minutes": 75,
+      "place_id": "1008070",
+      "score": 3.4,
+      "score_reason": "A big bus tour is a practical way to see sights but lacks the intimacy and immersive quality that aligns with a romantic or artistic vibe for a couple.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.6,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "189229",
+      "name": "The Paris Catacombs",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.1,
+      "num_reviews": 8496,
+      "address": "1 Avenue du Colonel Henri Rol-Tanguy, 75014 Paris France",
+      "latitude": 48.83387,
+      "longitude": 2.332481,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0a/b2/de/87/sacro-cuore.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 2,
+              "time": "0945"
+            },
+            "close": {
+              "day": 2,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0945"
+            },
+            "close": {
+              "day": 3,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0945"
+            },
+            "close": {
+              "day": 4,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0945"
+            },
+            "close": {
+              "day": 5,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0945"
+            },
+            "close": {
+              "day": 6,
+              "time": "2030"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0945"
+            },
+            "close": {
+              "day": 7,
+              "time": "2030"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: Closed",
+          "Tuesday: 09:45 - 20:30",
+          "Wednesday: 09:45 - 20:30",
+          "Thursday: 09:45 - 20:30",
+          "Friday: 09:45 - 20:30",
+          "Saturday: 09:45 - 20:30",
+          "Sunday: 09:45 - 20:30"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: Closed",
+        "Tuesday: 09:45 - 20:30",
+        "Wednesday: 09:45 - 20:30",
+        "Thursday: 09:45 - 20:30",
+        "Friday: 09:45 - 20:30",
+        "Saturday: 09:45 - 20:30",
+        "Sunday: 09:45 - 20:30"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=The%20Paris%20Catacombs&destId=Paris",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=The%20Paris%20Catacombs&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.83387,2.332481"
+      },
+      "duration_minutes": 75,
+      "place_id": "189229",
+      "score": 1.8,
+      "score_reason": "While a significant landmark, the Catacombs' grim and historical nature does not align with a romantic or artistic vibe, making it less suitable for a couple seeking those specific experiences.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 1.2,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    }
+  ],
+  "restaurant_pool": [],
+  "gaps": "*   **Eiffel Tower:** The quintessential symbol of Paris and romance, offering iconic views (especially at night).\n*   **Louvre Museum:** Home to countless masterpieces including the Mona Lisa, essential for an \"art\" focused trip.\n*   **Musée d'Orsay:** Located in a beautiful former train station, this museum boasts an incredible collection of Impressionist and Post-Impressionist art, perfectly fitting the \"art\" vibe.\n*   **Montmartre & Sacré-Cœur Basilica:** A charming, artistic neighborhood known for its bohemian history, street artists, romantic winding streets, and panoramic city views from the Sacré-Cœur.\n*   **A traditional Parisian bistro meal or a relaxed café experience:** Essential for savoring French cuisine and experiencing local life, perfectly fitting a mid-range budget and romantic vibe.\n*   **Luxembourg Gardens (Jardin du Luxembourg):** A beautiful, romantic park perfect for a leisurely stroll or picnic.\n*   **Arc de Triomphe:** An iconic landmark offering fantastic panoramic views of the Champs-Élysées and surrounding city, including the Eiffel Tower.",
+  "api_calls": 46,
+  "cache_hits": 0,
+  "weather_summary": "",
+  "summary": {
+    "mandatory_count": 0,
+    "suggested_count": 8,
+    "restaurant_count": 0,
+    "hotel_count": 5
+  },
+  "_saved_at": 1779817689.0062032
+}

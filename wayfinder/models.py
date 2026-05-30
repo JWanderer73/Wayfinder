@@ -66,22 +66,32 @@ class StopInput:
     time_window_end: str | None = None
     anchor_kind: str | None = None
     priority: int = 0
+    web_url: str | None = None
+    photo_url: str | None = None
+    booking_url: str | None = None
+    booking_links: dict[str, str] = field(default_factory=dict)
+    rating: float | None = None
+    score: float | None = None
+    score_reason: str | None = None
+    open_hours_text: list[str] = field(default_factory=list)
 
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "StopInput":
-        visit_minutes = _coerce_optional_int(payload.get("visit_minutes"))
+        visit_minutes = _coerce_optional_int(
+            payload.get("visit_minutes", payload.get("duration_minutes"))
+        )
         return cls(
             name=payload["name"],
-            id=payload.get("id"),
+            id=payload.get("id") or payload.get("location_id"),
             address=payload.get("address"),
             latitude=payload.get("latitude"),
             longitude=payload.get("longitude"),
             visit_minutes=visit_minutes,
             visit_minutes_source=payload.get("visit_minutes_source"),
-            required=bool(payload.get("required", False)),
+            required=bool(payload.get("required", payload.get("is_mandatory", False))),
             category=payload.get("category"),
             notes=payload.get("notes"),
-            place_id=payload.get("place_id"),
+            place_id=payload.get("place_id") or payload.get("location_id"),
             enabled=bool(payload.get("enabled", True)),
             fixed_day=_coerce_optional_int(payload.get("fixed_day")),
             preferred_start_time=payload.get("preferred_start_time"),
@@ -89,6 +99,14 @@ class StopInput:
             time_window_end=payload.get("time_window_end"),
             anchor_kind=payload.get("anchor_kind"),
             priority=int(payload.get("priority", 0)),
+            web_url=payload.get("web_url"),
+            photo_url=payload.get("photo_url"),
+            booking_url=payload.get("booking_url"),
+            booking_links=dict(payload.get("booking_links") or {}),
+            rating=_coerce_optional_float(payload.get("rating")),
+            score=_coerce_optional_float(payload.get("score")),
+            score_reason=payload.get("score_reason"),
+            open_hours_text=[str(item) for item in payload.get("open_hours_text", [])],
         )
 
     def query_text(self, destination_hint: str | None = None) -> str:
@@ -121,6 +139,14 @@ class ResolvedStop:
     anchor_kind: str | None = None
     priority: int = 0
     selected_transport_mode: str | None = None
+    web_url: str | None = None
+    photo_url: str | None = None
+    booking_url: str | None = None
+    booking_links: dict[str, str] = field(default_factory=dict)
+    rating: float | None = None
+    score: float | None = None
+    score_reason: str | None = None
+    open_hours_text: list[str] = field(default_factory=list)
 
     @classmethod
     def from_stop_input(
@@ -155,6 +181,14 @@ class ResolvedStop:
             time_window_end_minute=parse_clock_time(stop.time_window_end),
             anchor_kind=stop.anchor_kind,
             priority=stop.priority,
+            web_url=stop.web_url,
+            photo_url=stop.photo_url,
+            booking_url=stop.booking_url,
+            booking_links=dict(stop.booking_links),
+            rating=stop.rating,
+            score=stop.score,
+            score_reason=stop.score_reason,
+            open_hours_text=list(stop.open_hours_text),
         )
 
     def has_time_anchor(self) -> bool:
@@ -189,6 +223,14 @@ class ResolvedStop:
             "anchor_kind": self.anchor_kind,
             "priority": self.priority,
             "selected_transport_mode": self.selected_transport_mode,
+            "web_url": self.web_url,
+            "photo_url": self.photo_url,
+            "booking_url": self.booking_url,
+            "booking_links": dict(self.booking_links),
+            "rating": self.rating,
+            "score": self.score,
+            "score_reason": self.score_reason,
+            "open_hours_text": list(self.open_hours_text),
         }
 
 
@@ -347,6 +389,7 @@ class TripRequest:
 
     @classmethod
     def from_dict(cls, payload: dict[str, Any]) -> "TripRequest":
+        payload = normalize_trip_payload(payload)
         start_date = _parse_date(payload.get("start_date"))
         end_date = _parse_date(payload.get("end_date"))
         stops = [StopInput.from_dict(item) for item in payload.get("stops", [])]
@@ -404,6 +447,191 @@ class TripRequest:
         return parse_clock_time(self.day_start_time) or 9 * 60
 
 
+def normalize_trip_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    """Accept both planner-native JSON and generated recommendation JSON."""
+
+    normalized = dict(payload)
+    if normalized.get("stops") or not normalized.get("attractions"):
+        return normalized
+
+    raw_preferences = normalized.get("preferences")
+    preferences = raw_preferences if isinstance(raw_preferences, dict) else {}
+    shape = str(preferences.get("trip_shape") or "balanced").strip().lower()
+    shape_settings = {
+        "relaxed": {"daily_minutes_budget": 480, "max_stops_per_day": 2, "slack": 60},
+        "balanced": {"daily_minutes_budget": 540, "max_stops_per_day": 3, "slack": 45},
+        "packed": {"daily_minutes_budget": 660, "max_stops_per_day": 4, "slack": 30},
+    }
+    settings = shape_settings.get(shape, shape_settings["balanced"])
+
+    required_names = {
+        str(name).strip().casefold()
+        for name in preferences.get("required_attractions", [])
+        if str(name).strip()
+    }
+    stops = [
+        recommendation_item_to_stop(item, required_names=required_names)
+        for item in normalized.get("attractions", [])
+        if isinstance(item, dict) and item.get("name")
+    ]
+
+    normalized["stops"] = stops
+    normalized.setdefault("daily_minutes_budget", settings["daily_minutes_budget"])
+    normalized.setdefault("max_stops_per_day", settings["max_stops_per_day"])
+    normalized.setdefault("daily_redundancy_minutes", settings["slack"])
+    normalized.setdefault("lunch_minutes", 60)
+    normalized.setdefault("dinner_minutes", 120)
+    normalized.setdefault("transport_mode", "auto")
+    normalized.setdefault("travel_mode", "auto")
+    normalized.setdefault("routing_strategy", "distance")
+    normalized.setdefault("clustering_method", "best_point")
+    normalized.setdefault("travel_buffer_ratio", 0.15)
+    normalized.setdefault("minimum_travel_buffer_minutes", 5)
+
+    travel_dates = preferences.get("travel_dates") or []
+    if len(travel_dates) >= 1 and travel_dates[0]:
+        normalized.setdefault("start_date", travel_dates[0])
+    if len(travel_dates) >= 2 and travel_dates[1]:
+        normalized.setdefault("end_date", travel_dates[1])
+
+    normalized.setdefault(
+        "num_days",
+        infer_generated_trip_days(
+            stop_count=len(stops),
+            target_stops_per_day=int(settings["max_stops_per_day"]),
+            start_date=normalized.get("start_date"),
+            end_date=normalized.get("end_date"),
+        ),
+    )
+
+    anchor_location = recommendation_anchor_from_hotels(normalized.get("hotels", []))
+    if anchor_location is not None:
+        normalized.setdefault("anchor_location", anchor_location)
+        normalized.setdefault("end_each_day_at_anchor", True)
+
+    return normalized
+
+
+def recommendation_item_to_stop(
+    item: dict[str, Any],
+    *,
+    required_names: set[str],
+) -> dict[str, Any]:
+    name = str(item["name"])
+    score = _coerce_optional_float(item.get("score")) or 0.0
+    required = bool(item.get("is_mandatory")) or name.casefold() in required_names
+    priority = int(round(score)) + (20 if required else 0)
+
+    return {
+        "id": item.get("id") or item.get("location_id") or item.get("place_id") or name,
+        "name": name,
+        "address": item.get("address"),
+        "latitude": item.get("latitude"),
+        "longitude": item.get("longitude"),
+        "visit_minutes": item.get("visit_minutes", item.get("duration_minutes")),
+        "visit_minutes_source": item.get("visit_minutes_source", "recommendation"),
+        "required": required,
+        "category": normalize_recommendation_category(item),
+        "notes": item.get("notes") or item.get("score_reason"),
+        "place_id": item.get("place_id") or item.get("location_id"),
+        "priority": priority,
+        "web_url": item.get("web_url"),
+        "photo_url": item.get("photo_url"),
+        "booking_url": item.get("booking_url"),
+        "booking_links": item.get("booking_links") or {},
+        "rating": item.get("rating"),
+        "score": item.get("score"),
+        "score_reason": item.get("score_reason"),
+        "open_hours_text": item.get("open_hours_text") or [],
+    }
+
+
+def recommendation_anchor_from_hotels(hotels: Any) -> dict[str, Any] | None:
+    if not isinstance(hotels, list):
+        return None
+    for hotel in hotels:
+        if not isinstance(hotel, dict):
+            continue
+        if hotel.get("latitude") is None or hotel.get("longitude") is None:
+            continue
+        name = hotel.get("name")
+        if not name:
+            continue
+        return {
+            "id": hotel.get("id") or hotel.get("location_id") or "anchor-location",
+            "name": name,
+            "address": hotel.get("address"),
+            "latitude": hotel.get("latitude"),
+            "longitude": hotel.get("longitude"),
+            "visit_minutes": 0,
+            "visit_minutes_source": "anchor",
+            "category": "hotel",
+            "anchor_kind": "hotel",
+            "web_url": hotel.get("web_url"),
+            "photo_url": hotel.get("photo_url"),
+            "booking_url": hotel.get("booking_url"),
+            "booking_links": hotel.get("booking_links") or {},
+            "rating": hotel.get("rating"),
+            "score": hotel.get("score"),
+            "score_reason": hotel.get("score_reason"),
+        }
+    return None
+
+
+def infer_generated_trip_days(
+    *,
+    stop_count: int,
+    target_stops_per_day: int,
+    start_date: str | None,
+    end_date: str | None,
+) -> int:
+    if stop_count <= 0:
+        return 1
+
+    target_days = max(1, math_ceil_div(stop_count, max(1, target_stops_per_day)))
+    start = _parse_date(start_date)
+    end = _parse_date(end_date)
+    if start and end:
+        date_days = (end - start).days + 1
+        if date_days > 0:
+            return max(1, min(date_days, target_days))
+    return target_days
+
+
+def normalize_recommendation_category(item: dict[str, Any]) -> str | None:
+    category = str(item.get("category") or "").strip().lower()
+    subcategories = " ".join(str(value) for value in item.get("subcategories", [])).lower()
+    text = f"{category} {subcategories} {item.get('name', '')}".lower()
+
+    if "restaurant" in text:
+        return "restaurant"
+    if "food" in text or "drink" in text:
+        return "food"
+    if "museum" in text or "gallery" in text or "art" in text:
+        return "museum"
+    if "disney" in text or "amusement" in text or "theme park" in text:
+        return "amusement_park"
+    if "shopping" in text or "department store" in text:
+        return "shopping"
+    if "spa" in text or "wellness" in text:
+        return "wellness"
+    if "transportation" in text or "railway" in text or "station" in text or "metro" in text:
+        return "transportation"
+    if "landmark" in text or "sight" in text or "tower" in text or "temple" in text:
+        return "landmark"
+    if "park" in text or "nature" in text or "garden" in text:
+        return "park"
+    if "tour" in text or "activity" in text:
+        return "tour"
+    if category and category != "attraction":
+        return category
+    return "attraction"
+
+
+def math_ceil_div(left: int, right: int) -> int:
+    return -(-left // right)
+
+
 def parse_clock_time(raw_value: str | None) -> int | None:
     if not raw_value:
         return None
@@ -431,7 +659,13 @@ def _parse_date(raw_value: str | None) -> date | None:
 def _coerce_optional_int(value: Any) -> int | None:
     if value in (None, ""):
         return None
-    return int(value)
+    return int(float(value))
+
+
+def _coerce_optional_float(value: Any) -> float | None:
+    if value in (None, ""):
+        return None
+    return float(value)
 
 
 def normalize_string_list(raw_values: Any) -> list[str]:

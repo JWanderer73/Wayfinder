@@ -1,0 +1,2773 @@
+{
+  "trip_id": "96b372d11bab",
+  "destination": "Tokyo",
+  "preferences": {
+    "preferences": [],
+    "budget": "mid-range",
+    "vibe": "culture, food, nightlife, adventure",
+    "dietary_restrictions": [
+      "vegetarian"
+    ],
+    "required_attractions": [
+      "Senso-ji Temple",
+      "Shibuya Crossing",
+      "Tokyo Tower"
+    ],
+    "travel_dates": [
+      "2025-12-01",
+      "2025-12-10"
+    ],
+    "num_travelers": 3,
+    "trip_shape": "packed"
+  },
+  "attractions": [
+    {
+      "location_id": "320047",
+      "name": "Tokyo Tower",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.2,
+      "num_reviews": 8533,
+      "address": "4 Chome 2-8, Shibakoen, Minato 105-0011 Tokyo Prefecture",
+      "latitude": 35.65858,
+      "longitude": 139.74544,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14129730-d320047-Reviews-Tokyo_Tower-Shibakoen_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0b/03/b5/9b/tokyo-tower.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0000"
+            },
+            "close": {
+              "day": 7,
+              "time": "2359"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 00:00 - 23:59",
+          "Tuesday: 00:00 - 23:59",
+          "Wednesday: 00:00 - 23:59",
+          "Thursday: 00:00 - 23:59",
+          "Friday: 00:00 - 23:59",
+          "Saturday: 00:00 - 23:59",
+          "Sunday: 00:00 - 23:59"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 00:00 - 23:59",
+        "Tuesday: 00:00 - 23:59",
+        "Wednesday: 00:00 - 23:59",
+        "Thursday: 00:00 - 23:59",
+        "Friday: 00:00 - 23:59",
+        "Saturday: 00:00 - 23:59",
+        "Sunday: 00:00 - 23:59"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14129730-d320047-Reviews-Tokyo_Tower-Shibakoen_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14129730-d320047-Reviews-Tokyo_Tower-Shibakoen_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Tower&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Tower&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.65858,139.74544"
+      },
+      "duration_minutes": 75,
+      "place_id": "320047",
+      "score": 9.54,
+      "score_reason": "Mandatory — user-requested attraction",
+      "ranker_used": "gemini",
+      "confidence": 1.0,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": true,
+      "selection_source": "user_required"
+    },
+    {
+      "location_id": "320447",
+      "name": "Senso-ji Temple",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.4,
+      "num_reviews": 9849,
+      "address": "2-3-1, Asakusa, Taito 111-0032 Tokyo Prefecture",
+      "latitude": 35.7147,
+      "longitude": 139.79678,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134311-d320447-Reviews-Senso_ji_Temple-Asakusa_Taito_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1a/3d/a5/07/caption.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0630"
+            },
+            "close": {
+              "day": 1,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0630"
+            },
+            "close": {
+              "day": 2,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0630"
+            },
+            "close": {
+              "day": 3,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0630"
+            },
+            "close": {
+              "day": 4,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0630"
+            },
+            "close": {
+              "day": 5,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0630"
+            },
+            "close": {
+              "day": 6,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0630"
+            },
+            "close": {
+              "day": 7,
+              "time": "1700"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 06:30 - 17:00",
+          "Tuesday: 06:30 - 17:00",
+          "Wednesday: 06:30 - 17:00",
+          "Thursday: 06:30 - 17:00",
+          "Friday: 06:30 - 17:00",
+          "Saturday: 06:30 - 17:00",
+          "Sunday: 06:30 - 17:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 06:30 - 17:00",
+        "Tuesday: 06:30 - 17:00",
+        "Wednesday: 06:30 - 17:00",
+        "Thursday: 06:30 - 17:00",
+        "Friday: 06:30 - 17:00",
+        "Saturday: 06:30 - 17:00",
+        "Sunday: 06:30 - 17:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134311-d320447-Reviews-Senso_ji_Temple-Asakusa_Taito_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134311-d320447-Reviews-Senso_ji_Temple-Asakusa_Taito_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Senso-ji%20Temple&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Senso-ji%20Temple&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.7147,139.79678"
+      },
+      "duration_minutes": 75,
+      "place_id": "320447",
+      "score": 9.54,
+      "score_reason": "Mandatory — user-requested attraction",
+      "ranker_used": "gemini",
+      "confidence": 1.0,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": true,
+      "selection_source": "user_required"
+    },
+    {
+      "location_id": "4403399",
+      "name": "Shibuya Crossing",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.2,
+      "num_reviews": 7890,
+      "address": "2 Chome-2-1 Dogenzaka, Shibuya 150-0043 Tokyo Prefecture",
+      "latitude": 35.65945,
+      "longitude": 139.70049,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g1066456-d4403399-Reviews-Shibuya_Crossing-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/1c/7c/eb/cb/photo0jpg.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0000"
+            },
+            "close": {
+              "day": 7,
+              "time": "2359"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 00:00 - 23:59",
+          "Tuesday: 00:00 - 23:59",
+          "Wednesday: 00:00 - 23:59",
+          "Thursday: 00:00 - 23:59",
+          "Friday: 00:00 - 23:59",
+          "Saturday: 00:00 - 23:59",
+          "Sunday: 00:00 - 23:59"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 00:00 - 23:59",
+        "Tuesday: 00:00 - 23:59",
+        "Wednesday: 00:00 - 23:59",
+        "Thursday: 00:00 - 23:59",
+        "Friday: 00:00 - 23:59",
+        "Saturday: 00:00 - 23:59",
+        "Sunday: 00:00 - 23:59"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g1066456-d4403399-Reviews-Shibuya_Crossing-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g1066456-d4403399-Reviews-Shibuya_Crossing-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Shibuya%20Crossing&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Shibuya%20Crossing&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.65945,139.70049"
+      },
+      "duration_minutes": 75,
+      "place_id": "4403399",
+      "score": 9.54,
+      "score_reason": "Mandatory — user-requested attraction",
+      "ranker_used": "gemini",
+      "confidence": 1.0,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": true,
+      "selection_source": "user_required"
+    },
+    {
+      "location_id": "14951238",
+      "name": "teamLab Planets TOKYO",
+      "category": "Attraction",
+      "subcategories": [
+        "Museums",
+        "Attractions"
+      ],
+      "rating": 4.3,
+      "num_reviews": 5130,
+      "address": "6-1-16, Toyosu, Koto 135-0061 Tokyo Prefecture",
+      "latitude": 35.649307,
+      "longitude": 139.78976,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134359-d14951238-Reviews-TeamLab_Planets_TOKYO-Toyosu_Koto_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/1d/3d/68/26/floating-flower-garden.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0900"
+            },
+            "close": {
+              "day": 1,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0900"
+            },
+            "close": {
+              "day": 2,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0900"
+            },
+            "close": {
+              "day": 3,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0900"
+            },
+            "close": {
+              "day": 4,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0900"
+            },
+            "close": {
+              "day": 5,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "2200"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 09:00 - 22:00",
+          "Tuesday: 09:00 - 22:00",
+          "Wednesday: 09:00 - 22:00",
+          "Thursday: 09:00 - 22:00",
+          "Friday: 09:00 - 22:00",
+          "Saturday: 09:00 - 22:00",
+          "Sunday: 09:00 - 22:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 09:00 - 22:00",
+        "Tuesday: 09:00 - 22:00",
+        "Wednesday: 09:00 - 22:00",
+        "Thursday: 09:00 - 22:00",
+        "Friday: 09:00 - 22:00",
+        "Saturday: 09:00 - 22:00",
+        "Sunday: 09:00 - 22:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134359-d14951238-Reviews-TeamLab_Planets_TOKYO-Toyosu_Koto_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134359-d14951238-Reviews-TeamLab_Planets_TOKYO-Toyosu_Koto_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=teamLab%20Planets%20TOKYO&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=teamLab%20Planets%20TOKYO&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.649307,139.78976"
+      },
+      "duration_minutes": 75,
+      "place_id": "14951238",
+      "score": 9.0,
+      "score_reason": "Highly immersive indoor digital art experience aligns perfectly with culture and adventure vibes, making it an excellent choice for cold winter weather.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "7744338",
+      "name": "Waho-An Nature Tokyo",
+      "category": "Attraction",
+      "subcategories": [
+        "Spas & Wellness",
+        "Activities"
+      ],
+      "rating": 5.0,
+      "num_reviews": 1135,
+      "address": "7-8 Dokken-Daikanyama-Heights1F, Daikanyama, Shibuya 150-0034 Tokyo Prefecture",
+      "latitude": 35.650894,
+      "longitude": 139.70523,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134839-d7744338-Reviews-Waho_An_Nature_Tokyo-Daikanyama_Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1b/f5/5a/96/our-new-store-has-a-nice.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "1000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "1000"
+            },
+            "close": {
+              "day": 7,
+              "time": "2100"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 10:00 - 21:00",
+          "Tuesday: 10:00 - 21:00",
+          "Wednesday: 10:00 - 21:00",
+          "Thursday: 10:00 - 21:00",
+          "Friday: 10:00 - 21:00",
+          "Saturday: 10:00 - 21:00",
+          "Sunday: 10:00 - 21:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 10:00 - 21:00",
+        "Tuesday: 10:00 - 21:00",
+        "Wednesday: 10:00 - 21:00",
+        "Thursday: 10:00 - 21:00",
+        "Friday: 10:00 - 21:00",
+        "Saturday: 10:00 - 21:00",
+        "Sunday: 10:00 - 21:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134839-d7744338-Reviews-Waho_An_Nature_Tokyo-Daikanyama_Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134839-d7744338-Reviews-Waho_An_Nature_Tokyo-Daikanyama_Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Waho-An%20Nature%20Tokyo&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Waho-An%20Nature%20Tokyo&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.650894,139.70523"
+      },
+      "duration_minutes": 75,
+      "place_id": "7744338",
+      "score": 7.5,
+      "score_reason": "Offers a relaxing, indoor cultural experience focused on wellness and spa, a good option for cold weather and aligning with the 'culture' vibe.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "320639",
+      "name": "Tokyo DisneySea",
+      "category": "Attraction",
+      "subcategories": [
+        "Water & Amusement Parks",
+        "Attractions"
+      ],
+      "rating": 4.3,
+      "num_reviews": 6716,
+      "address": "1-13, Maihama, Urayasu 279-0031 Chiba Prefecture",
+      "latitude": 35.62681,
+      "longitude": 139.88501,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320639-Reviews-Tokyo_DisneySea-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/16/05/f9/9d/tokyo-disneysea.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0800"
+            },
+            "close": {
+              "day": 1,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0800"
+            },
+            "close": {
+              "day": 2,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0800"
+            },
+            "close": {
+              "day": 3,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0800"
+            },
+            "close": {
+              "day": 4,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0800"
+            },
+            "close": {
+              "day": 5,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0800"
+            },
+            "close": {
+              "day": 6,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0800"
+            },
+            "close": {
+              "day": 7,
+              "time": "2200"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 08:00 - 22:00",
+          "Tuesday: 08:00 - 22:00",
+          "Wednesday: 08:00 - 22:00",
+          "Thursday: 08:00 - 22:00",
+          "Friday: 08:00 - 22:00",
+          "Saturday: 08:00 - 22:00",
+          "Sunday: 08:00 - 22:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 08:00 - 22:00",
+        "Tuesday: 08:00 - 22:00",
+        "Wednesday: 08:00 - 22:00",
+        "Thursday: 08:00 - 22:00",
+        "Friday: 08:00 - 22:00",
+        "Saturday: 08:00 - 22:00",
+        "Sunday: 08:00 - 22:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320639-Reviews-Tokyo_DisneySea-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320639-Reviews-Tokyo_DisneySea-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20DisneySea&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20DisneySea&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.62681,139.88501"
+      },
+      "duration_minutes": 75,
+      "place_id": "320639",
+      "score": 6.5,
+      "score_reason": "Offers unique adventure and immersive theming, often preferred by adults, but like Disneyland, many elements are outdoors, making it less ideal in cold weather.",
+      "ranker_used": "gemini",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "1872416",
+      "name": "Tokyo Skytree",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.2,
+      "num_reviews": 8158,
+      "address": "1 Chome-1-2, Oshiage, Sumida 131-8634 Tokyo Prefecture",
+      "latitude": 35.71007,
+      "longitude": 139.81065,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134337-d1872416-Reviews-Tokyo_Skytree-Oshiage_Sumida_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2e/53/a8/1e/lighting-at-night-time.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "1000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "2200"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 10:00 - 22:00",
+          "Tuesday: 10:00 - 22:00",
+          "Wednesday: 10:00 - 22:00",
+          "Thursday: 10:00 - 22:00",
+          "Friday: 10:00 - 22:00",
+          "Saturday: 09:00 - 22:00",
+          "Sunday: 09:00 - 22:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 10:00 - 22:00",
+        "Tuesday: 10:00 - 22:00",
+        "Wednesday: 10:00 - 22:00",
+        "Thursday: 10:00 - 22:00",
+        "Friday: 10:00 - 22:00",
+        "Saturday: 09:00 - 22:00",
+        "Sunday: 09:00 - 22:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134337-d1872416-Reviews-Tokyo_Skytree-Oshiage_Sumida_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134337-d1872416-Reviews-Tokyo_Skytree-Oshiage_Sumida_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Skytree&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Skytree&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.71007,139.81065"
+      },
+      "duration_minutes": 75,
+      "place_id": "1872416",
+      "score": 6.2,
+      "score_reason": "Offers iconic city views from comfortable indoor observation decks, suitable for cold weather, aligning with culture and providing a sense of adventure.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 1.8,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "320634",
+      "name": "Tokyo Disneyland",
+      "category": "Attraction",
+      "subcategories": [
+        "Water & Amusement Parks",
+        "Attractions"
+      ],
+      "rating": 4.3,
+      "num_reviews": 7230,
+      "address": "1-1 Maihama, Maihama, Urayasu 279-0031 Chiba Prefecture",
+      "latitude": 35.632835,
+      "longitude": 139.88039,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320634-Reviews-Tokyo_Disneyland-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/16/05/fa/7c/tokyodisneyland.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0800"
+            },
+            "close": {
+              "day": 1,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0800"
+            },
+            "close": {
+              "day": 2,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0800"
+            },
+            "close": {
+              "day": 3,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0800"
+            },
+            "close": {
+              "day": 4,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0800"
+            },
+            "close": {
+              "day": 5,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0800"
+            },
+            "close": {
+              "day": 6,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0800"
+            },
+            "close": {
+              "day": 7,
+              "time": "2200"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 08:00 - 22:00",
+          "Tuesday: 08:00 - 22:00",
+          "Wednesday: 08:00 - 22:00",
+          "Thursday: 08:00 - 22:00",
+          "Friday: 08:00 - 22:00",
+          "Saturday: 08:00 - 22:00",
+          "Sunday: 08:00 - 22:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 08:00 - 22:00",
+        "Tuesday: 08:00 - 22:00",
+        "Wednesday: 08:00 - 22:00",
+        "Thursday: 08:00 - 22:00",
+        "Friday: 08:00 - 22:00",
+        "Saturday: 08:00 - 22:00",
+        "Sunday: 08:00 - 22:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320634-Reviews-Tokyo_Disneyland-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320634-Reviews-Tokyo_Disneyland-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Disneyland&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Disneyland&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.632835,139.88039"
+      },
+      "duration_minutes": 75,
+      "place_id": "320634",
+      "score": 5.4,
+      "score_reason": "Provides adventure and fun, but many activities and queues are outdoors, which could be less enjoyable in cold December weather. Less direct alignment with 'culture' or 'nightlife'.",
+      "ranker_used": "gemini",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.6,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "12310322",
+      "name": "Tokyo Localized - Free Walking Tour in Tokyo & More",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities"
+      ],
+      "rating": 4.9,
+      "num_reviews": 4520,
+      "address": "Meeting Place: AKB48 Cafe, Chiyoda 110-0006 Tokyo Prefecture",
+      "latitude": 35.699043,
+      "longitude": 139.77283,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g1066443-d12310322-Reviews-Tokyo_Localized_Free_Walking_Tour_in_Tokyo_More-Chiyoda_Tokyo_Tokyo_Prefecture_.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0f/93/f1/05/free-walking-tour-tokyo.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0900"
+            },
+            "close": {
+              "day": 1,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0900"
+            },
+            "close": {
+              "day": 2,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0900"
+            },
+            "close": {
+              "day": 3,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0900"
+            },
+            "close": {
+              "day": 4,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0900"
+            },
+            "close": {
+              "day": 5,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "1700"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 09:00 - 17:00",
+          "Tuesday: 09:00 - 17:00",
+          "Wednesday: 09:00 - 17:00",
+          "Thursday: 09:00 - 17:00",
+          "Friday: 09:00 - 17:00",
+          "Saturday: 09:00 - 17:00",
+          "Sunday: 09:00 - 17:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 09:00 - 17:00",
+        "Tuesday: 09:00 - 17:00",
+        "Wednesday: 09:00 - 17:00",
+        "Thursday: 09:00 - 17:00",
+        "Friday: 09:00 - 17:00",
+        "Saturday: 09:00 - 17:00",
+        "Sunday: 09:00 - 17:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g1066443-d12310322-Reviews-Tokyo_Localized_Free_Walking_Tour_in_Tokyo_More-Chiyoda_Tokyo_Tokyo_Prefecture_.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g1066443-d12310322-Reviews-Tokyo_Localized_Free_Walking_Tour_in_Tokyo_More-Chiyoda_Tokyo_Tokyo_Prefecture_.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Localized%20-%20Free%20Walking%20Tour%20in%20Tokyo%20%26%20More&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Localized%20-%20Free%20Walking%20Tour%20in%20Tokyo%20%26%20More&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.699043,139.77283"
+      },
+      "duration_minutes": 75,
+      "place_id": "12310322",
+      "score": 4.5,
+      "score_reason": "Strong alignment with cultural exploration and adventure, but being an outdoor walking tour in cold December weather significantly reduces its appeal and comfort.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "1509275",
+      "name": "Tokyo Metro",
+      "category": "Attraction",
+      "subcategories": [
+        "Transportation",
+        "Attractions"
+      ],
+      "rating": 4.5,
+      "num_reviews": 2431,
+      "address": "Tokyo Prefecture",
+      "latitude": 35.683125,
+      "longitude": 139.73866,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298184-d1509275-Reviews-Tokyo_Metro-Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/09/95/e8/f2/caption.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298184-d1509275-Reviews-Tokyo_Metro-Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298184-d1509275-Reviews-Tokyo_Metro-Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Metro&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Metro&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.683125,139.73866"
+      },
+      "duration_minutes": 75,
+      "place_id": "1509275",
+      "score": 2.0,
+      "score_reason": "Primarily a mode of transportation, not a standalone attraction. While integral for getting around, it doesn't align with the requested 'adventure, culture, food, nightlife' as a destination itself.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "550327",
+      "name": "Tokyo Central Railway Station",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.2,
+      "num_reviews": 4323,
+      "address": "1-9-1, Marunouchi, Chiyoda 100-0005 Tokyo Prefecture",
+      "latitude": 35.681553,
+      "longitude": 139.76544,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14129528-d550327-Reviews-Tokyo_Central_Railway_Station-Marunouchi_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/17/12/a7/68/kitte.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14129528-d550327-Reviews-Tokyo_Central_Railway_Station-Marunouchi_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14129528-d550327-Reviews-Tokyo_Central_Railway_Station-Marunouchi_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Central%20Railway%20Station&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Central%20Railway%20Station&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.681553,139.76544"
+      },
+      "duration_minutes": 75,
+      "place_id": "550327",
+      "score": 0.6,
+      "score_reason": "A major transportation hub with historical architecture, but not a primary attraction for spending significant time, and doesn't strongly align with the desired adventure/food/nightlife vibes.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 2.4,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    }
+  ],
+  "restaurants": [],
+  "hotels": [
+    {
+      "location_id": "307368",
+      "name": "Park Hyatt Tokyo",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.7,
+      "num_reviews": 4675,
+      "address": "3-7-1-2 Nishi Shinjuku, Nishishinjuku, Shinjuku 163-1055 Tokyo Prefecture",
+      "latitude": 35.68565,
+      "longitude": 139.69109,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g14133673-d307368-Reviews-Park_Hyatt_Tokyo-Nishishinjuku_Shinjuku_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/32/02/00/aa/caption.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g14133673-d307368-Reviews-Park_Hyatt_Tokyo-Nishishinjuku_Shinjuku_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g14133673-d307368-Reviews-Park_Hyatt_Tokyo-Nishishinjuku_Shinjuku_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Park%20Hyatt%20Tokyo",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Park%20Hyatt%20Tokyo",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.68565,139.69109"
+      },
+      "duration_minutes": 90,
+      "place_id": "307368",
+      "score": 0.0,
+      "score_reason": "",
+      "ranker_used": "",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "571809",
+      "name": "Conrad Tokyo",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.7,
+      "num_reviews": 4373,
+      "address": "1-9-1 Higashishimbashi, Minato 105-7337 Tokyo Prefecture",
+      "latitude": 35.663223,
+      "longitude": 139.7618,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g1066451-d571809-Reviews-Conrad_Tokyo-Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2f/d9/19/23/exterior.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g1066451-d571809-Reviews-Conrad_Tokyo-Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g1066451-d571809-Reviews-Conrad_Tokyo-Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Conrad%20Tokyo",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Conrad%20Tokyo",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.663223,139.7618"
+      },
+      "duration_minutes": 90,
+      "place_id": "571809",
+      "score": 0.0,
+      "score_reason": "",
+      "ranker_used": "",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "585204",
+      "name": "Mandarin Oriental Tokyo",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.7,
+      "num_reviews": 2894,
+      "address": "2-1-1 Nihonbashi Muromachi, Chuo 103-8328 Tokyo Prefecture",
+      "latitude": 35.68685,
+      "longitude": 139.77296,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g1066444-d585204-Reviews-Mandarin_Oriental_Tokyo-Chuo_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-w/32/7e/69/25/hotel-exterior.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0000"
+            },
+            "close": {
+              "day": 1,
+              "time": "0000"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0000"
+            },
+            "close": {
+              "day": 2,
+              "time": "0000"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0000"
+            },
+            "close": {
+              "day": 3,
+              "time": "0000"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0000"
+            },
+            "close": {
+              "day": 4,
+              "time": "0000"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0000"
+            },
+            "close": {
+              "day": 5,
+              "time": "0000"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0000"
+            },
+            "close": {
+              "day": 6,
+              "time": "0000"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0000"
+            },
+            "close": {
+              "day": 7,
+              "time": "0000"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 00:00 - 00:00",
+          "Tuesday: 00:00 - 00:00",
+          "Wednesday: 00:00 - 00:00",
+          "Thursday: 00:00 - 00:00",
+          "Friday: 00:00 - 00:00",
+          "Saturday: 00:00 - 00:00",
+          "Sunday: 00:00 - 00:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 00:00 - 00:00",
+        "Tuesday: 00:00 - 00:00",
+        "Wednesday: 00:00 - 00:00",
+        "Thursday: 00:00 - 00:00",
+        "Friday: 00:00 - 00:00",
+        "Saturday: 00:00 - 00:00",
+        "Sunday: 00:00 - 00:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g1066444-d585204-Reviews-Mandarin_Oriental_Tokyo-Chuo_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g1066444-d585204-Reviews-Mandarin_Oriental_Tokyo-Chuo_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Mandarin%20Oriental%20Tokyo",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Mandarin%20Oriental%20Tokyo",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.68685,139.77296"
+      },
+      "duration_minutes": 90,
+      "place_id": "585204",
+      "score": 0.0,
+      "score_reason": "",
+      "ranker_used": "",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "306610",
+      "name": "Grand Hyatt Tokyo",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.6,
+      "num_reviews": 3628,
+      "address": "6-10-3, Roppongi, Minato 106-0032 Tokyo Prefecture",
+      "latitude": 35.65998,
+      "longitude": 139.7282,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g14129735-d306610-Reviews-Grand_Hyatt_Tokyo-Roppongi_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/19/fe/fc/3c/caption.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g14129735-d306610-Reviews-Grand_Hyatt_Tokyo-Roppongi_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g14129735-d306610-Reviews-Grand_Hyatt_Tokyo-Roppongi_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Grand%20Hyatt%20Tokyo",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Grand%20Hyatt%20Tokyo",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.65998,139.7282"
+      },
+      "duration_minutes": 90,
+      "place_id": "306610",
+      "score": 0.0,
+      "score_reason": "",
+      "ranker_used": "",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "580687",
+      "name": "The Peninsula Tokyo",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.6,
+      "num_reviews": 2218,
+      "address": "1-8-1, Yurakucho, Chiyoda 100-0006 Tokyo Prefecture",
+      "latitude": 35.674667,
+      "longitude": 139.7607,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g14129536-d580687-Reviews-The_Peninsula_Tokyo-Yurakucho_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2c/2b/7c/8c/the-peninsula-tokyo-exterior.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g14129536-d580687-Reviews-The_Peninsula_Tokyo-Yurakucho_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g14129536-d580687-Reviews-The_Peninsula_Tokyo-Yurakucho_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=The%20Peninsula%20Tokyo",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=The%20Peninsula%20Tokyo",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.674667,139.7607"
+      },
+      "duration_minutes": 90,
+      "place_id": "580687",
+      "score": 0.0,
+      "score_reason": "",
+      "ranker_used": "",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    }
+  ],
+  "candidate_pool": [
+    {
+      "location_id": "320047",
+      "name": "Tokyo Tower",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.2,
+      "num_reviews": 8533,
+      "address": "4 Chome 2-8, Shibakoen, Minato 105-0011 Tokyo Prefecture",
+      "latitude": 35.65858,
+      "longitude": 139.74544,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14129730-d320047-Reviews-Tokyo_Tower-Shibakoen_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0b/03/b5/9b/tokyo-tower.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0000"
+            },
+            "close": {
+              "day": 7,
+              "time": "2359"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 00:00 - 23:59",
+          "Tuesday: 00:00 - 23:59",
+          "Wednesday: 00:00 - 23:59",
+          "Thursday: 00:00 - 23:59",
+          "Friday: 00:00 - 23:59",
+          "Saturday: 00:00 - 23:59",
+          "Sunday: 00:00 - 23:59"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 00:00 - 23:59",
+        "Tuesday: 00:00 - 23:59",
+        "Wednesday: 00:00 - 23:59",
+        "Thursday: 00:00 - 23:59",
+        "Friday: 00:00 - 23:59",
+        "Saturday: 00:00 - 23:59",
+        "Sunday: 00:00 - 23:59"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14129730-d320047-Reviews-Tokyo_Tower-Shibakoen_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14129730-d320047-Reviews-Tokyo_Tower-Shibakoen_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Tower&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Tower&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.65858,139.74544"
+      },
+      "duration_minutes": 75,
+      "place_id": "320047",
+      "score": 9.54,
+      "score_reason": "Mandatory — user-requested attraction",
+      "ranker_used": "gemini",
+      "confidence": 1.0,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": true,
+      "selection_source": "user_required"
+    },
+    {
+      "location_id": "320447",
+      "name": "Senso-ji Temple",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.4,
+      "num_reviews": 9849,
+      "address": "2-3-1, Asakusa, Taito 111-0032 Tokyo Prefecture",
+      "latitude": 35.7147,
+      "longitude": 139.79678,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134311-d320447-Reviews-Senso_ji_Temple-Asakusa_Taito_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1a/3d/a5/07/caption.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0630"
+            },
+            "close": {
+              "day": 1,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0630"
+            },
+            "close": {
+              "day": 2,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0630"
+            },
+            "close": {
+              "day": 3,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0630"
+            },
+            "close": {
+              "day": 4,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0630"
+            },
+            "close": {
+              "day": 5,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0630"
+            },
+            "close": {
+              "day": 6,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0630"
+            },
+            "close": {
+              "day": 7,
+              "time": "1700"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 06:30 - 17:00",
+          "Tuesday: 06:30 - 17:00",
+          "Wednesday: 06:30 - 17:00",
+          "Thursday: 06:30 - 17:00",
+          "Friday: 06:30 - 17:00",
+          "Saturday: 06:30 - 17:00",
+          "Sunday: 06:30 - 17:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 06:30 - 17:00",
+        "Tuesday: 06:30 - 17:00",
+        "Wednesday: 06:30 - 17:00",
+        "Thursday: 06:30 - 17:00",
+        "Friday: 06:30 - 17:00",
+        "Saturday: 06:30 - 17:00",
+        "Sunday: 06:30 - 17:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134311-d320447-Reviews-Senso_ji_Temple-Asakusa_Taito_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134311-d320447-Reviews-Senso_ji_Temple-Asakusa_Taito_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Senso-ji%20Temple&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Senso-ji%20Temple&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.7147,139.79678"
+      },
+      "duration_minutes": 75,
+      "place_id": "320447",
+      "score": 9.54,
+      "score_reason": "Mandatory — user-requested attraction",
+      "ranker_used": "gemini",
+      "confidence": 1.0,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": true,
+      "selection_source": "user_required"
+    },
+    {
+      "location_id": "4403399",
+      "name": "Shibuya Crossing",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.2,
+      "num_reviews": 7890,
+      "address": "2 Chome-2-1 Dogenzaka, Shibuya 150-0043 Tokyo Prefecture",
+      "latitude": 35.65945,
+      "longitude": 139.70049,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g1066456-d4403399-Reviews-Shibuya_Crossing-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/1c/7c/eb/cb/photo0jpg.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0000"
+            },
+            "close": {
+              "day": 7,
+              "time": "2359"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 00:00 - 23:59",
+          "Tuesday: 00:00 - 23:59",
+          "Wednesday: 00:00 - 23:59",
+          "Thursday: 00:00 - 23:59",
+          "Friday: 00:00 - 23:59",
+          "Saturday: 00:00 - 23:59",
+          "Sunday: 00:00 - 23:59"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 00:00 - 23:59",
+        "Tuesday: 00:00 - 23:59",
+        "Wednesday: 00:00 - 23:59",
+        "Thursday: 00:00 - 23:59",
+        "Friday: 00:00 - 23:59",
+        "Saturday: 00:00 - 23:59",
+        "Sunday: 00:00 - 23:59"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g1066456-d4403399-Reviews-Shibuya_Crossing-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g1066456-d4403399-Reviews-Shibuya_Crossing-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Shibuya%20Crossing&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Shibuya%20Crossing&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.65945,139.70049"
+      },
+      "duration_minutes": 75,
+      "place_id": "4403399",
+      "score": 9.54,
+      "score_reason": "Mandatory — user-requested attraction",
+      "ranker_used": "gemini",
+      "confidence": 1.0,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": true,
+      "selection_source": "user_required"
+    },
+    {
+      "location_id": "14951238",
+      "name": "teamLab Planets TOKYO",
+      "category": "Attraction",
+      "subcategories": [
+        "Museums",
+        "Attractions"
+      ],
+      "rating": 4.3,
+      "num_reviews": 5130,
+      "address": "6-1-16, Toyosu, Koto 135-0061 Tokyo Prefecture",
+      "latitude": 35.649307,
+      "longitude": 139.78976,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134359-d14951238-Reviews-TeamLab_Planets_TOKYO-Toyosu_Koto_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/1d/3d/68/26/floating-flower-garden.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0900"
+            },
+            "close": {
+              "day": 1,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0900"
+            },
+            "close": {
+              "day": 2,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0900"
+            },
+            "close": {
+              "day": 3,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0900"
+            },
+            "close": {
+              "day": 4,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0900"
+            },
+            "close": {
+              "day": 5,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "2200"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 09:00 - 22:00",
+          "Tuesday: 09:00 - 22:00",
+          "Wednesday: 09:00 - 22:00",
+          "Thursday: 09:00 - 22:00",
+          "Friday: 09:00 - 22:00",
+          "Saturday: 09:00 - 22:00",
+          "Sunday: 09:00 - 22:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 09:00 - 22:00",
+        "Tuesday: 09:00 - 22:00",
+        "Wednesday: 09:00 - 22:00",
+        "Thursday: 09:00 - 22:00",
+        "Friday: 09:00 - 22:00",
+        "Saturday: 09:00 - 22:00",
+        "Sunday: 09:00 - 22:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134359-d14951238-Reviews-TeamLab_Planets_TOKYO-Toyosu_Koto_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134359-d14951238-Reviews-TeamLab_Planets_TOKYO-Toyosu_Koto_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=teamLab%20Planets%20TOKYO&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=teamLab%20Planets%20TOKYO&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.649307,139.78976"
+      },
+      "duration_minutes": 75,
+      "place_id": "14951238",
+      "score": 9.0,
+      "score_reason": "Highly immersive indoor digital art experience aligns perfectly with culture and adventure vibes, making it an excellent choice for cold winter weather.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "7744338",
+      "name": "Waho-An Nature Tokyo",
+      "category": "Attraction",
+      "subcategories": [
+        "Spas & Wellness",
+        "Activities"
+      ],
+      "rating": 5.0,
+      "num_reviews": 1135,
+      "address": "7-8 Dokken-Daikanyama-Heights1F, Daikanyama, Shibuya 150-0034 Tokyo Prefecture",
+      "latitude": 35.650894,
+      "longitude": 139.70523,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134839-d7744338-Reviews-Waho_An_Nature_Tokyo-Daikanyama_Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1b/f5/5a/96/our-new-store-has-a-nice.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "1000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "1000"
+            },
+            "close": {
+              "day": 7,
+              "time": "2100"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 10:00 - 21:00",
+          "Tuesday: 10:00 - 21:00",
+          "Wednesday: 10:00 - 21:00",
+          "Thursday: 10:00 - 21:00",
+          "Friday: 10:00 - 21:00",
+          "Saturday: 10:00 - 21:00",
+          "Sunday: 10:00 - 21:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 10:00 - 21:00",
+        "Tuesday: 10:00 - 21:00",
+        "Wednesday: 10:00 - 21:00",
+        "Thursday: 10:00 - 21:00",
+        "Friday: 10:00 - 21:00",
+        "Saturday: 10:00 - 21:00",
+        "Sunday: 10:00 - 21:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134839-d7744338-Reviews-Waho_An_Nature_Tokyo-Daikanyama_Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134839-d7744338-Reviews-Waho_An_Nature_Tokyo-Daikanyama_Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Waho-An%20Nature%20Tokyo&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Waho-An%20Nature%20Tokyo&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.650894,139.70523"
+      },
+      "duration_minutes": 75,
+      "place_id": "7744338",
+      "score": 7.5,
+      "score_reason": "Offers a relaxing, indoor cultural experience focused on wellness and spa, a good option for cold weather and aligning with the 'culture' vibe.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "320639",
+      "name": "Tokyo DisneySea",
+      "category": "Attraction",
+      "subcategories": [
+        "Water & Amusement Parks",
+        "Attractions"
+      ],
+      "rating": 4.3,
+      "num_reviews": 6716,
+      "address": "1-13, Maihama, Urayasu 279-0031 Chiba Prefecture",
+      "latitude": 35.62681,
+      "longitude": 139.88501,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320639-Reviews-Tokyo_DisneySea-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/16/05/f9/9d/tokyo-disneysea.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0800"
+            },
+            "close": {
+              "day": 1,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0800"
+            },
+            "close": {
+              "day": 2,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0800"
+            },
+            "close": {
+              "day": 3,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0800"
+            },
+            "close": {
+              "day": 4,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0800"
+            },
+            "close": {
+              "day": 5,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0800"
+            },
+            "close": {
+              "day": 6,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0800"
+            },
+            "close": {
+              "day": 7,
+              "time": "2200"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 08:00 - 22:00",
+          "Tuesday: 08:00 - 22:00",
+          "Wednesday: 08:00 - 22:00",
+          "Thursday: 08:00 - 22:00",
+          "Friday: 08:00 - 22:00",
+          "Saturday: 08:00 - 22:00",
+          "Sunday: 08:00 - 22:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 08:00 - 22:00",
+        "Tuesday: 08:00 - 22:00",
+        "Wednesday: 08:00 - 22:00",
+        "Thursday: 08:00 - 22:00",
+        "Friday: 08:00 - 22:00",
+        "Saturday: 08:00 - 22:00",
+        "Sunday: 08:00 - 22:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320639-Reviews-Tokyo_DisneySea-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320639-Reviews-Tokyo_DisneySea-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20DisneySea&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20DisneySea&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.62681,139.88501"
+      },
+      "duration_minutes": 75,
+      "place_id": "320639",
+      "score": 6.5,
+      "score_reason": "Offers unique adventure and immersive theming, often preferred by adults, but like Disneyland, many elements are outdoors, making it less ideal in cold weather.",
+      "ranker_used": "gemini",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "1872416",
+      "name": "Tokyo Skytree",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.2,
+      "num_reviews": 8158,
+      "address": "1 Chome-1-2, Oshiage, Sumida 131-8634 Tokyo Prefecture",
+      "latitude": 35.71007,
+      "longitude": 139.81065,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134337-d1872416-Reviews-Tokyo_Skytree-Oshiage_Sumida_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2e/53/a8/1e/lighting-at-night-time.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "1000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "2200"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 10:00 - 22:00",
+          "Tuesday: 10:00 - 22:00",
+          "Wednesday: 10:00 - 22:00",
+          "Thursday: 10:00 - 22:00",
+          "Friday: 10:00 - 22:00",
+          "Saturday: 09:00 - 22:00",
+          "Sunday: 09:00 - 22:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 10:00 - 22:00",
+        "Tuesday: 10:00 - 22:00",
+        "Wednesday: 10:00 - 22:00",
+        "Thursday: 10:00 - 22:00",
+        "Friday: 10:00 - 22:00",
+        "Saturday: 09:00 - 22:00",
+        "Sunday: 09:00 - 22:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134337-d1872416-Reviews-Tokyo_Skytree-Oshiage_Sumida_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134337-d1872416-Reviews-Tokyo_Skytree-Oshiage_Sumida_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Skytree&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Skytree&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.71007,139.81065"
+      },
+      "duration_minutes": 75,
+      "place_id": "1872416",
+      "score": 6.2,
+      "score_reason": "Offers iconic city views from comfortable indoor observation decks, suitable for cold weather, aligning with culture and providing a sense of adventure.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 1.8,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "320634",
+      "name": "Tokyo Disneyland",
+      "category": "Attraction",
+      "subcategories": [
+        "Water & Amusement Parks",
+        "Attractions"
+      ],
+      "rating": 4.3,
+      "num_reviews": 7230,
+      "address": "1-1 Maihama, Maihama, Urayasu 279-0031 Chiba Prefecture",
+      "latitude": 35.632835,
+      "longitude": 139.88039,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320634-Reviews-Tokyo_Disneyland-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/16/05/fa/7c/tokyodisneyland.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0800"
+            },
+            "close": {
+              "day": 1,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0800"
+            },
+            "close": {
+              "day": 2,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0800"
+            },
+            "close": {
+              "day": 3,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0800"
+            },
+            "close": {
+              "day": 4,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0800"
+            },
+            "close": {
+              "day": 5,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0800"
+            },
+            "close": {
+              "day": 6,
+              "time": "2200"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0800"
+            },
+            "close": {
+              "day": 7,
+              "time": "2200"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 08:00 - 22:00",
+          "Tuesday: 08:00 - 22:00",
+          "Wednesday: 08:00 - 22:00",
+          "Thursday: 08:00 - 22:00",
+          "Friday: 08:00 - 22:00",
+          "Saturday: 08:00 - 22:00",
+          "Sunday: 08:00 - 22:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 08:00 - 22:00",
+        "Tuesday: 08:00 - 22:00",
+        "Wednesday: 08:00 - 22:00",
+        "Thursday: 08:00 - 22:00",
+        "Friday: 08:00 - 22:00",
+        "Saturday: 08:00 - 22:00",
+        "Sunday: 08:00 - 22:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320634-Reviews-Tokyo_Disneyland-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320634-Reviews-Tokyo_Disneyland-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Disneyland&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Disneyland&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.632835,139.88039"
+      },
+      "duration_minutes": 75,
+      "place_id": "320634",
+      "score": 5.4,
+      "score_reason": "Provides adventure and fun, but many activities and queues are outdoors, which could be less enjoyable in cold December weather. Less direct alignment with 'culture' or 'nightlife'.",
+      "ranker_used": "gemini",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.6,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "12310322",
+      "name": "Tokyo Localized - Free Walking Tour in Tokyo & More",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities"
+      ],
+      "rating": 4.9,
+      "num_reviews": 4520,
+      "address": "Meeting Place: AKB48 Cafe, Chiyoda 110-0006 Tokyo Prefecture",
+      "latitude": 35.699043,
+      "longitude": 139.77283,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g1066443-d12310322-Reviews-Tokyo_Localized_Free_Walking_Tour_in_Tokyo_More-Chiyoda_Tokyo_Tokyo_Prefecture_.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0f/93/f1/05/free-walking-tour-tokyo.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0900"
+            },
+            "close": {
+              "day": 1,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0900"
+            },
+            "close": {
+              "day": 2,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0900"
+            },
+            "close": {
+              "day": 3,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0900"
+            },
+            "close": {
+              "day": 4,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0900"
+            },
+            "close": {
+              "day": 5,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "1700"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 09:00 - 17:00",
+          "Tuesday: 09:00 - 17:00",
+          "Wednesday: 09:00 - 17:00",
+          "Thursday: 09:00 - 17:00",
+          "Friday: 09:00 - 17:00",
+          "Saturday: 09:00 - 17:00",
+          "Sunday: 09:00 - 17:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 09:00 - 17:00",
+        "Tuesday: 09:00 - 17:00",
+        "Wednesday: 09:00 - 17:00",
+        "Thursday: 09:00 - 17:00",
+        "Friday: 09:00 - 17:00",
+        "Saturday: 09:00 - 17:00",
+        "Sunday: 09:00 - 17:00"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g1066443-d12310322-Reviews-Tokyo_Localized_Free_Walking_Tour_in_Tokyo_More-Chiyoda_Tokyo_Tokyo_Prefecture_.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g1066443-d12310322-Reviews-Tokyo_Localized_Free_Walking_Tour_in_Tokyo_More-Chiyoda_Tokyo_Tokyo_Prefecture_.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Localized%20-%20Free%20Walking%20Tour%20in%20Tokyo%20%26%20More&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Localized%20-%20Free%20Walking%20Tour%20in%20Tokyo%20%26%20More&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.699043,139.77283"
+      },
+      "duration_minutes": 75,
+      "place_id": "12310322",
+      "score": 4.5,
+      "score_reason": "Strong alignment with cultural exploration and adventure, but being an outdoor walking tour in cold December weather significantly reduces its appeal and comfort.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "1509275",
+      "name": "Tokyo Metro",
+      "category": "Attraction",
+      "subcategories": [
+        "Transportation",
+        "Attractions"
+      ],
+      "rating": 4.5,
+      "num_reviews": 2431,
+      "address": "Tokyo Prefecture",
+      "latitude": 35.683125,
+      "longitude": 139.73866,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298184-d1509275-Reviews-Tokyo_Metro-Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/09/95/e8/f2/caption.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298184-d1509275-Reviews-Tokyo_Metro-Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298184-d1509275-Reviews-Tokyo_Metro-Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Metro&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Metro&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.683125,139.73866"
+      },
+      "duration_minutes": 75,
+      "place_id": "1509275",
+      "score": 2.0,
+      "score_reason": "Primarily a mode of transportation, not a standalone attraction. While integral for getting around, it doesn't align with the requested 'adventure, culture, food, nightlife' as a destination itself.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "550327",
+      "name": "Tokyo Central Railway Station",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.2,
+      "num_reviews": 4323,
+      "address": "1-9-1, Marunouchi, Chiyoda 100-0005 Tokyo Prefecture",
+      "latitude": 35.681553,
+      "longitude": 139.76544,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g14129528-d550327-Reviews-Tokyo_Central_Railway_Station-Marunouchi_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/17/12/a7/68/kitte.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14129528-d550327-Reviews-Tokyo_Central_Railway_Station-Marunouchi_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14129528-d550327-Reviews-Tokyo_Central_Railway_Station-Marunouchi_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Tokyo%20Central%20Railway%20Station&destId=Tokyo",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Central%20Railway%20Station&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.681553,139.76544"
+      },
+      "duration_minutes": 75,
+      "place_id": "550327",
+      "score": 0.6,
+      "score_reason": "A major transportation hub with historical architecture, but not a primary attraction for spending significant time, and doesn't strongly align with the desired adventure/food/nightlife vibes.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 2.4,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    }
+  ],
+  "restaurant_pool": [],
+  "gaps": "",
+  "api_calls": 54,
+  "cache_hits": 1,
+  "weather_summary": "Tokyo, December: winter — cold, possible snow.",
+  "summary": {
+    "mandatory_count": 3,
+    "suggested_count": 8,
+    "restaurant_count": 0,
+    "hotel_count": 5
+  },
+  "_saved_at": 1779823003.4585285
+}
