@@ -11,7 +11,7 @@ CHANGES vs. previous version:
       * Always include mandatory stops in some day
       * Render them with a 📌 badge in any frontend
       * Refuse to drop them during route optimization
-  - inject_restaurants_into_days() — the seam Krish's team calls after
+  - inject_restaurants_into_days() — the seam which is called after
     forming daily clusters. Picks ~1 restaurant per meal window near each
     cluster's centroid.
 """
@@ -156,7 +156,7 @@ def convert(
     ta_output: dict[str, Any],
     start_date: str = "",
     end_date: str = "",
-    travel_mode: str = "DRIVE",
+    travel_mode: str | None = None,   # None = read from pipeline output
     end_each_day_at_anchor: bool = True,
     daily_minutes_budget: int | None = None,
     day_start_time: str | None = None,
@@ -167,6 +167,15 @@ def convert(
     preferences = ta_output.get("preferences", {}) or {}
     trip_shape  = preferences.get("trip_shape", "balanced")
 
+    # FIX 1: read travel_mode from pipeline output if not overridden by CLI arg.
+    # Priority: explicit CLI arg → pipeline output top-level → preferences dict → default DRIVE
+    if travel_mode is None:
+        travel_mode = (
+            ta_output.get("travel_mode")
+            or preferences.get("travel_mode")
+            or "DRIVE"
+        )
+
     preset = TRIP_SHAPE_PRESETS.get(trip_shape, TRIP_SHAPE_PRESETS["balanced"])
     daily_minutes_budget = daily_minutes_budget or preset["daily_minutes_budget"]
     day_start_time       = day_start_time       or preset["day_start_time"]
@@ -174,13 +183,17 @@ def convert(
         max_stops_per_day = preset["max_stops_per_day"]
 
     attractions = ta_output.get("attractions", [])
-    hotels      = ta_output.get("hotels", [])
+    # FIX 2: use selected_hotel (the pre-chosen anchor) if available,
+    # otherwise fall back to first hotel in the list.
+    selected_hotel = ta_output.get("selected_hotel") or (
+        ta_output.get("hotels", [None])[0] if ta_output.get("hotels") else None
+    )
 
     if not attractions:
         raise ValueError("Pipeline output contains no attractions to convert.")
 
     stops  = [attraction_to_stop(a) for a in attractions]
-    anchor = hotel_to_anchor(hotels[0]) if hotels else None
+    anchor = hotel_to_anchor(selected_hotel) if selected_hotel else None
 
     trip_request: dict[str, Any] = {
         "destination":            destination,

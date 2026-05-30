@@ -24,7 +24,7 @@ def build_parser() -> argparse.ArgumentParser:
     src.add_argument("--input", metavar="FILE")
     src.add_argument("--city", metavar="CITY")
 
-    pref = p.add_argument_group("Preferences (ignored when --input is used)")
+    pref = p.add_argument_group("Preferences")
     pref.add_argument("--preferences", nargs="*", default=[], metavar="TAG")
     pref.add_argument("--budget", default="mid-range",
                       choices=["budget", "mid-range", "luxury"])
@@ -33,15 +33,18 @@ def build_parser() -> argparse.ArgumentParser:
                       dest="dietary_restrictions", metavar="RESTRICTION")
     pref.add_argument("--required", nargs="*", default=[],
                       dest="required_attractions", metavar="NAME",
-                      help="MUST-INCLUDE attraction names (marked mandatory)")
+                      help="Must-include attraction names (marked mandatory)")
     pref.add_argument("--dates", nargs=2, default=["", ""],
                       dest="travel_dates", metavar=("START", "END"))
-    pref.add_argument("--travelers", type=int, default=2,
-                      dest="num_travelers")
+    pref.add_argument("--travelers", type=int, default=2, dest="num_travelers")
     pref.add_argument("--trip-shape", default="balanced",
-                      choices=["relaxed", "balanced", "packed"],
-                      dest="trip_shape",
-                      help="relaxed (3 stops/day), balanced (5), packed (7)")
+                      choices=["relaxed", "balanced", "packed"], dest="trip_shape",
+                      help="relaxed (3 stops/day) | balanced (5) | packed (7)")
+    # FIX 1: travel mode exposed as CLI flag
+    pref.add_argument("--travel-mode", default="DRIVE",
+                      choices=["DRIVE", "WALK", "TRANSIT", "BICYCLE"],
+                      dest="travel_mode",
+                      help="How to get between stops (default: DRIVE)")
 
     out = p.add_argument_group("Output")
     out.add_argument("--k", type=int, default=10)
@@ -55,9 +58,8 @@ def build_parser() -> argparse.ArgumentParser:
     feat.add_argument("--no-persist", action="store_true")
 
     cost = p.add_argument_group("Cost / dev knobs")
-    cost.add_argument("--max-fetch", type=int, default=20,
-                      dest="max_per_category",
-                      help="Results per category (default: 20; use 5 for dev)")
+    cost.add_argument("--max-fetch", type=int, default=20, dest="max_per_category",
+                      help="Results per category to expand (use 5 for dev)")
     cost.add_argument("--no-cache", action="store_true")
     cost.add_argument("--diversity-penalty", type=float, default=0.6)
     cost.add_argument("--diversity-cap", type=int, default=None)
@@ -96,6 +98,7 @@ def main() -> int:
             travel_dates         = tuple(payload.get("travel_dates", ["", ""])),
             num_travelers        = payload.get("num_travelers", 2),
             trip_shape           = payload.get("trip_shape", "balanced"),
+            travel_mode          = payload.get("travel_mode", "DRIVE"),   # FIX 1
         )
     else:
         if not args.city:
@@ -112,6 +115,7 @@ def main() -> int:
             travel_dates         = tuple(args.travel_dates),
             num_travelers        = args.num_travelers,
             trip_shape           = args.trip_shape,
+            travel_mode          = args.travel_mode,   # FIX 1
         )
 
     result = generate_recommendations(
