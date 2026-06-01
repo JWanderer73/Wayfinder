@@ -52,6 +52,8 @@ def health():
 # Main planner endpoint
 # -------------------------
 
+# backend.py
+
 @app.post("/api/plan")
 def plan_trip(req: PlanRequest):
 
@@ -61,11 +63,20 @@ def plan_trip(req: PlanRequest):
         budget=req.budget,
         dietary_restrictions=req.dietary_restrictions,
         required_attractions=req.required_attractions,
-        travel_dates=(
-            req.start_date,
-            req.end_date
-        ),
+        travel_dates=(req.start_date, req.end_date),
         trip_shape=req.trip_shape,
     )
 
-    return result
+    # Wrap in `itinerary` key for frontend
+    return {
+        "itinerary": {
+            "days": result.get("days", []),                # from PipelineResult or your routing output
+            "planning_notes": result.get("planning_notes", []),
+            "removed_stops": result.get("removed_stops", []),
+            "anchor_location": result.get("anchor", None),
+            "destination": result.get("destination", req.destination),
+            "num_days": len(result.get("days", [])),
+            "daily_minutes_budget": 480,  # fallback if not available
+        },
+        **result  # keep the rest of the pipeline output intact
+    }
