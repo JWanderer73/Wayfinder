@@ -22,12 +22,6 @@ env/
 .env/
 ENV/
 
-# ── Output files ──────────────────────────────────────────────────────────────
-attractions_output.json
-results.json
-*.output.json
-wayfinder_ml_model.pkl
-
 # ── OS files ──────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db

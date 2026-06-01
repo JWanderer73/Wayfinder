@@ -1,13 +1,37 @@
 """
-wayfinder – AI-powered travel planning package.
+wayfinder — AI-powered travel planning package.
 
 Spatial planning (routing/scheduling):
   SpatialPlanner, TripRequest, ItineraryPlan — see wayfinder.spatial / wayfinder.models
 
-Attraction recommendations (TripAdvisor + AI ranking):
+Attraction recommendations (TripAdvisor + Gemini + routing handoff):
   Attraction, UserPreferences, generate_recommendations — see wayfinder.pipeline
 """
-from .models import Attraction, UserPreferences
+from .models import (
+    Attraction,
+    PipelineResult,
+    SOURCE_COMPLETENESS,
+    SOURCE_RANKED,
+    SOURCE_RESTAURANT_INJECT,
+    SOURCE_SWAP,
+    SOURCE_USER_REQUIRED,
+    TRIP_SHAPE_PRESETS,
+    UserPreferences,
+)
 from .pipeline import generate_recommendations
+from .trip_store import TripStore, make_trip_id
 
-__all__ = ["Attraction", "UserPreferences", "generate_recommendations"]
+__all__ = [
+    "generate_recommendations",
+    "Attraction",
+    "UserPreferences",
+    "PipelineResult",
+    "TRIP_SHAPE_PRESETS",
+    "TripStore",
+    "make_trip_id",
+    "SOURCE_USER_REQUIRED",
+    "SOURCE_RANKED",
+    "SOURCE_COMPLETENESS",
+    "SOURCE_SWAP",
+    "SOURCE_RESTAURANT_INJECT",
+]

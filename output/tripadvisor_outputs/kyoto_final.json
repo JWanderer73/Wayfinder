@@ -1,0 +1,1715 @@
+{
+  "trip_id": "df2fcebfd892",
+  "destination": "Kyoto",
+  "travel_mode": "WALK",
+  "preferences": {
+    "preferences": [],
+    "budget": "budget",
+    "vibe": "temples, nature, traditional culture, zen",
+    "dietary_restrictions": [
+      "vegan"
+    ],
+    "required_attractions": [
+      "Fushimi Inari Shrine",
+      "Arashiyama Bamboo Grove"
+    ],
+    "travel_dates": [
+      "2025-04-01",
+      "2025-04-08"
+    ],
+    "num_travelers": 2,
+    "trip_shape": "relaxed",
+    "travel_mode": "WALK"
+  },
+  "weather_summary": "Kyoto, April: spring — mild, occasional rain.",
+  "attractions": [
+    {
+      "location_id": "321456",
+      "name": "Fushimi Inari-taisha Shrine",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.6,
+      "num_reviews": 25215,
+      "address": "68 Fukakusa Yabunouchicho, Fushimi-ku, Kyoto 612-0882 Kyoto Prefecture",
+      "latitude": 34.967117,
+      "longitude": 135.77267,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d321456-Reviews-Fushimi_Inari_taisha_Shrine-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/18/28/2e/if-you-make-a-wish-when.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0000"
+            },
+            "close": {
+              "day": 7,
+              "time": "2359"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 00:00 - 23:59",
+          "Tuesday: 00:00 - 23:59",
+          "Wednesday: 00:00 - 23:59",
+          "Thursday: 00:00 - 23:59",
+          "Friday: 00:00 - 23:59",
+          "Saturday: 00:00 - 23:59",
+          "Sunday: 00:00 - 23:59"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 00:00 - 23:59",
+        "Tuesday: 00:00 - 23:59",
+        "Wednesday: 00:00 - 23:59",
+        "Thursday: 00:00 - 23:59",
+        "Friday: 00:00 - 23:59",
+        "Saturday: 00:00 - 23:59",
+        "Sunday: 00:00 - 23:59"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d321456-Reviews-Fushimi_Inari_taisha_Shrine-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d321456-Reviews-Fushimi_Inari_taisha_Shrine-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Fushimi%20Inari-taisha%20Shrine&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Fushimi%20Inari-taisha%20Shrine&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=34.967117,135.77267"
+      },
+      "duration_minutes": 90,
+      "place_id": "321456",
+      "score": 9.55,
+      "score_reason": "Mandatory — user-requested attraction",
+      "ranker_used": "gemini",
+      "confidence": 1.0,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": true,
+      "selection_source": "user_required"
+    },
+    {
+      "location_id": "545940",
+      "name": "Arashiyama",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions",
+        "Other"
+      ],
+      "rating": 4.4,
+      "num_reviews": 6888,
+      "address": "Ukyo-ku, Kyoto 616-0007 Kyoto Prefecture",
+      "latitude": 35.017136,
+      "longitude": 135.67462,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d545940-Reviews-Arashiyama-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/2c/13/ae/b5/caption.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d545940-Reviews-Arashiyama-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d545940-Reviews-Arashiyama-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Arashiyama&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Arashiyama&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.017136,135.67462"
+      },
+      "duration_minutes": 90,
+      "place_id": "545940",
+      "score": 9.54,
+      "score_reason": "Mandatory — user-requested attraction",
+      "ranker_used": "gemini",
+      "confidence": 1.0,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": true,
+      "selection_source": "user_required"
+    },
+    {
+      "location_id": "11727379",
+      "name": "Kyoto Samurai Experience",
+      "category": "Attraction",
+      "subcategories": [
+        "Classes & Workshops",
+        "Activities"
+      ],
+      "rating": 5.0,
+      "num_reviews": 1437,
+      "address": "111 Inabacho, Nakagyo-ku, Kyoto 604-8803 Kyoto Prefecture",
+      "latitude": 35.00627,
+      "longitude": 135.74763,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d11727379-Reviews-Kyoto_Samurai_Experience-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/28/9e/d8/79/samurai.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "1000"
+            },
+            "close": {
+              "day": 1,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "time": "1300"
+            },
+            "close": {
+              "day": 1,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1000"
+            },
+            "close": {
+              "day": 2,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1300"
+            },
+            "close": {
+              "day": 2,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1000"
+            },
+            "close": {
+              "day": 3,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1300"
+            },
+            "close": {
+              "day": 3,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1000"
+            },
+            "close": {
+              "day": 4,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1300"
+            },
+            "close": {
+              "day": 4,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1000"
+            },
+            "close": {
+              "day": 5,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1300"
+            },
+            "close": {
+              "day": 5,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1000"
+            },
+            "close": {
+              "day": 6,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1300"
+            },
+            "close": {
+              "day": 6,
+              "time": "1700"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 10:00 - 12:00,  13:00 - 17:00",
+          "Tuesday: 10:00 - 12:00,  13:00 - 17:00",
+          "Wednesday: 10:00 - 12:00,  13:00 - 17:00",
+          "Thursday: 10:00 - 12:00,  13:00 - 17:00",
+          "Friday: 10:00 - 12:00,  13:00 - 17:00",
+          "Saturday: 10:00 - 12:00,  13:00 - 17:00",
+          "Sunday: Closed"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 10:00 - 12:00,  13:00 - 17:00",
+        "Tuesday: 10:00 - 12:00,  13:00 - 17:00",
+        "Wednesday: 10:00 - 12:00,  13:00 - 17:00",
+        "Thursday: 10:00 - 12:00,  13:00 - 17:00",
+        "Friday: 10:00 - 12:00,  13:00 - 17:00",
+        "Saturday: 10:00 - 12:00,  13:00 - 17:00",
+        "Sunday: Closed"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d11727379-Reviews-Kyoto_Samurai_Experience-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d11727379-Reviews-Kyoto_Samurai_Experience-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Kyoto%20Samurai%20Experience&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Kyoto%20Samurai%20Experience&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.00627,135.74763"
+      },
+      "duration_minutes": 90,
+      "place_id": "11727379",
+      "score": 8.5,
+      "score_reason": "A strong match for the 'traditional culture' vibe, offering an authentic indoor experience that is unaffected by the expected occasional rain.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "321088",
+      "name": "Kyoto Imperial Palace",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.1,
+      "num_reviews": 2504,
+      "address": "3 Kyoto-Gyoen, Kamigyo-Ku Kyoto Gyoen, Kyoto 602-0881 Kyoto Prefecture",
+      "latitude": 35.02435,
+      "longitude": 135.7619,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d321088-Reviews-Kyoto_Imperial_Palace-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/10/61/47/26/riflessi-templari.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d321088-Reviews-Kyoto_Imperial_Palace-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d321088-Reviews-Kyoto_Imperial_Palace-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Kyoto%20Imperial%20Palace&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Kyoto%20Imperial%20Palace&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.02435,135.7619"
+      },
+      "duration_minutes": 90,
+      "place_id": "321088",
+      "score": 7.8,
+      "score_reason": "A strong match for 'traditional culture', 'nature', and 'zen', with beautiful gardens ideal for spring. It's budget-friendly, though occasional rain might slightly impact enjoyment of the outdoor grounds.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": true,
+      "diversity_penalty": 1.2,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "8747123",
+      "name": "Kyoto Free Walking Tour",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities"
+      ],
+      "rating": 4.9,
+      "num_reviews": 1037,
+      "address": "Kawabatacho, Higashiyama-Ku In front of the Izumo no Okuni Statue, Kyoto 605-0076 Kyoto Prefecture",
+      "latitude": 35.003895,
+      "longitude": 135.77197,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d8747123-Reviews-Kyoto_Free_Walking_Tour-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/16/76/21/9e/kyoto-free-walking-tour.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d8747123-Reviews-Kyoto_Free_Walking_Tour-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d8747123-Reviews-Kyoto_Free_Walking_Tour-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Kyoto%20Free%20Walking%20Tour&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Kyoto%20Free%20Walking%20Tour&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.003895,135.77197"
+      },
+      "duration_minutes": 120,
+      "place_id": "8747123",
+      "score": 6.0,
+      "score_reason": "Excellent for a 'budget' traveler and likely covers desired 'temples' and 'traditional culture'. However, it's an entirely outdoor activity that would be significantly impacted by the expected occasional rain.",
+      "ranker_used": "gemini",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "8155460",
+      "name": "Cycle Kyoto",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities",
+        "Outdoor Activities"
+      ],
+      "rating": 4.9,
+      "num_reviews": 2039,
+      "address": "7 Higashikujo Nishisannocho, Minami-ku, Kyoto 601-8003 Kyoto Prefecture",
+      "latitude": 34.982765,
+      "longitude": 135.76018,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d8155460-Reviews-Cycle_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/26/c2/56/66/cycle-kyoto.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d8155460-Reviews-Cycle_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d8155460-Reviews-Cycle_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Cycle%20Kyoto&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Cycle%20Kyoto&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=34.982765,135.76018"
+      },
+      "duration_minutes": 120,
+      "place_id": "8155460",
+      "score": 4.4,
+      "score_reason": "Outdoor activity, which will be impacted by occasional rain. While it can offer views of nature and traditional areas, it doesn't directly align with the core 'temples, zen' vibe.",
+      "ranker_used": "gemini",
+      "confidence": 0.7,
+      "is_outdoor": true,
+      "is_indoor": false,
+      "diversity_penalty": 0.6,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    }
+  ],
+  "restaurants": [],
+  "selected_hotel": {
+    "location_id": "21291794",
+    "name": "Hotel Tou Nishinotoin Kyoto",
+    "category": "Hotel",
+    "subcategories": [
+      "Hotel"
+    ],
+    "rating": 4.7,
+    "num_reviews": 716,
+    "address": "455 Nishinotoincho Nishinotoindori HanayachoSagaru, Shimogyo-ku, Kyoto 600-8327 Kyoto Prefecture",
+    "latitude": 34.991978,
+    "longitude": 135.75534,
+    "web_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d21291794-Reviews-Hotel_Tou_Nishinotoin_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+    "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/1e/2f/88/05/caption.jpg",
+    "price_level": "$$",
+    "cuisine_types": [],
+    "hours": {},
+    "open_hours_text": [],
+    "booking_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d21291794-Reviews-Hotel_Tou_Nishinotoin_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+    "booking_links": {
+      "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g298564-d21291794-Reviews-Hotel_Tou_Nishinotoin_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "Booking.com": "https://www.booking.com/search.html?ss=Hotel%20Tou%20Nishinotoin%20Kyoto",
+      "Hotels.com": "https://www.hotels.com/search.do?q-destination=Hotel%20Tou%20Nishinotoin%20Kyoto",
+      "Google Maps": "https://www.google.com/maps/search/?api=1&query=34.991978,135.75534"
+    },
+    "duration_minutes": 90,
+    "place_id": "21291794",
+    "score": null,
+    "score_reason": "Hotels are not scored by the ranker",
+    "ranker_used": "n/a",
+    "confidence": 0.7,
+    "is_outdoor": false,
+    "is_indoor": false,
+    "diversity_penalty": 0.0,
+    "is_mandatory": false,
+    "selection_source": "ranked"
+  },
+  "hotels": [
+    {
+      "location_id": "21291794",
+      "name": "Hotel Tou Nishinotoin Kyoto",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.7,
+      "num_reviews": 716,
+      "address": "455 Nishinotoincho Nishinotoindori HanayachoSagaru, Shimogyo-ku, Kyoto 600-8327 Kyoto Prefecture",
+      "latitude": 34.991978,
+      "longitude": 135.75534,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d21291794-Reviews-Hotel_Tou_Nishinotoin_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/1e/2f/88/05/caption.jpg",
+      "price_level": "$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d21291794-Reviews-Hotel_Tou_Nishinotoin_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g298564-d21291794-Reviews-Hotel_Tou_Nishinotoin_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Hotel%20Tou%20Nishinotoin%20Kyoto",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Hotel%20Tou%20Nishinotoin%20Kyoto",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=34.991978,135.75534"
+      },
+      "duration_minutes": 90,
+      "place_id": "21291794",
+      "score": null,
+      "score_reason": "Hotels are not scored by the ranker",
+      "ranker_used": "n/a",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "24044763",
+      "name": "Genji Kyoto",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.9,
+      "num_reviews": 91,
+      "address": "362-3 Hashidonocho Shimogyo-ku, Kyoto 600-8113 Kyoto Prefecture",
+      "latitude": 34.993336,
+      "longitude": 135.76674,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d24044763-Reviews-Genji_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/23/5a/93/e5/lobby-bar-and-lounge.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d24044763-Reviews-Genji_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g298564-d24044763-Reviews-Genji_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Genji%20Kyoto",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Genji%20Kyoto",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=34.993336,135.76674"
+      },
+      "duration_minutes": 90,
+      "place_id": "24044763",
+      "score": null,
+      "score_reason": "Hotels are not scored by the ranker",
+      "ranker_used": "n/a",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "20264752",
+      "name": "Ace Hotel Kyoto",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.8,
+      "num_reviews": 395,
+      "address": "245-2 Kurumayacho, Nakagyo-ku ShinPuhKan, Kyoto 604-8185 Kyoto Prefecture",
+      "latitude": 35.00981,
+      "longitude": 135.7603,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d20264752-Reviews-Ace_Hotel_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-w/2c/28/d4/82/ace-hotel-kyoto.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d20264752-Reviews-Ace_Hotel_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g298564-d20264752-Reviews-Ace_Hotel_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Ace%20Hotel%20Kyoto",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Ace%20Hotel%20Kyoto",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.00981,135.7603"
+      },
+      "duration_minutes": 90,
+      "place_id": "20264752",
+      "score": null,
+      "score_reason": "Hotels are not scored by the ranker",
+      "ranker_used": "n/a",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "15194272",
+      "name": "Cross Hotel Kyoto",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.7,
+      "num_reviews": 726,
+      "address": "71-1 Daikokucho, Kawaramachidori Sanjo Sagaru, Nakagyo-Ku, Kyoto 604-8031 Kyoto Prefecture",
+      "latitude": 35.00823,
+      "longitude": 135.76973,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d15194272-Reviews-Cross_Hotel_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/29/29/4c/6e/caption.jpg",
+      "price_level": "$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d15194272-Reviews-Cross_Hotel_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g298564-d15194272-Reviews-Cross_Hotel_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Cross%20Hotel%20Kyoto",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Cross%20Hotel%20Kyoto",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.00823,135.76973"
+      },
+      "duration_minutes": 90,
+      "place_id": "15194272",
+      "score": null,
+      "score_reason": "Hotels are not scored by the ranker",
+      "ranker_used": "n/a",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "601531",
+      "name": "Hyatt Regency Kyoto",
+      "category": "Hotel",
+      "subcategories": [
+        "Hotel"
+      ],
+      "rating": 4.5,
+      "num_reviews": 3856,
+      "address": "644-2 Sanjusangendo-mawari, Higashiyama-ku, Kyoto 605-0941 Kyoto Prefecture",
+      "latitude": 34.98879,
+      "longitude": 135.77354,
+      "web_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d601531-Reviews-Hyatt_Regency_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/4b/72/18/caption.jpg",
+      "price_level": "$$$$",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Hotel_Review-g298564-d601531-Reviews-Hyatt_Regency_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g298564-d601531-Reviews-Hyatt_Regency_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Booking.com": "https://www.booking.com/search.html?ss=Hyatt%20Regency%20Kyoto",
+        "Hotels.com": "https://www.hotels.com/search.do?q-destination=Hyatt%20Regency%20Kyoto",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=34.98879,135.77354"
+      },
+      "duration_minutes": 90,
+      "place_id": "601531",
+      "score": null,
+      "score_reason": "Hotels are not scored by the ranker",
+      "ranker_used": "n/a",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    }
+  ],
+  "candidate_pool": [
+    {
+      "location_id": "321456",
+      "name": "Fushimi Inari-taisha Shrine",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.6,
+      "num_reviews": 25215,
+      "address": "68 Fukakusa Yabunouchicho, Fushimi-ku, Kyoto 612-0882 Kyoto Prefecture",
+      "latitude": 34.967117,
+      "longitude": 135.77267,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d321456-Reviews-Fushimi_Inari_taisha_Shrine-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/18/28/2e/if-you-make-a-wish-when.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2359"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0000"
+            },
+            "close": {
+              "day": 7,
+              "time": "2359"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 00:00 - 23:59",
+          "Tuesday: 00:00 - 23:59",
+          "Wednesday: 00:00 - 23:59",
+          "Thursday: 00:00 - 23:59",
+          "Friday: 00:00 - 23:59",
+          "Saturday: 00:00 - 23:59",
+          "Sunday: 00:00 - 23:59"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 00:00 - 23:59",
+        "Tuesday: 00:00 - 23:59",
+        "Wednesday: 00:00 - 23:59",
+        "Thursday: 00:00 - 23:59",
+        "Friday: 00:00 - 23:59",
+        "Saturday: 00:00 - 23:59",
+        "Sunday: 00:00 - 23:59"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d321456-Reviews-Fushimi_Inari_taisha_Shrine-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d321456-Reviews-Fushimi_Inari_taisha_Shrine-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Fushimi%20Inari-taisha%20Shrine&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Fushimi%20Inari-taisha%20Shrine&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=34.967117,135.77267"
+      },
+      "duration_minutes": 90,
+      "place_id": "321456",
+      "score": 9.55,
+      "score_reason": "Mandatory — user-requested attraction",
+      "ranker_used": "gemini",
+      "confidence": 1.0,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": true,
+      "selection_source": "user_required"
+    },
+    {
+      "location_id": "545940",
+      "name": "Arashiyama",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions",
+        "Other"
+      ],
+      "rating": 4.4,
+      "num_reviews": 6888,
+      "address": "Ukyo-ku, Kyoto 616-0007 Kyoto Prefecture",
+      "latitude": 35.017136,
+      "longitude": 135.67462,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d545940-Reviews-Arashiyama-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/2c/13/ae/b5/caption.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d545940-Reviews-Arashiyama-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d545940-Reviews-Arashiyama-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Arashiyama&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Arashiyama&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.017136,135.67462"
+      },
+      "duration_minutes": 90,
+      "place_id": "545940",
+      "score": 9.54,
+      "score_reason": "Mandatory — user-requested attraction",
+      "ranker_used": "gemini",
+      "confidence": 1.0,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": true,
+      "selection_source": "user_required"
+    },
+    {
+      "location_id": "11727379",
+      "name": "Kyoto Samurai Experience",
+      "category": "Attraction",
+      "subcategories": [
+        "Classes & Workshops",
+        "Activities"
+      ],
+      "rating": 5.0,
+      "num_reviews": 1437,
+      "address": "111 Inabacho, Nakagyo-ku, Kyoto 604-8803 Kyoto Prefecture",
+      "latitude": 35.00627,
+      "longitude": 135.74763,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d11727379-Reviews-Kyoto_Samurai_Experience-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/28/9e/d8/79/samurai.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "1000"
+            },
+            "close": {
+              "day": 1,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "time": "1300"
+            },
+            "close": {
+              "day": 1,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1000"
+            },
+            "close": {
+              "day": 2,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1300"
+            },
+            "close": {
+              "day": 2,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1000"
+            },
+            "close": {
+              "day": 3,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1300"
+            },
+            "close": {
+              "day": 3,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1000"
+            },
+            "close": {
+              "day": 4,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1300"
+            },
+            "close": {
+              "day": 4,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1000"
+            },
+            "close": {
+              "day": 5,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1300"
+            },
+            "close": {
+              "day": 5,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1000"
+            },
+            "close": {
+              "day": 6,
+              "time": "1200"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1300"
+            },
+            "close": {
+              "day": 6,
+              "time": "1700"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 10:00 - 12:00,  13:00 - 17:00",
+          "Tuesday: 10:00 - 12:00,  13:00 - 17:00",
+          "Wednesday: 10:00 - 12:00,  13:00 - 17:00",
+          "Thursday: 10:00 - 12:00,  13:00 - 17:00",
+          "Friday: 10:00 - 12:00,  13:00 - 17:00",
+          "Saturday: 10:00 - 12:00,  13:00 - 17:00",
+          "Sunday: Closed"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 10:00 - 12:00,  13:00 - 17:00",
+        "Tuesday: 10:00 - 12:00,  13:00 - 17:00",
+        "Wednesday: 10:00 - 12:00,  13:00 - 17:00",
+        "Thursday: 10:00 - 12:00,  13:00 - 17:00",
+        "Friday: 10:00 - 12:00,  13:00 - 17:00",
+        "Saturday: 10:00 - 12:00,  13:00 - 17:00",
+        "Sunday: Closed"
+      ],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d11727379-Reviews-Kyoto_Samurai_Experience-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d11727379-Reviews-Kyoto_Samurai_Experience-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Kyoto%20Samurai%20Experience&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Kyoto%20Samurai%20Experience&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.00627,135.74763"
+      },
+      "duration_minutes": 90,
+      "place_id": "11727379",
+      "score": 8.5,
+      "score_reason": "A strong match for the 'traditional culture' vibe, offering an authentic indoor experience that is unaffected by the expected occasional rain.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "321088",
+      "name": "Kyoto Imperial Palace",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 4.1,
+      "num_reviews": 2504,
+      "address": "3 Kyoto-Gyoen, Kamigyo-Ku Kyoto Gyoen, Kyoto 602-0881 Kyoto Prefecture",
+      "latitude": 35.02435,
+      "longitude": 135.7619,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d321088-Reviews-Kyoto_Imperial_Palace-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/10/61/47/26/riflessi-templari.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d321088-Reviews-Kyoto_Imperial_Palace-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d321088-Reviews-Kyoto_Imperial_Palace-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Kyoto%20Imperial%20Palace&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Kyoto%20Imperial%20Palace&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.02435,135.7619"
+      },
+      "duration_minutes": 90,
+      "place_id": "321088",
+      "score": 7.8,
+      "score_reason": "A strong match for 'traditional culture', 'nature', and 'zen', with beautiful gardens ideal for spring. It's budget-friendly, though occasional rain might slightly impact enjoyment of the outdoor grounds.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": true,
+      "diversity_penalty": 1.2,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "8747123",
+      "name": "Kyoto Free Walking Tour",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities"
+      ],
+      "rating": 4.9,
+      "num_reviews": 1037,
+      "address": "Kawabatacho, Higashiyama-Ku In front of the Izumo no Okuni Statue, Kyoto 605-0076 Kyoto Prefecture",
+      "latitude": 35.003895,
+      "longitude": 135.77197,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d8747123-Reviews-Kyoto_Free_Walking_Tour-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/16/76/21/9e/kyoto-free-walking-tour.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d8747123-Reviews-Kyoto_Free_Walking_Tour-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d8747123-Reviews-Kyoto_Free_Walking_Tour-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Kyoto%20Free%20Walking%20Tour&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Kyoto%20Free%20Walking%20Tour&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.003895,135.77197"
+      },
+      "duration_minutes": 120,
+      "place_id": "8747123",
+      "score": 6.0,
+      "score_reason": "Excellent for a 'budget' traveler and likely covers desired 'temples' and 'traditional culture'. However, it's an entirely outdoor activity that would be significantly impacted by the expected occasional rain.",
+      "ranker_used": "gemini",
+      "confidence": 0.7,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "8155460",
+      "name": "Cycle Kyoto",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities",
+        "Outdoor Activities"
+      ],
+      "rating": 4.9,
+      "num_reviews": 2039,
+      "address": "7 Higashikujo Nishisannocho, Minami-ku, Kyoto 601-8003 Kyoto Prefecture",
+      "latitude": 34.982765,
+      "longitude": 135.76018,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d8155460-Reviews-Cycle_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/26/c2/56/66/cycle-kyoto.jpg",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d8155460-Reviews-Cycle_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "booking_links": {
+        "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298564-d8155460-Reviews-Cycle_Kyoto-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+        "Viator": "https://www.viator.com/search?text=Cycle%20Kyoto&destId=Kyoto",
+        "GetYourGuide": "https://www.getyourguide.com/s/?q=Cycle%20Kyoto&searchSource=1",
+        "Google Maps": "https://www.google.com/maps/search/?api=1&query=34.982765,135.76018"
+      },
+      "duration_minutes": 120,
+      "place_id": "8155460",
+      "score": 4.4,
+      "score_reason": "Outdoor activity, which will be impacted by occasional rain. While it can offer views of nature and traditional areas, it doesn't directly align with the core 'temples, zen' vibe.",
+      "ranker_used": "gemini",
+      "confidence": 0.7,
+      "is_outdoor": true,
+      "is_indoor": false,
+      "diversity_penalty": 0.6,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "6748714",
+      "name": "Kyoto MK",
+      "category": "Attraction",
+      "subcategories": [
+        "Attractions",
+        "Transportation",
+        "Tours",
+        "Activities"
+      ],
+      "rating": 4.7,
+      "num_reviews": 1426,
+      "address": "Kyoto 601-8002 Kyoto Prefecture",
+      "latitude": 34.96664,
+      "longitude": 135.77545,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d6748714-Reviews-Kyoto_MK-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0900"
+            },
+            "close": {
+              "day": 1,
+              "time": "1800"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0900"
+            },
+            "close": {
+              "day": 2,
+              "time": "1800"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0900"
+            },
+            "close": {
+              "day": 3,
+              "time": "1800"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0900"
+            },
+            "close": {
+              "day": 4,
+              "time": "1800"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0900"
+            },
+            "close": {
+              "day": 5,
+              "time": "1800"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 09:00 - 18:00",
+          "Tuesday: 09:00 - 18:00",
+          "Wednesday: 09:00 - 18:00",
+          "Thursday: 09:00 - 18:00",
+          "Friday: 09:00 - 18:00",
+          "Saturday: Closed",
+          "Sunday: Closed"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 09:00 - 18:00",
+        "Tuesday: 09:00 - 18:00",
+        "Wednesday: 09:00 - 18:00",
+        "Thursday: 09:00 - 18:00",
+        "Friday: 09:00 - 18:00",
+        "Saturday: Closed",
+        "Sunday: Closed"
+      ],
+      "booking_url": "",
+      "booking_links": {},
+      "duration_minutes": 90,
+      "place_id": "6748714",
+      "score": 3.0,
+      "score_reason": "A generic transportation/tour service that doesn't inherently align with the specific 'temples, nature, traditional culture, zen' vibe.",
+      "ranker_used": "gemini",
+      "confidence": 0.5,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 0.0,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "9727445",
+      "name": "Kyoto Daily Tours",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities"
+      ],
+      "rating": 5.0,
+      "num_reviews": 503,
+      "address": "Kyoto 606-8357 Kyoto Prefecture",
+      "latitude": 35.015324,
+      "longitude": 135.77591,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d9727445-Reviews-Kyoto_Daily_Tours-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {},
+      "open_hours_text": [],
+      "booking_url": "",
+      "booking_links": {},
+      "duration_minutes": 120,
+      "place_id": "9727445",
+      "score": 2.8,
+      "score_reason": "Generic tour company; without specific tour details, it's unclear if it aligns with 'temples, nature, traditional culture, zen' or how it would be impacted by weather.",
+      "ranker_used": "gemini",
+      "confidence": 0.5,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 1.2,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "15816491",
+      "name": "Kyoto Localized",
+      "category": "Attraction",
+      "subcategories": [
+        "Tours",
+        "Activities"
+      ],
+      "rating": 4.9,
+      "num_reviews": 1885,
+      "address": "Kyoto Kyoto Prefecture",
+      "latitude": 35.00373,
+      "longitude": 135.77512,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d15816491-Reviews-Kyoto_Localized-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "0900"
+            },
+            "close": {
+              "day": 1,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "0900"
+            },
+            "close": {
+              "day": 2,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "0900"
+            },
+            "close": {
+              "day": 3,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "0900"
+            },
+            "close": {
+              "day": 4,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "0900"
+            },
+            "close": {
+              "day": 5,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "0900"
+            },
+            "close": {
+              "day": 6,
+              "time": "1700"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "0900"
+            },
+            "close": {
+              "day": 7,
+              "time": "1700"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 09:00 - 17:00",
+          "Tuesday: 09:00 - 17:00",
+          "Wednesday: 09:00 - 17:00",
+          "Thursday: 09:00 - 17:00",
+          "Friday: 09:00 - 17:00",
+          "Saturday: 09:00 - 17:00",
+          "Sunday: 09:00 - 17:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 09:00 - 17:00",
+        "Tuesday: 09:00 - 17:00",
+        "Wednesday: 09:00 - 17:00",
+        "Thursday: 09:00 - 17:00",
+        "Friday: 09:00 - 17:00",
+        "Saturday: 09:00 - 17:00",
+        "Sunday: 09:00 - 17:00"
+      ],
+      "booking_url": "",
+      "booking_links": {},
+      "duration_minutes": 120,
+      "place_id": "15816491",
+      "score": 2.2,
+      "score_reason": "Generic tour company; without specific tour details, it's unclear if it aligns with 'temples, nature, traditional culture, zen' or how it would be impacted by weather.",
+      "ranker_used": "gemini",
+      "confidence": 0.5,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 1.8,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "548249",
+      "name": "Kyoto Tower",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Attractions"
+      ],
+      "rating": 3.8,
+      "num_reviews": 1260,
+      "address": "721-1 Higashishiokojicho Shimogyo Ward, Kyoto 600-8216 Kyoto Prefecture",
+      "latitude": 34.98753,
+      "longitude": 135.75932,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d548249-Reviews-Kyoto_Tower-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "1000"
+            },
+            "close": {
+              "day": 1,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1000"
+            },
+            "close": {
+              "day": 2,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1000"
+            },
+            "close": {
+              "day": 3,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1000"
+            },
+            "close": {
+              "day": 4,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1000"
+            },
+            "close": {
+              "day": 5,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1000"
+            },
+            "close": {
+              "day": 6,
+              "time": "2100"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "1000"
+            },
+            "close": {
+              "day": 7,
+              "time": "2100"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 10:00 - 21:00",
+          "Tuesday: 10:00 - 21:00",
+          "Wednesday: 10:00 - 21:00",
+          "Thursday: 10:00 - 21:00",
+          "Friday: 10:00 - 21:00",
+          "Saturday: 10:00 - 21:00",
+          "Sunday: 10:00 - 21:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 10:00 - 21:00",
+        "Tuesday: 10:00 - 21:00",
+        "Wednesday: 10:00 - 21:00",
+        "Thursday: 10:00 - 21:00",
+        "Friday: 10:00 - 21:00",
+        "Saturday: 10:00 - 21:00",
+        "Sunday: 10:00 - 21:00"
+      ],
+      "booking_url": "",
+      "booking_links": {},
+      "duration_minutes": 90,
+      "place_id": "548249",
+      "score": 0.7,
+      "score_reason": "Modern landmark offering city views, which doesn't align with the desired 'temples, nature, traditional culture, zen' vibe. Views could be impacted by rain.",
+      "ranker_used": "gemini",
+      "confidence": 0.8,
+      "is_outdoor": false,
+      "is_indoor": false,
+      "diversity_penalty": 1.8,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    },
+    {
+      "location_id": "5220110",
+      "name": "Kyoto Station Building",
+      "category": "Attraction",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Shopping",
+        "Attractions"
+      ],
+      "rating": 4.4,
+      "num_reviews": 4332,
+      "address": "901 Higashishiokojicho, Shimogyo-ku, Kyoto 600-8216 Kyoto Prefecture",
+      "latitude": 34.986015,
+      "longitude": 135.7586,
+      "web_url": "https://www.tripadvisor.com/Attraction_Review-g298564-d5220110-Reviews-Kyoto_Station_Building-Kyoto_Kyoto_Prefecture_Kinki.html?m=66827",
+      "photo_url": "",
+      "price_level": "",
+      "cuisine_types": [],
+      "hours": {
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "time": "1000"
+            },
+            "close": {
+              "day": 1,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "time": "1000"
+            },
+            "close": {
+              "day": 2,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "time": "1000"
+            },
+            "close": {
+              "day": 3,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "time": "1000"
+            },
+            "close": {
+              "day": 4,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "time": "1000"
+            },
+            "close": {
+              "day": 5,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "time": "1000"
+            },
+            "close": {
+              "day": 6,
+              "time": "1900"
+            }
+          },
+          {
+            "open": {
+              "day": 7,
+              "time": "1000"
+            },
+            "close": {
+              "day": 7,
+              "time": "1900"
+            }
+          }
+        ],
+        "weekday_text": [
+          "Monday: 10:00 - 19:00",
+          "Tuesday: 10:00 - 19:00",
+          "Wednesday: 10:00 - 19:00",
+          "Thursday: 10:00 - 19:00",
+          "Friday: 10:00 - 19:00",
+          "Saturday: 10:00 - 19:00",
+          "Sunday: 10:00 - 19:00"
+        ]
+      },
+      "open_hours_text": [
+        "Monday: 10:00 - 19:00",
+        "Tuesday: 10:00 - 19:00",
+        "Wednesday: 10:00 - 19:00",
+        "Thursday: 10:00 - 19:00",
+        "Friday: 10:00 - 19:00",
+        "Saturday: 10:00 - 19:00",
+        "Sunday: 10:00 - 19:00"
+      ],
+      "booking_url": "",
+      "booking_links": {},
+      "duration_minutes": 90,
+      "place_id": "5220110",
+      "score": 0.0,
+      "score_reason": "Modern building focused on shopping and transit, which directly contrasts with the desired 'temples, nature, traditional culture, zen' vibe.",
+      "ranker_used": "gemini",
+      "confidence": 0.9,
+      "is_outdoor": false,
+      "is_indoor": true,
+      "diversity_penalty": 2.4,
+      "is_mandatory": false,
+      "selection_source": "ranked"
+    }
+  ],
+  "restaurant_pool": [],
+  "gaps": "*   **Cherry Blossom Viewing:** Early April is peak cherry blossom season in Kyoto. Iconic spots like Maruyama Park, Philosopher's Path, Heian Jingu Shrine, and numerous temples (e.g., Kiyomizu-dera) offer stunning views and are a must-do for the \"nature\" and \"traditional culture\" vibe during this period. Many also offer evening illuminations.\n*   **Iconic Zen/Buddhist Temples:** While Fushimi Inari is a shrine and Arashiyama has temples, other key temples for the \"temples\" and \"zen\" vibe are missing. Examples include Kiyomizu-dera (iconic views, especially beautiful during cherry blossom season), Kinkaku-ji (Golden Pavilion), Ginkaku-ji (Silver Pavilion), and Ryoan-ji (famous rock garden).\n*   **Traditional Tea Ceremony:** A quintessential \"traditional culture\" and \"zen\" experience that can be found at various price points, suitable for a budget traveler.\n*   **Gion / Geisha District:** An evening stroll through Gion or Pontocho is a must for experiencing traditional Japanese culture and architecture, and is free of charge.\n*   **Nishiki Market:** A vibrant market excellent for experiencing local food culture, trying budget-friendly street food, and finding unique souvenirs.\n*   **Budget-friendly Local Meal Types:** Specific mention of iconic and budget-friendly Japanese cuisine like ramen, udon, donburi, or street food (e.g., from Nishiki Market) would be beneficial.",
+  "gaps_structured": [
+    {
+      "text": "**Cherry Blossom Viewing:** Early April is peak cherry blossom season in Kyoto. Iconic spots like Maruyama Park, Philosopher's Path, Heian Jingu Shrine, and numerous temples (e.g., Kiyomizu-dera) offer stunning views and are a must-do for the \"nature\" and \"traditional culture\" vibe during this period. Many also offer evening illuminations."
+    },
+    {
+      "text": "**Iconic Zen/Buddhist Temples:** While Fushimi Inari is a shrine and Arashiyama has temples, other key temples for the \"temples\" and \"zen\" vibe are missing. Examples include Kiyomizu-dera (iconic views, especially beautiful during cherry blossom season), Kinkaku-ji (Golden Pavilion), Ginkaku-ji (Silver Pavilion), and Ryoan-ji (famous rock garden)."
+    },
+    {
+      "text": "**Traditional Tea Ceremony:** A quintessential \"traditional culture\" and \"zen\" experience that can be found at various price points, suitable for a budget traveler."
+    },
+    {
+      "text": "**Gion / Geisha District:** An evening stroll through Gion or Pontocho is a must for experiencing traditional Japanese culture and architecture, and is free of charge."
+    },
+    {
+      "text": "**Nishiki Market:** A vibrant market excellent for experiencing local food culture, trying budget-friendly street food, and finding unique souvenirs."
+    },
+    {
+      "text": "**Budget-friendly Local Meal Types:** Specific mention of iconic and budget-friendly Japanese cuisine like ramen, udon, donburi, or street food (e.g., from Nishiki Market) would be beneficial."
+    }
+  ],
+  "api_calls": 50,
+  "cache_hits": 0,
+  "summary": {
+    "mandatory_count": 2,
+    "mandatory_attractions": 2,
+    "suggested_count": 4,
+    "restaurant_count": 0,
+    "hotel_count": 5,
+    "travel_mode": "WALK",
+    "selected_hotel_name": "Hotel Tou Nishinotoin Kyoto"
+  }
+}
