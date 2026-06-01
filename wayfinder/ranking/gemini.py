@@ -20,9 +20,6 @@ from __future__ import annotations
 import json
 import os
 
-from google import genai
-from google.genai import types
-
 from ..models import Attraction, UserPreferences
 from .base import Ranker
 from .heuristic import MANDATORY_FLOOR_SCORE, apply_heuristic
@@ -34,6 +31,15 @@ class GeminiRanker(Ranker):
     name = "gemini"
 
     def __init__(self, model: str = "gemini-2.5-flash"):
+        try:
+            from google import genai
+            from google.genai import types as _types
+        except ModuleNotFoundError as exc:
+            raise ModuleNotFoundError(
+                "google-genai is required for Gemini ranking. "
+                "Install it with: pip install google-genai"
+            ) from exc
+
         api_key = os.environ.get("GEMINI_API_KEY")
         if not api_key:
             raise EnvironmentError(
@@ -42,6 +48,7 @@ class GeminiRanker(Ranker):
             )
         self.client = genai.Client(api_key=api_key)
         self.model  = model
+        self._types = _types
 
     def rank(self, attractions: list[Attraction],
              prefs: UserPreferences,
@@ -107,7 +114,7 @@ class GeminiRanker(Ranker):
                 resp = self.client.models.generate_content(
                     model=self.model,
                     contents=prompt,
-                    config=types.GenerateContentConfig(
+                    config=self._types.GenerateContentConfig(
                         response_mime_type="application/json",
                     ),
                 )
