@@ -2,7 +2,7 @@
 
 AI-powered travel planning pipeline. Given a destination and preferences, WayFinder fetches real attractions and restaurants from TripAdvisor, ranks them using Gemini, builds a full candidate pool, and hands a structured trip request off to a Google Maps routing stage that turns it into a day-by-day itinerary.
 
-Built as a UCSD data science project. TripAdvisor pipeline by Pranav; clustering and routing by Krish, Jack, and Abhishai.
+Built as a UCSD data science project. TripAdvisor pipeline by Abhishai; clustering and routing by Krish, Jack, and Abhinav.
 
 ---
 
