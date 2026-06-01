@@ -1,7 +1,7 @@
 {
   "source_trip": "trips/paris_test.json",
   "destination": "Paris",
-  "num_days": 4,
+  "num_days": 5,
   "daily_minutes_budget": 540,
   "matrix_scope": "local_distance_per_day",
   "anchor_location": {
@@ -24,26 +24,26 @@
   "planning_notes": [
     "Re-estimated recommendation-provided visit times with category/name heuristics and redundancy for 8 stop(s).",
     "Routing uses local latitude/longitude distance matrices; Google calls are only needed for stops without coordinates.",
-    "Local distance matrix work for this plan: 36 pairwise elements.",
+    "Local distance matrix work for this plan: 35 pairwise elements.",
     "Soft max stops per day was set to 3.",
-    "Clustering method: best_point.",
+    "Clustering method: time_cap_kmeans.",
     "Using 'Le Bristol Paris' as the daily anchor location.",
     "Meal/redundancy buffers per day: lunch 60 min, dinner 120 min, slack 45 min.",
-    "Expanded from 3 to 4 day(s) because duration estimates would overload the original plan."
+    "Expanded from 3 to 5 day(s) because duration estimates would overload the original plan."
   ],
   "days": [
     {
       "day_number": 1,
       "totals": {
-        "visit_minutes": 170,
-        "travel_minutes": 49,
+        "visit_minutes": 235,
+        "travel_minutes": 56,
         "travel_buffer_minutes": 15,
         "wait_minutes": 0,
         "lunch_minutes": 60,
         "dinner_minutes": 120,
         "redundancy_minutes": 45,
-        "total_minutes": 459,
-        "return_to_anchor_minutes": 19
+        "total_minutes": 531,
+        "return_to_anchor_minutes": 22
       },
       "stops": [
         {
@@ -77,42 +77,42 @@
           "wait_minutes": 0
         },
         {
-          "id": "188679",
-          "name": "Cathedrale Notre-Dame de Paris",
+          "id": "189229",
+          "name": "The Paris Catacombs",
           "category": "landmark",
           "required": false,
-          "address": "6 Parvis Notre-Dame Place Jean-Paul II, 75004 Paris France",
-          "latitude": 48.853,
-          "longitude": 2.3498,
-          "visit_minutes": 70,
+          "address": "1 Avenue du Colonel Henri Rol-Tanguy, 75014 Paris France",
+          "latitude": 48.83387,
+          "longitude": 2.332481,
+          "visit_minutes": 135,
           "visit_minutes_source": "heuristic_redundancy",
-          "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
-          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0d/8d/a4/84/the-amazingly-detailed.jpg",
-          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0a/b2/de/87/sacro-cuore.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
           "booking_links": {
-            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
-            "Viator": "https://www.viator.com/search?text=Cathedrale%20Notre-Dame%20de%20Paris&destId=Paris",
-            "GetYourGuide": "https://www.getyourguide.com/s/?q=Cathedrale%20Notre-Dame%20de%20Paris&searchSource=1",
-            "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.853,2.3498"
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=The%20Paris%20Catacombs&destId=Paris",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=The%20Paris%20Catacombs&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.83387,2.332481"
           },
-          "rating": 4.6,
-          "score": 7.9,
+          "rating": 4.1,
+          "score": 1.8,
           "open_hours_text": [
-            "Monday: 07:50 - 19:00",
-            "Tuesday: 07:50 - 19:00",
-            "Wednesday: 07:50 - 19:00",
-            "Thursday: 07:50 - 19:00",
-            "Friday: 07:50 - 19:00",
-            "Saturday: 08:15 - 07:30",
-            "Sunday: 08:15 - 07:30"
+            "Monday: Closed",
+            "Tuesday: 09:45 - 20:30",
+            "Wednesday: 09:45 - 20:30",
+            "Thursday: 09:45 - 20:30",
+            "Friday: 09:45 - 20:30",
+            "Saturday: 09:45 - 20:30",
+            "Sunday: 09:45 - 20:30"
           ],
-          "arrival_time": "11:20",
-          "start_time": "11:20",
-          "departure_time": "12:30",
-          "travel_minutes_from_previous": 14,
+          "arrival_time": "11:24",
+          "start_time": "11:24",
+          "departure_time": "13:39",
+          "travel_minutes_from_previous": 18,
           "travel_buffer_minutes": 5,
           "transport_mode_from_previous": "transit",
-          "distance_meters_from_previous": 1228,
+          "distance_meters_from_previous": 2778,
           "wait_minutes": 0
         }
       ]
@@ -120,15 +120,61 @@
     {
       "day_number": 2,
       "totals": {
-        "visit_minutes": 220,
-        "travel_minutes": 51,
+        "visit_minutes": 165,
+        "travel_minutes": 34,
+        "travel_buffer_minutes": 10,
+        "wait_minutes": 0,
+        "lunch_minutes": 60,
+        "dinner_minutes": 120,
+        "redundancy_minutes": 45,
+        "total_minutes": 434,
+        "return_to_anchor_minutes": 17
+      },
+      "stops": [
+        {
+          "id": "12103860",
+          "name": "ExperienceFirst Paris",
+          "category": "tour",
+          "required": false,
+          "address": "75007 Paris France",
+          "latitude": 48.85694,
+          "longitude": 2.292087,
+          "visit_minutes": 165,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/10/53/67/7e/paristour1.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=ExperienceFirst%20Paris&destId=Paris",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=ExperienceFirst%20Paris&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.85694,2.292087"
+          },
+          "rating": 4.8,
+          "score": 7.0,
+          "arrival_time": "09:22",
+          "start_time": "09:22",
+          "departure_time": "12:07",
+          "travel_minutes_from_previous": 17,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "transit",
+          "distance_meters_from_previous": 2334,
+          "wait_minutes": 0
+        }
+      ]
+    },
+    {
+      "day_number": 3,
+      "totals": {
+        "visit_minutes": 250,
+        "travel_minutes": 50,
         "travel_buffer_minutes": 15,
         "wait_minutes": 0,
         "lunch_minutes": 60,
         "dinner_minutes": 120,
         "redundancy_minutes": 45,
-        "total_minutes": 511,
-        "return_to_anchor_minutes": 14
+        "total_minutes": 540,
+        "return_to_anchor_minutes": 15
       },
       "stops": [
         {
@@ -162,6 +208,61 @@
           "wait_minutes": 0
         },
         {
+          "id": "1008070",
+          "name": "Big Bus Paris",
+          "category": "tour",
+          "required": false,
+          "address": "75001 Paris France",
+          "latitude": 48.86527,
+          "longitude": 2.33439,
+          "visit_minutes": 165,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/15/99/36/c0/at-the-champs-de-mars.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Big%20Bus%20Paris&destId=Paris",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Big%20Bus%20Paris&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.86527,2.33439"
+          },
+          "rating": 3.8,
+          "score": 3.4,
+          "open_hours_text": [
+            "Monday: 09:00 - 17:00",
+            "Tuesday: 09:00 - 17:00",
+            "Wednesday: 09:00 - 17:00",
+            "Thursday: 09:00 - 17:00",
+            "Friday: 09:00 - 17:00",
+            "Saturday: 09:00 - 17:00",
+            "Sunday: 09:00 - 17:00"
+          ],
+          "arrival_time": "11:10",
+          "start_time": "11:10",
+          "departure_time": "13:55",
+          "travel_minutes_from_previous": 15,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "transit",
+          "distance_meters_from_previous": 1798,
+          "wait_minutes": 0
+        }
+      ]
+    },
+    {
+      "day_number": 4,
+      "totals": {
+        "visit_minutes": 135,
+        "travel_minutes": 28,
+        "travel_buffer_minutes": 10,
+        "wait_minutes": 0,
+        "lunch_minutes": 60,
+        "dinner_minutes": 120,
+        "redundancy_minutes": 45,
+        "total_minutes": 398,
+        "return_to_anchor_minutes": 14
+      },
+      "stops": [
+        {
           "id": "189193",
           "name": "Galeries Lafayette Paris Haussmann",
           "category": "shopping",
@@ -191,121 +292,30 @@
             "Saturday: 10:00 - 20:30",
             "Sunday: 11:00 - 20:00"
           ],
-          "arrival_time": "11:12",
-          "start_time": "11:12",
-          "departure_time": "13:27",
-          "travel_minutes_from_previous": 17,
+          "arrival_time": "09:19",
+          "start_time": "09:19",
+          "departure_time": "11:34",
+          "travel_minutes_from_previous": 14,
           "travel_buffer_minutes": 5,
           "transport_mode_from_previous": "transit",
-          "distance_meters_from_previous": 2349,
+          "distance_meters_from_previous": 1287,
           "wait_minutes": 0
         }
       ]
     },
     {
-      "day_number": 3,
+      "day_number": 5,
       "totals": {
-        "visit_minutes": 300,
-        "travel_minutes": 60,
+        "visit_minutes": 170,
+        "travel_minutes": 47,
         "travel_buffer_minutes": 15,
         "wait_minutes": 0,
         "lunch_minutes": 60,
         "dinner_minutes": 120,
         "redundancy_minutes": 45,
-        "total_minutes": 600,
-        "return_to_anchor_minutes": 22
+        "total_minutes": 457,
+        "return_to_anchor_minutes": 19
       },
-      "warnings": [
-        "Day is overloaded by 60 minutes."
-      ],
-      "stops": [
-        {
-          "id": "12103860",
-          "name": "ExperienceFirst Paris",
-          "category": "tour",
-          "required": false,
-          "address": "75007 Paris France",
-          "latitude": 48.85694,
-          "longitude": 2.292087,
-          "visit_minutes": 165,
-          "visit_minutes_source": "heuristic_redundancy",
-          "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
-          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/10/53/67/7e/paristour1.jpg",
-          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
-          "booking_links": {
-            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d12103860-Reviews-ExperienceFirst_Paris-Paris_Ile_de_France.html?m=66827",
-            "Viator": "https://www.viator.com/search?text=ExperienceFirst%20Paris&destId=Paris",
-            "GetYourGuide": "https://www.getyourguide.com/s/?q=ExperienceFirst%20Paris&searchSource=1",
-            "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.85694,2.292087"
-          },
-          "rating": 4.8,
-          "score": 7.0,
-          "arrival_time": "09:22",
-          "start_time": "09:22",
-          "departure_time": "12:07",
-          "travel_minutes_from_previous": 17,
-          "travel_buffer_minutes": 5,
-          "transport_mode_from_previous": "transit",
-          "distance_meters_from_previous": 2334,
-          "wait_minutes": 0
-        },
-        {
-          "id": "189229",
-          "name": "The Paris Catacombs",
-          "category": "landmark",
-          "required": false,
-          "address": "1 Avenue du Colonel Henri Rol-Tanguy, 75014 Paris France",
-          "latitude": 48.83387,
-          "longitude": 2.332481,
-          "visit_minutes": 135,
-          "visit_minutes_source": "heuristic_redundancy",
-          "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
-          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0a/b2/de/87/sacro-cuore.jpg",
-          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
-          "booking_links": {
-            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d189229-Reviews-The_Paris_Catacombs-Paris_Ile_de_France.html?m=66827",
-            "Viator": "https://www.viator.com/search?text=The%20Paris%20Catacombs&destId=Paris",
-            "GetYourGuide": "https://www.getyourguide.com/s/?q=The%20Paris%20Catacombs&searchSource=1",
-            "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.83387,2.332481"
-          },
-          "rating": 4.1,
-          "score": 1.8,
-          "open_hours_text": [
-            "Monday: Closed",
-            "Tuesday: 09:45 - 20:30",
-            "Wednesday: 09:45 - 20:30",
-            "Thursday: 09:45 - 20:30",
-            "Friday: 09:45 - 20:30",
-            "Saturday: 09:45 - 20:30",
-            "Sunday: 09:45 - 20:30"
-          ],
-          "arrival_time": "12:33",
-          "start_time": "12:33",
-          "departure_time": "14:48",
-          "travel_minutes_from_previous": 21,
-          "travel_buffer_minutes": 5,
-          "transport_mode_from_previous": "transit",
-          "distance_meters_from_previous": 3914,
-          "wait_minutes": 0
-        }
-      ]
-    },
-    {
-      "day_number": 4,
-      "totals": {
-        "visit_minutes": 265,
-        "travel_minutes": 51,
-        "travel_buffer_minutes": 15,
-        "wait_minutes": 0,
-        "lunch_minutes": 60,
-        "dinner_minutes": 120,
-        "redundancy_minutes": 45,
-        "total_minutes": 556,
-        "return_to_anchor_minutes": 15
-      },
-      "warnings": [
-        "Day is overloaded by 16 minutes."
-      ],
       "stops": [
         {
           "id": "2613395",
@@ -347,42 +357,42 @@
           "wait_minutes": 0
         },
         {
-          "id": "1008070",
-          "name": "Big Bus Paris",
-          "category": "tour",
+          "id": "188679",
+          "name": "Cathedrale Notre-Dame de Paris",
+          "category": "landmark",
           "required": false,
-          "address": "75001 Paris France",
-          "latitude": 48.86527,
-          "longitude": 2.33439,
-          "visit_minutes": 165,
+          "address": "6 Parvis Notre-Dame Place Jean-Paul II, 75004 Paris France",
+          "latitude": 48.853,
+          "longitude": 2.3498,
+          "visit_minutes": 70,
           "visit_minutes_source": "heuristic_redundancy",
-          "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
-          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/15/99/36/c0/at-the-champs-de-mars.jpg",
-          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0d/8d/a4/84/the-amazingly-detailed.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
           "booking_links": {
-            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d1008070-Reviews-Big_Bus_Paris-Paris_Ile_de_France.html?m=66827",
-            "Viator": "https://www.viator.com/search?text=Big%20Bus%20Paris&destId=Paris",
-            "GetYourGuide": "https://www.getyourguide.com/s/?q=Big%20Bus%20Paris&searchSource=1",
-            "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.86527,2.33439"
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g187147-d188679-Reviews-Cathedrale_Notre_Dame_de_Paris-Paris_Ile_de_France.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Cathedrale%20Notre-Dame%20de%20Paris&destId=Paris",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Cathedrale%20Notre-Dame%20de%20Paris&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=48.853,2.3498"
           },
-          "rating": 3.8,
-          "score": 3.4,
+          "rating": 4.6,
+          "score": 7.9,
           "open_hours_text": [
-            "Monday: 09:00 - 17:00",
-            "Tuesday: 09:00 - 17:00",
-            "Wednesday: 09:00 - 17:00",
-            "Thursday: 09:00 - 17:00",
-            "Friday: 09:00 - 17:00",
-            "Saturday: 09:00 - 17:00",
-            "Sunday: 09:00 - 17:00"
+            "Monday: 07:50 - 19:00",
+            "Tuesday: 07:50 - 19:00",
+            "Wednesday: 07:50 - 19:00",
+            "Thursday: 07:50 - 19:00",
+            "Friday: 07:50 - 19:00",
+            "Saturday: 08:15 - 07:30",
+            "Sunday: 08:15 - 07:30"
           ],
-          "arrival_time": "11:26",
-          "start_time": "11:26",
-          "departure_time": "14:11",
-          "travel_minutes_from_previous": 16,
+          "arrival_time": "11:18",
+          "start_time": "11:18",
+          "departure_time": "12:28",
+          "travel_minutes_from_previous": 8,
           "travel_buffer_minutes": 5,
-          "transport_mode_from_previous": "transit",
-          "distance_meters_from_previous": 1909,
+          "transport_mode_from_previous": "walk",
+          "distance_meters_from_previous": 617,
           "wait_minutes": 0
         }
       ]

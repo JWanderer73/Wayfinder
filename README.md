@@ -11,7 +11,7 @@ The spatial planner supports:
 - duration estimation with heuristic defaults and an optional OpenAI hook
 - clustering by geography, daily minutes, and soft max items per day
 - preference filters for attraction categories
-- best-point clustering, similar to a lightweight k-medoids approach
+- time-cap clustering inspired by KMeans retry/scoring, plus best-point clustering as a fallback option
 - local latitude/longitude routing to avoid route-matrix API calls
 - fixed anchor locations like hotels
 - meal or activity anchor times such as lunch at `12:30`
@@ -28,7 +28,7 @@ The spatial planner supports:
 4. Fill missing visit durations with heuristics or an optional LLM estimate.
 5. Geocode only stops that do not already include `latitude` and `longitude`.
 6. Cluster stops into day buckets with geography plus time/item balancing.
-7. Use best-point clustering by default: choose a strong seed attraction for each day, then add nearby stops until time or item limits get tight.
+7. Use time-cap clustering for generated recommendation trips: try several seed layouts, score each cluster against the effective daily time budget, and expand days when multi-stop overloads are fixable.
 8. Build a local per-day distance matrix from coordinates.
 9. Pick walking, public transit, or driving estimates from distance and requested mode.
 10. Order each day with graph heuristics and basic anchored scheduling.
@@ -146,7 +146,8 @@ Useful stop-level fields:
 ## What The New Heuristics Do
 
 - `Preference filtering`: optional attractions outside `preferred_categories` can be removed before routing, while required attractions are preserved.
-- `Best-point clustering`: each day starts from a high-value seed attraction, then adds nearby attractions while there is enough activity time and item capacity.
+- `Time-cap clustering`: generated recommendation trips use a KMeans-style retry/scoring approach that keeps nearby stops together but prefers clusters that fit the day budget.
+- `Best-point clustering`: hand-authored trips can still request a lightweight k-medoids-style mode where each day starts from a high-value seed attraction, then adds nearby attractions while there is enough activity time and item capacity.
 - `Clustering by number of items`: each day tries to stay near a soft max number of stops as well as the daily time budget.
 - `Specific location anchor`: a hotel or home base can be used as the start of each day, and optionally the end too.
 - `Activity duration defaults`: missing or recommendation-generated times use category and keyword defaults, then add a small redundancy buffer so every stop is not treated as the same `75` minute visit.

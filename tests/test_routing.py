@@ -172,6 +172,7 @@ class RoutingTest(unittest.TestCase):
         self.assertEqual(trip.num_days, 3)
         self.assertEqual(trip.daily_minutes_budget, 540)
         self.assertEqual(trip.max_stops_per_day, 3)
+        self.assertEqual(trip.clustering_method, "time_cap_kmeans")
         self.assertIsNotNone(trip.anchor_location)
         self.assertTrue(trip.end_each_day_at_anchor)
         self.assertEqual(trip.stops[0].visit_minutes, 75)
@@ -244,6 +245,24 @@ class RoutingTest(unittest.TestCase):
         self.assertEqual(durations["Tokyo Disneyland"], 450)
         self.assertEqual(durations["Shibuya Crossing"], 40)
         self.assertEqual(durations["teamLab Planets TOKYO"], 135)
+
+    def test_paris_time_cap_plan_has_no_overloaded_days(self) -> None:
+        trip = TripRequest.from_dict(load_trip_file("paris_test.json"))
+        plan = SpatialPlanner(GoogleMapsClient(api_key=None)).build_plan(trip)
+
+        self.assertEqual(plan.num_days, 5)
+        self.assertTrue(all(not day.warnings for day in plan.days))
+        self.assertIn("time_cap_kmeans", " ".join(plan.planning_notes))
+
+    def test_tokyo_only_unavoidable_single_stop_days_are_overloaded(self) -> None:
+        trip = TripRequest.from_dict(load_trip_file("tokyo_test.json"))
+        plan = SpatialPlanner(GoogleMapsClient(api_key=None)).build_plan(trip)
+
+        overloaded_days = [day for day in plan.days if day.warnings]
+        self.assertEqual(len(overloaded_days), 2)
+        for day in overloaded_days:
+            self.assertEqual(len(day.scheduled_visits), 1)
+            self.assertIn("Disney", day.scheduled_visits[0].stop.name)
 
 
 def load_trip_file(filename: str) -> dict:

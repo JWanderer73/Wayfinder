@@ -484,7 +484,7 @@ def normalize_trip_payload(payload: dict[str, Any]) -> dict[str, Any]:
     normalized.setdefault("transport_mode", "auto")
     normalized.setdefault("travel_mode", "auto")
     normalized.setdefault("routing_strategy", "distance")
-    normalized.setdefault("clustering_method", "best_point")
+    normalized.setdefault("clustering_method", "time_cap_kmeans")
     normalized.setdefault("travel_buffer_ratio", 0.15)
     normalized.setdefault("minimum_travel_buffer_minutes", 5)
 
