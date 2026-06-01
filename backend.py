@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import List
 
 from wayfinder.pipeline import generate_recommendations
 
-app = FastAPI()
+app = FastAPI(title="Wayfinder API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,37 +15,56 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class TripRequest(BaseModel):
-    city: str
-    preferences: list[str] = []
-    budget: str = "mid-range"
-    vibe: str = ""
-    dietary_restrictions: list[str] = []
-    required_attractions: list[str] = []
-    travel_dates: list[str] = ["", ""]
-    num_travelers: int = 2
-    trip_shape: str = "balanced"
-    k: int = 10
 
+# -------------------------
+# Request schema
+# -------------------------
+
+class PlanRequest(BaseModel):
+    destination: str
+
+    start_date: str
+    end_date: str
+
+    budget: str = "mid-range"
+
+    preferred_categories: List[str] = []
+    dietary_restrictions: List[str] = []
+    required_attractions: List[str] = []
+
+    trip_shape: str = "balanced"
+    travel_mode: str = "TRANSIT"
+
+
+# -------------------------
+# Health check
+# -------------------------
 
 @app.get("/")
 def health():
-    return {"status": "healthy"}
+    return {
+        "status": "healthy",
+        "service": "wayfinder"
+    }
 
 
-@app.post("/recommend")
-def recommend(req: TripRequest):
+# -------------------------
+# Main planner endpoint
+# -------------------------
+
+@app.post("/api/plan")
+def plan_trip(req: PlanRequest):
 
     result = generate_recommendations(
-        city=req.city,
-        preferences=req.preferences,
-        k=req.k,
+        city=req.destination,
+        preferences=req.preferred_categories,
         budget=req.budget,
-        vibe=req.vibe,
         dietary_restrictions=req.dietary_restrictions,
         required_attractions=req.required_attractions,
-        travel_dates=tuple(req.travel_dates),
-        num_travelers=req.num_travelers,
+        travel_dates=(
+            req.start_date,
+            req.end_date
+        ),
         trip_shape=req.trip_shape,
     )
 
