@@ -8,7 +8,6 @@ import sys
 from wayfinder.duration import DurationEstimator, OpenAIDurationClient
 from wayfinder.google_maps import GoogleMapsClient, GoogleMapsError
 from wayfinder.models import TripRequest
-from wayfinder.pipeline import generate_recommendations
 from wayfinder.review import OpenAIPlanningReviewer
 from wayfinder.spatial import SpatialPlanner
 
@@ -51,10 +50,9 @@ def cmd_plan(args: argparse.Namespace) -> int:
         payload = json.load(handle)
 
     trip = TripRequest.from_dict(payload)
-    duration_estimator = build_duration_estimator(trip)
     planner = SpatialPlanner(
         GoogleMapsClient(api_key=os.getenv("GOOGLE_MAPS_API_KEY")),
-        duration_estimator=duration_estimator,
+        duration_estimator=build_duration_estimator(trip),
         planning_reviewer=build_planning_reviewer(trip),
     )
 
@@ -65,10 +63,7 @@ def cmd_plan(args: argparse.Namespace) -> int:
         return 1
 
     output = itinerary.to_dict()
-    if args.pretty:
-        print(json.dumps(output, indent=2))
-    else:
-        print(json.dumps(output))
+    print(json.dumps(output, indent=2 if args.pretty else None))
     return 0
 
 
@@ -76,63 +71,131 @@ def cmd_recommend(args: argparse.Namespace) -> int:
     if not os.getenv("TRIPADVISOR_API_KEY"):
         print("Missing TRIPADVISOR_API_KEY", file=sys.stderr)
         return 1
+    if not os.getenv("GEMINI_API_KEY"):
+        print("Missing GEMINI_API_KEY", file=sys.stderr)
+        return 1
+
+    from wayfinder.pipeline import generate_recommendations
 
     if args.input:
         try:
-            with open(args.input, "r", encoding="utf-8") as f:
-                payload = json.load(f)
-
-            city = payload.get("destination")
-            preferences = payload.get("preferences", [])
-            k = payload.get("k", args.k)
-
-            if not city:
-                print("JSON must include 'destination'", file=sys.stderr)
-                return 1
-
-        except Exception as e:
-            print(f"Error reading input file: {e}", file=sys.stderr)
+            with open(args.input, "r", encoding="utf-8") as handle:
+                payload = json.load(handle)
+        except Exception as exc:
+            print(f"Error reading input file: {exc}", file=sys.stderr)
             return 1
+
+        city = payload.get("destination")
+        if not city:
+            print("JSON must include 'destination'", file=sys.stderr)
+            return 1
+
+        call_kwargs = {
+            "city": city,
+            "preferences": payload.get("preferences", []),
+            "k": payload.get("k", args.k),
+            "budget": payload.get("budget", "mid-range"),
+            "vibe": payload.get("vibe", ""),
+            "dietary_restrictions": payload.get("dietary_restrictions", []),
+            "required_attractions": payload.get("required_attractions", []),
+            "travel_dates": tuple(payload.get("travel_dates", ["", ""])),
+            "num_travelers": payload.get("num_travelers", 2),
+        }
     else:
         if not args.city:
             print("Provide --input or --city", file=sys.stderr)
             return 1
+        call_kwargs = {
+            "city": args.city,
+            "preferences": args.preferences,
+            "k": args.k,
+            "budget": args.budget,
+            "vibe": args.vibe,
+            "dietary_restrictions": args.dietary_restrictions,
+            "required_attractions": args.required_attractions,
+            "travel_dates": tuple(args.travel_dates),
+            "num_travelers": args.num_travelers,
+        }
 
-        city = args.city
-        preferences = args.preferences
-        k = args.k
-
-    results = generate_recommendations(city=city, preferences=preferences, k=k)
-
-    output = {"destination": city, "preferences": preferences, "results": results}
-    if args.pretty:
-        print(json.dumps(output, indent=2))
-    else:
-        print(json.dumps(output))
+    results = generate_recommendations(
+        **call_kwargs,
+        check_completeness=not args.no_completeness,
+        include_hotels=not args.no_hotels,
+    )
+    output = {
+        "destination": call_kwargs["city"],
+        "preferences": call_kwargs.get("preferences", []),
+        "results": results,
+    }
+    print(json.dumps(output, indent=2 if args.pretty else None, ensure_ascii=False))
     return 0
 
 
-def main() -> int:
+def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Wayfinder travel planning CLI")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    plan_parser = subparsers.add_parser("plan", help="Build a day-by-day spatial itinerary")
+    plan_parser = subparsers.add_parser("plan", help="Build a spatial itinerary")
     plan_parser.add_argument(
         "input",
         nargs="?",
-        default="sample_trip.json",
+        default="trips/paris_test.json",
         help="Path to a JSON trip request file.",
     )
-    plan_parser.add_argument("--pretty", action="store_true", help="Pretty-print output.")
+    plan_parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON.")
 
-    rec_parser = subparsers.add_parser("recommend", help="Generate ranked travel recommendations")
-    rec_parser.add_argument("--input", help="Path to JSON file with destination and preferences")
-    rec_parser.add_argument("--city", help="Destination city")
-    rec_parser.add_argument("--preferences", nargs="*", default=[], help="User preferences")
-    rec_parser.add_argument("--k", type=int, default=5, help="Number of recommendations")
-    rec_parser.add_argument("--pretty", action="store_true", help="Pretty-print output.")
+    recommend_parser = subparsers.add_parser(
+        "recommend",
+        help="Fetch and rank travel recommendations.",
+    )
+    recommend_parser.add_argument("--input", help="Path to recommendation JSON.")
+    recommend_parser.add_argument("--city", help="Destination city.")
+    recommend_parser.add_argument("--preferences", nargs="*", default=[])
+    recommend_parser.add_argument(
+        "--budget",
+        default="mid-range",
+        choices=["budget", "mid-range", "luxury"],
+    )
+    recommend_parser.add_argument("--vibe", default="")
+    recommend_parser.add_argument(
+        "--dietary",
+        nargs="*",
+        default=[],
+        dest="dietary_restrictions",
+    )
+    recommend_parser.add_argument(
+        "--required",
+        nargs="*",
+        default=[],
+        dest="required_attractions",
+    )
+    recommend_parser.add_argument(
+        "--dates",
+        nargs=2,
+        default=["", ""],
+        dest="travel_dates",
+        metavar=("START", "END"),
+    )
+    recommend_parser.add_argument("--travelers", type=int, default=2, dest="num_travelers")
+    recommend_parser.add_argument("--k", type=int, default=10)
+    recommend_parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON.")
+    recommend_parser.add_argument("--no-hotels", action="store_true")
+    recommend_parser.add_argument("--no-completeness", action="store_true")
 
-    args = parser.parse_args()
+    return parser
+
+
+def normalize_legacy_plan_args(argv: list[str]) -> list[str]:
+    if len(argv) <= 1:
+        return [argv[0], "plan"]
+    if argv[1] in {"plan", "recommend", "-h", "--help"}:
+        return argv
+    return [argv[0], "plan", *argv[1:]]
+
+
+def main() -> int:
+    parser = build_parser()
+    args = parser.parse_args(normalize_legacy_plan_args(sys.argv)[1:])
     if args.command == "plan":
         return cmd_plan(args)
     return cmd_recommend(args)

@@ -15,7 +15,12 @@ from .models import (
     TripRequest,
     format_clock_time,
 )
-from .routing import build_distance_matrix, haversine_meters, travel_buffer_minutes
+from .routing import (
+    build_distance_matrix,
+    estimate_travel_minutes,
+    haversine_meters,
+    travel_buffer_minutes,
+)
 from .review import OpenAIPlanningReviewer, PlanningReviewError
 
 
@@ -38,6 +43,8 @@ class SpatialPlanner:
         active_stop_inputs, removed_stops = filter_active_stops(
             trip.stops,
             excluded_stop_names=trip.excluded_stop_names,
+            preferred_categories=trip.preferred_categories,
+            excluded_categories=trip.excluded_categories,
         )
         if not active_stop_inputs:
             return ItineraryPlan(
@@ -75,70 +82,108 @@ class SpatialPlanner:
         )
 
         num_days = max(1, min(len(resolved_stops), trip.inferred_num_days()))
-        if num_days == 1 and resolved_stops:
-            estimated_days = estimate_days_from_budget(
-                resolved_stops,
-                daily_minutes_budget=trip.daily_minutes_budget,
-                lunch_minutes=trip.lunch_minutes if trip.include_lunch_buffer else 0,
-                dinner_minutes=trip.dinner_minutes if trip.include_dinner_buffer else 0,
-                daily_redundancy_minutes=trip.daily_redundancy_minutes,
-            )
-            num_days = max(1, estimated_days)
-
-        day_clusters = cluster_stops_by_day(
+        estimated_days = estimate_days_from_budget(
             resolved_stops,
-            num_days=num_days,
             daily_minutes_budget=trip.daily_minutes_budget,
-            max_stops_per_day=trip.max_stops_per_day,
             lunch_minutes=trip.lunch_minutes if trip.include_lunch_buffer else 0,
             dinner_minutes=trip.dinner_minutes if trip.include_dinner_buffer else 0,
             daily_redundancy_minutes=trip.daily_redundancy_minutes,
         )
+        should_expand_days = (
+            num_days == 1
+            or any(
+                stop.visit_minutes_source == "heuristic_redundancy"
+                for stop in resolved_stops
+            )
+        )
+        if should_expand_days:
+            num_days = min(
+                max_available_days(trip, stop_count=len(resolved_stops)),
+                max(num_days, estimated_days),
+            )
 
         day_start_minute = trip.day_start_minute()
-        days: list[DayPlan] = []
-        total_distance_matrix_elements = 0
-        for day_number, cluster in enumerate(day_clusters, start=1):
-            day_stops = [resolved_stops[index] for index in cluster]
-            matrix_nodes = list(day_stops)
-            anchor_index: int | None = None
-            if anchor_location is not None:
-                anchor_index = len(matrix_nodes)
-                matrix_nodes.append(anchor_location)
 
-            day_matrix = build_distance_matrix(
-                matrix_nodes,
-                requested_mode=trip.transport_mode,
-            )
-            total_distance_matrix_elements += len(matrix_nodes) * len(matrix_nodes)
-
-            ordered_indices = order_day_cluster(
-                day_stops,
-                day_matrix,
-                day_start_minute=day_start_minute,
-                start_anchor_index=anchor_index,
-                end_anchor_index=anchor_index if trip.end_each_day_at_anchor else None,
-                travel_buffer_ratio=trip.travel_buffer_ratio,
-                minimum_travel_buffer_minutes=trip.minimum_travel_buffer_minutes,
-            )
-            day_plan = build_day_plan(
-                day_number=day_number,
-                day_stops=day_stops,
-                order=ordered_indices,
-                matrix=day_matrix,
-                day_start_minute=day_start_minute,
+        def build_days(candidate_num_days: int) -> tuple[list[DayPlan], int]:
+            day_clusters = cluster_stops_by_day(
+                resolved_stops,
+                num_days=candidate_num_days,
                 daily_minutes_budget=trip.daily_minutes_budget,
-                start_anchor=anchor_location,
-                start_anchor_index=anchor_index,
-                end_anchor=anchor_location if trip.end_each_day_at_anchor else None,
-                end_anchor_index=anchor_index if trip.end_each_day_at_anchor else None,
+                max_stops_per_day=trip.max_stops_per_day,
                 lunch_minutes=trip.lunch_minutes if trip.include_lunch_buffer else 0,
                 dinner_minutes=trip.dinner_minutes if trip.include_dinner_buffer else 0,
                 daily_redundancy_minutes=trip.daily_redundancy_minutes,
+                method=trip.clustering_method,
+                anchor_location=anchor_location,
+                return_to_anchor=trip.end_each_day_at_anchor,
                 travel_buffer_ratio=trip.travel_buffer_ratio,
                 minimum_travel_buffer_minutes=trip.minimum_travel_buffer_minutes,
             )
-            days.append(day_plan)
+            candidate_days: list[DayPlan] = []
+            distance_matrix_elements = 0
+            for day_number, cluster in enumerate(day_clusters, start=1):
+                day_stops = [resolved_stops[index] for index in cluster]
+                matrix_nodes = list(day_stops)
+                anchor_index: int | None = None
+                if anchor_location is not None:
+                    anchor_index = len(matrix_nodes)
+                    matrix_nodes.append(anchor_location)
+
+                day_matrix = build_distance_matrix(
+                    matrix_nodes,
+                    requested_mode=trip.transport_mode,
+                )
+                distance_matrix_elements += len(matrix_nodes) * len(matrix_nodes)
+
+                ordered_indices = order_day_cluster(
+                    day_stops,
+                    day_matrix,
+                    day_start_minute=day_start_minute,
+                    start_anchor_index=anchor_index,
+                    end_anchor_index=anchor_index if trip.end_each_day_at_anchor else None,
+                    travel_buffer_ratio=trip.travel_buffer_ratio,
+                    minimum_travel_buffer_minutes=trip.minimum_travel_buffer_minutes,
+                )
+                candidate_days.append(
+                    build_day_plan(
+                        day_number=day_number,
+                        day_stops=day_stops,
+                        order=ordered_indices,
+                        matrix=day_matrix,
+                        day_start_minute=day_start_minute,
+                        daily_minutes_budget=trip.daily_minutes_budget,
+                        start_anchor=anchor_location,
+                        start_anchor_index=anchor_index,
+                        end_anchor=anchor_location if trip.end_each_day_at_anchor else None,
+                        end_anchor_index=anchor_index if trip.end_each_day_at_anchor else None,
+                        lunch_minutes=trip.lunch_minutes if trip.include_lunch_buffer else 0,
+                        dinner_minutes=trip.dinner_minutes if trip.include_dinner_buffer else 0,
+                        daily_redundancy_minutes=trip.daily_redundancy_minutes,
+                        travel_buffer_ratio=trip.travel_buffer_ratio,
+                        minimum_travel_buffer_minutes=trip.minimum_travel_buffer_minutes,
+                    )
+                )
+            return candidate_days, distance_matrix_elements
+
+        max_day_count = max_available_days(trip, stop_count=len(resolved_stops))
+        best_days: list[DayPlan] = []
+        best_total_distance_matrix_elements = 0
+        best_day_score: tuple[int, int, int, int] | None = None
+        for candidate_num_days in range(num_days, max_day_count + 1):
+            candidate_days, candidate_elements = build_days(candidate_num_days)
+            candidate_score = day_overload_score(
+                candidate_days,
+                daily_minutes_budget=trip.daily_minutes_budget,
+            )
+            if best_day_score is None or candidate_score < best_day_score:
+                best_day_score = candidate_score
+                best_days = candidate_days
+                best_total_distance_matrix_elements = candidate_elements
+            if candidate_score[0] == 0 or not should_expand_days:
+                break
+
+        days = best_days
+        total_distance_matrix_elements = best_total_distance_matrix_elements
 
         planning_notes = list(duration_notes)
         planning_notes.append(
@@ -150,6 +195,15 @@ class SpatialPlanner:
         if trip.max_stops_per_day is not None:
             planning_notes.append(
                 f"Soft max stops per day was set to {trip.max_stops_per_day}."
+            )
+        planning_notes.append(f"Clustering method: {trip.clustering_method}.")
+        if trip.preferred_categories:
+            planning_notes.append(
+                f"Preferred categories filter: {', '.join(trip.preferred_categories)}."
+            )
+        if trip.excluded_categories:
+            planning_notes.append(
+                f"Excluded categories filter: {', '.join(trip.excluded_categories)}."
             )
         if anchor_location is not None:
             planning_notes.append(
@@ -174,6 +228,10 @@ class SpatialPlanner:
                     )
                 except PlanningReviewError as exc:
                     planning_notes.append(f"LLM cluster review failed: {exc}")
+        if len(days) > trip.inferred_num_days():
+            planning_notes.append(
+                f"Expanded from {trip.inferred_num_days()} to {len(days)} day(s) because duration estimates would overload the original plan."
+            )
 
         return ItineraryPlan(
             destination=trip.destination,
@@ -192,16 +250,27 @@ def filter_active_stops(
     stops: list[StopInput],
     *,
     excluded_stop_names: list[str],
+    preferred_categories: list[str] | None = None,
+    excluded_categories: list[str] | None = None,
 ) -> tuple[list[StopInput], list[str]]:
     excluded = {name.casefold() for name in excluded_stop_names}
+    preferred = {category.casefold() for category in preferred_categories or []}
+    excluded_category_set = {category.casefold() for category in excluded_categories or []}
     active: list[StopInput] = []
     removed: list[str] = []
     for stop in stops:
+        category = (stop.category or "").casefold()
         if not stop.enabled:
             removed.append(f"{stop.name} (disabled)")
             continue
         if stop.name.casefold() in excluded:
             removed.append(f"{stop.name} (excluded)")
+            continue
+        if category in excluded_category_set and not stop.required:
+            removed.append(f"{stop.name} (excluded category: {stop.category})")
+            continue
+        if preferred and category not in preferred and not stop.required:
+            removed.append(f"{stop.name} (outside preferred categories)")
             continue
         active.append(stop)
     return active, removed
@@ -236,6 +305,34 @@ def estimate_days_from_budget(
     return max(1, math.ceil(total_minutes / effective_daily_budget))
 
 
+def max_available_days(trip: TripRequest, *, stop_count: int) -> int:
+    if trip.start_date and trip.end_date:
+        date_days = (trip.end_date - trip.start_date).days + 1
+        if date_days > 0:
+            return max(1, min(stop_count, date_days))
+    return max(1, stop_count)
+
+
+def day_overload_score(
+    days: list[DayPlan],
+    *,
+    daily_minutes_budget: int,
+) -> tuple[int, int, int, int]:
+    repairable_overloads: list[int] = []
+    all_overloads: list[int] = []
+    for day in days:
+        overload = max(0, day.total_minutes - daily_minutes_budget)
+        all_overloads.append(overload)
+        if len(day.scheduled_visits) > 1:
+            repairable_overloads.append(overload)
+    return (
+        sum(repairable_overloads),
+        max(repairable_overloads, default=0),
+        sum(all_overloads),
+        len(days),
+    )
+
+
 def cluster_stops_by_day(
     stops: list[ResolvedStop],
     *,
@@ -245,6 +342,11 @@ def cluster_stops_by_day(
     lunch_minutes: int = 0,
     dinner_minutes: int = 0,
     daily_redundancy_minutes: int = 0,
+    method: str = "best_point",
+    anchor_location: ResolvedStop | None = None,
+    return_to_anchor: bool = False,
+    travel_buffer_ratio: float = 0.15,
+    minimum_travel_buffer_minutes: int = 5,
 ) -> list[list[int]]:
     if not stops:
         return []
@@ -255,6 +357,25 @@ def cluster_stops_by_day(
         1,
         daily_minutes_budget - lunch_minutes - dinner_minutes - daily_redundancy_minutes,
     )
+    if method in {"time_cap", "time_cap_kmeans", "kmeans_time_cap"}:
+        return cluster_stops_by_time_cap(
+            stops,
+            num_days=num_days,
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+            anchor_location=anchor_location,
+            return_to_anchor=return_to_anchor,
+            travel_buffer_ratio=travel_buffer_ratio,
+            minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+        )
+    if method in {"best_point", "k_medoids", "medoid"}:
+        return cluster_stops_by_best_points(
+            stops,
+            num_days=num_days,
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+        )
+
     clusters: list[list[int]] = [[] for _ in range(num_days)]
     cluster_minutes = [0 for _ in range(num_days)]
     cluster_items = [0 for _ in range(num_days)]
@@ -327,6 +448,717 @@ def cluster_stops_by_day(
         cluster_items[best_cluster] += 1
 
     return [sorted(cluster) for cluster in clusters if cluster]
+
+
+def cluster_stops_by_time_cap(
+    stops: list[ResolvedStop],
+    *,
+    num_days: int,
+    effective_daily_budget: int,
+    target_items_per_day: int,
+    anchor_location: ResolvedStop | None,
+    return_to_anchor: bool,
+    travel_buffer_ratio: float,
+    minimum_travel_buffer_minutes: int,
+) -> list[list[int]]:
+    """Try several geography-based clusterings and keep the one that best fits time caps.
+
+    This is Abhinav's KMeans/time-cap idea adapted to this codebase without adding a
+    sklearn dependency: use deterministic seed attempts, assign by distance plus
+    overflow penalty, then locally rebalance overloaded days.
+    """
+
+    fixed_indices = {
+        index for index, stop in enumerate(stops) if stop.fixed_day is not None
+    }
+    fixed_clusters: list[list[int]] = [[] for _ in range(num_days)]
+    for index in fixed_indices:
+        day_index = min(num_days, max(1, stops[index].fixed_day or 1)) - 1
+        fixed_clusters[day_index].append(index)
+
+    attempts = max(24, num_days * 10)
+    best_clusters: list[list[int]] | None = None
+    best_score: tuple[float, ...] | None = None
+
+    for attempt in range(attempts):
+        clusters = seed_time_cap_clusters(
+            stops,
+            num_days=num_days,
+            fixed_clusters=fixed_clusters,
+            fixed_indices=fixed_indices,
+            attempt=attempt,
+            effective_daily_budget=effective_daily_budget,
+        )
+        clusters = assign_time_cap_clusters(
+            stops,
+            clusters=clusters,
+            fixed_indices=fixed_indices,
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+            anchor_location=anchor_location,
+            return_to_anchor=return_to_anchor,
+            travel_buffer_ratio=travel_buffer_ratio,
+            minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+        )
+        clusters = rebalance_time_cap_clusters(
+            stops,
+            clusters=clusters,
+            fixed_indices=fixed_indices,
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+            anchor_location=anchor_location,
+            return_to_anchor=return_to_anchor,
+            travel_buffer_ratio=travel_buffer_ratio,
+            minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+        )
+        score = time_cap_cluster_score(
+            clusters,
+            stops,
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+            anchor_location=anchor_location,
+            return_to_anchor=return_to_anchor,
+            travel_buffer_ratio=travel_buffer_ratio,
+            minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+        )
+        if best_score is None or score < best_score:
+            best_score = score
+            best_clusters = clusters
+            if score[0] == 0 and score[1] == 0:
+                break
+
+    if best_clusters is None:
+        return cluster_stops_by_best_points(
+            stops,
+            num_days=num_days,
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+        )
+    return [sorted(cluster) for cluster in best_clusters if cluster]
+
+
+def seed_time_cap_clusters(
+    stops: list[ResolvedStop],
+    *,
+    num_days: int,
+    fixed_clusters: list[list[int]],
+    fixed_indices: set[int],
+    attempt: int,
+    effective_daily_budget: int,
+) -> list[list[int]]:
+    clusters = [list(cluster) for cluster in fixed_clusters]
+    empty_days = [index for index, cluster in enumerate(clusters) if not cluster]
+    count = min(len(empty_days), len(stops) - len(fixed_indices))
+    seeds = time_cap_seeds(
+        stops,
+        count=count,
+        disallowed=fixed_indices,
+        attempt=attempt,
+        effective_daily_budget=effective_daily_budget,
+    )
+    for day_index, seed_index in zip(empty_days, seeds):
+        clusters[day_index].append(seed_index)
+    return clusters
+
+
+def time_cap_seeds(
+    stops: list[ResolvedStop],
+    *,
+    count: int,
+    disallowed: set[int],
+    attempt: int,
+    effective_daily_budget: int,
+) -> list[int]:
+    candidates = [index for index in range(len(stops)) if index not in disallowed]
+    if count <= 0 or not candidates:
+        return []
+
+    long_activity_cutoff = max(180, effective_daily_budget * 0.75)
+    long_seeds = sorted(
+        (
+            index
+            for index in candidates
+            if stops[index].visit_minutes >= long_activity_cutoff
+        ),
+        key=lambda index: (stops[index].visit_minutes, stop_value_score(stops[index])),
+        reverse=True,
+    )
+    seeds = long_seeds[:count]
+
+    if len(seeds) < count:
+        remaining = [index for index in candidates if index not in seeds]
+        if remaining:
+            if attempt == 0:
+                first_seed = max(remaining, key=lambda index: stop_value_score(stops[index]))
+            else:
+                first_seed = sorted(
+                    remaining,
+                    key=lambda index: (
+                        -stop_value_score(stops[index]),
+                        stops[index].name,
+                    ),
+                )[attempt % len(remaining)]
+            seeds.append(first_seed)
+
+    while len(seeds) < count and len(seeds) < len(candidates):
+        next_seed = max(
+            (index for index in candidates if index not in seeds),
+            key=lambda index: (
+                min(
+                    haversine_meters(
+                        stops[index].latitude,
+                        stops[index].longitude,
+                        stops[seed].latitude,
+                        stops[seed].longitude,
+                    )
+                    for seed in seeds
+                )
+                + stop_value_score(stops[index]) * 50
+                + ((attempt + index) % 7) * 250
+            ),
+        )
+        seeds.append(next_seed)
+
+    return seeds
+
+
+def assign_time_cap_clusters(
+    stops: list[ResolvedStop],
+    *,
+    clusters: list[list[int]],
+    fixed_indices: set[int],
+    effective_daily_budget: int,
+    target_items_per_day: int,
+    anchor_location: ResolvedStop | None,
+    return_to_anchor: bool,
+    travel_buffer_ratio: float,
+    minimum_travel_buffer_minutes: int,
+) -> list[list[int]]:
+    assigned = {index for cluster in clusters for index in cluster}
+    remaining = [
+        index
+        for index in sorted(
+            range(len(stops)),
+            key=lambda idx: (
+                not stops[idx].required,
+                -stops[idx].priority,
+                -stops[idx].visit_minutes,
+                stops[idx].name,
+            ),
+        )
+        if index not in assigned and index not in fixed_indices
+    ]
+
+    for index in remaining:
+        best_cluster = 0
+        best_score: tuple[float, ...] | None = None
+        for cluster_index, cluster in enumerate(clusters):
+            candidate_cluster = [*cluster, index]
+            score = single_cluster_time_cap_score(
+                candidate_cluster,
+                stops,
+                effective_daily_budget=effective_daily_budget,
+                target_items_per_day=target_items_per_day,
+                anchor_location=anchor_location,
+                return_to_anchor=return_to_anchor,
+                travel_buffer_ratio=travel_buffer_ratio,
+                minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+            )
+            if best_score is None or score < best_score:
+                best_score = score
+                best_cluster = cluster_index
+        clusters[best_cluster].append(index)
+
+    return clusters
+
+
+def rebalance_time_cap_clusters(
+    stops: list[ResolvedStop],
+    *,
+    clusters: list[list[int]],
+    fixed_indices: set[int],
+    effective_daily_budget: int,
+    target_items_per_day: int,
+    anchor_location: ResolvedStop | None,
+    return_to_anchor: bool,
+    travel_buffer_ratio: float,
+    minimum_travel_buffer_minutes: int,
+) -> list[list[int]]:
+    current_score = time_cap_cluster_score(
+        clusters,
+        stops,
+        effective_daily_budget=effective_daily_budget,
+        target_items_per_day=target_items_per_day,
+        anchor_location=anchor_location,
+        return_to_anchor=return_to_anchor,
+        travel_buffer_ratio=travel_buffer_ratio,
+        minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+    )
+
+    for _ in range(40):
+        best_move: tuple[int, int, int] | None = None
+        best_score = current_score
+        for from_index, cluster in enumerate(clusters):
+            if len(cluster) <= 1:
+                continue
+            for stop_index in cluster:
+                if stop_index in fixed_indices:
+                    continue
+                for to_index in range(len(clusters)):
+                    if to_index == from_index:
+                        continue
+                    candidate = [list(day) for day in clusters]
+                    candidate[from_index].remove(stop_index)
+                    candidate[to_index].append(stop_index)
+                    score = time_cap_cluster_score(
+                        candidate,
+                        stops,
+                        effective_daily_budget=effective_daily_budget,
+                        target_items_per_day=target_items_per_day,
+                        anchor_location=anchor_location,
+                        return_to_anchor=return_to_anchor,
+                        travel_buffer_ratio=travel_buffer_ratio,
+                        minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+                    )
+                    if score < best_score:
+                        best_score = score
+                        best_move = (stop_index, from_index, to_index)
+
+        if best_move is None:
+            break
+        stop_index, from_index, to_index = best_move
+        clusters[from_index].remove(stop_index)
+        clusters[to_index].append(stop_index)
+        current_score = best_score
+
+    return clusters
+
+
+def time_cap_cluster_score(
+    clusters: list[list[int]],
+    stops: list[ResolvedStop],
+    *,
+    effective_daily_budget: int,
+    target_items_per_day: int,
+    anchor_location: ResolvedStop | None,
+    return_to_anchor: bool,
+    travel_buffer_ratio: float,
+    minimum_travel_buffer_minutes: int,
+) -> tuple[float, ...]:
+    cluster_scores = [
+        single_cluster_time_cap_score(
+            cluster,
+            stops,
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+            anchor_location=anchor_location,
+            return_to_anchor=return_to_anchor,
+            travel_buffer_ratio=travel_buffer_ratio,
+            minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+        )
+        for cluster in clusters
+    ]
+    total_overflow = sum(score[0] for score in cluster_scores)
+    max_overflow = max((score[0] for score in cluster_scores), default=0)
+    item_overflow = sum(score[1] for score in cluster_scores)
+    total_minutes = sum(score[2] for score in cluster_scores)
+    total_compactness = sum(score[3] for score in cluster_scores)
+    empty_days = sum(1 for cluster in clusters if not cluster)
+    return (
+        total_overflow,
+        max_overflow,
+        item_overflow,
+        empty_days,
+        total_minutes,
+        total_compactness,
+    )
+
+
+def single_cluster_time_cap_score(
+    cluster: list[int],
+    stops: list[ResolvedStop],
+    *,
+    effective_daily_budget: int,
+    target_items_per_day: int,
+    anchor_location: ResolvedStop | None,
+    return_to_anchor: bool,
+    travel_buffer_ratio: float,
+    minimum_travel_buffer_minutes: int,
+) -> tuple[float, ...]:
+    if not cluster:
+        return (effective_daily_budget, target_items_per_day, 0, 0)
+
+    estimated_minutes = estimate_cluster_total_minutes(
+        cluster,
+        stops,
+        anchor_location=anchor_location,
+        return_to_anchor=return_to_anchor,
+        travel_buffer_ratio=travel_buffer_ratio,
+        minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+    )
+    minute_overflow = max(0, estimated_minutes - effective_daily_budget)
+    item_overflow = max(0, len(cluster) - target_items_per_day)
+    compactness = cluster_compactness(cluster, stops)
+    return (
+        minute_overflow,
+        item_overflow,
+        estimated_minutes,
+        compactness,
+        -sum(stop_value_score(stops[index]) for index in cluster),
+    )
+
+
+def estimate_cluster_total_minutes(
+    cluster: list[int],
+    stops: list[ResolvedStop],
+    *,
+    anchor_location: ResolvedStop | None,
+    return_to_anchor: bool,
+    travel_buffer_ratio: float,
+    minimum_travel_buffer_minutes: int,
+) -> int:
+    visit_minutes = sum(stops[index].visit_minutes for index in cluster)
+    route_minutes = estimate_cluster_route_minutes(
+        cluster,
+        stops,
+        anchor_location=anchor_location,
+        return_to_anchor=return_to_anchor,
+        travel_buffer_ratio=travel_buffer_ratio,
+        minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+    )
+    return visit_minutes + route_minutes
+
+
+def estimate_cluster_route_minutes(
+    cluster: list[int],
+    stops: list[ResolvedStop],
+    *,
+    anchor_location: ResolvedStop | None,
+    return_to_anchor: bool,
+    travel_buffer_ratio: float,
+    minimum_travel_buffer_minutes: int,
+) -> int:
+    if len(cluster) <= 0:
+        return 0
+
+    remaining = set(cluster)
+    total_minutes = 0
+    if anchor_location is not None:
+        current_lat = anchor_location.latitude
+        current_lng = anchor_location.longitude
+        current_index: int | None = None
+    else:
+        centroid_lat, centroid_lng = cluster_centroid(cluster, stops)
+        current_index = min(
+            remaining,
+            key=lambda index: haversine_meters(
+                stops[index].latitude,
+                stops[index].longitude,
+                centroid_lat,
+                centroid_lng,
+            ),
+        )
+        current_lat = stops[current_index].latitude
+        current_lng = stops[current_index].longitude
+        remaining.remove(current_index)
+
+    while remaining:
+        next_index = min(
+            remaining,
+            key=lambda index: haversine_meters(
+                current_lat,
+                current_lng,
+                stops[index].latitude,
+                stops[index].longitude,
+            ),
+        )
+        leg_minutes = estimate_leg_minutes(
+            current_lat,
+            current_lng,
+            stops[next_index].latitude,
+            stops[next_index].longitude,
+            travel_buffer_ratio=travel_buffer_ratio,
+            minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+        )
+        total_minutes += leg_minutes
+        current_index = next_index
+        current_lat = stops[next_index].latitude
+        current_lng = stops[next_index].longitude
+        remaining.remove(next_index)
+
+    if return_to_anchor and anchor_location is not None and current_index is not None:
+        total_minutes += estimate_leg_minutes(
+            current_lat,
+            current_lng,
+            anchor_location.latitude,
+            anchor_location.longitude,
+            travel_buffer_ratio=travel_buffer_ratio,
+            minimum_travel_buffer_minutes=minimum_travel_buffer_minutes,
+        )
+
+    return total_minutes
+
+
+def estimate_leg_minutes(
+    origin_lat: float,
+    origin_lng: float,
+    destination_lat: float,
+    destination_lng: float,
+    *,
+    travel_buffer_ratio: float,
+    minimum_travel_buffer_minutes: int,
+) -> int:
+    travel_minutes = estimate_travel_minutes(
+        haversine_meters(origin_lat, origin_lng, destination_lat, destination_lng),
+        requested_mode="auto",
+    )
+    return travel_minutes + travel_buffer_minutes(
+        travel_minutes,
+        buffer_ratio=travel_buffer_ratio,
+        minimum_buffer_minutes=minimum_travel_buffer_minutes,
+    )
+
+
+def cluster_compactness(cluster: list[int], stops: list[ResolvedStop]) -> float:
+    if len(cluster) <= 1:
+        return 0.0
+    centroid_lat, centroid_lng = cluster_centroid(cluster, stops)
+    return sum(
+        haversine_meters(
+            stops[index].latitude,
+            stops[index].longitude,
+            centroid_lat,
+            centroid_lng,
+        )
+        for index in cluster
+    )
+
+
+def cluster_stops_by_best_points(
+    stops: list[ResolvedStop],
+    *,
+    num_days: int,
+    effective_daily_budget: int,
+    target_items_per_day: int,
+) -> list[list[int]]:
+    clusters: list[list[int]] = [[] for _ in range(num_days)]
+    cluster_minutes = [0 for _ in range(num_days)]
+    cluster_items = [0 for _ in range(num_days)]
+    assigned: set[int] = set()
+
+    for index, stop in enumerate(stops):
+        if stop.fixed_day is None:
+            continue
+        day_index = min(num_days, max(1, stop.fixed_day)) - 1
+        clusters[day_index].append(index)
+        cluster_minutes[day_index] += stop.visit_minutes
+        cluster_items[day_index] += 1
+        assigned.add(index)
+
+    empty_days = [day_index for day_index, cluster in enumerate(clusters) if not cluster]
+    seeds = best_point_seeds(
+        stops,
+        count=min(len(empty_days), len(stops) - len(assigned)),
+        disallowed=assigned,
+        effective_daily_budget=effective_daily_budget,
+    )
+    for day_index, seed_index in zip(empty_days, seeds):
+        clusters[day_index].append(seed_index)
+        cluster_minutes[day_index] += stops[seed_index].visit_minutes
+        cluster_items[day_index] += 1
+        assigned.add(seed_index)
+
+    while len(assigned) < len(stops):
+        made_progress = False
+        for cluster_index, cluster in enumerate(clusters):
+            candidate = best_candidate_for_cluster(
+                stops,
+                assigned=assigned,
+                cluster=cluster,
+                current_minutes=cluster_minutes[cluster_index],
+                current_items=cluster_items[cluster_index],
+                effective_daily_budget=effective_daily_budget,
+                target_items_per_day=target_items_per_day,
+                require_fit=True,
+            )
+            if candidate is None:
+                continue
+            clusters[cluster_index].append(candidate)
+            cluster_minutes[cluster_index] += stops[candidate].visit_minutes
+            cluster_items[cluster_index] += 1
+            assigned.add(candidate)
+            made_progress = True
+
+        if made_progress:
+            continue
+
+        candidate_cluster = best_overflow_assignment(
+            stops,
+            clusters=clusters,
+            assigned=assigned,
+            cluster_minutes=cluster_minutes,
+            cluster_items=cluster_items,
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+        )
+        if candidate_cluster is None:
+            break
+        candidate, cluster_index = candidate_cluster
+        clusters[cluster_index].append(candidate)
+        cluster_minutes[cluster_index] += stops[candidate].visit_minutes
+        cluster_items[cluster_index] += 1
+        assigned.add(candidate)
+
+    return [sorted(cluster) for cluster in clusters if cluster]
+
+
+def best_point_seeds(
+    stops: list[ResolvedStop],
+    *,
+    count: int,
+    disallowed: set[int],
+    effective_daily_budget: int | None = None,
+) -> list[int]:
+    candidates = [index for index in range(len(stops)) if index not in disallowed]
+    if not candidates or count <= 0:
+        return []
+
+    long_activity_cutoff = (
+        max(180, effective_daily_budget * 0.75)
+        if effective_daily_budget is not None
+        else float("inf")
+    )
+    seeds = sorted(
+        (
+            index
+            for index in candidates
+            if stops[index].visit_minutes >= long_activity_cutoff
+        ),
+        key=lambda index: (stops[index].visit_minutes, stop_value_score(stops[index])),
+        reverse=True,
+    )[:count]
+
+    if not seeds:
+        seeds = [max(candidates, key=lambda index: stop_value_score(stops[index]))]
+
+    while len(seeds) < count and len(seeds) < len(candidates):
+        next_seed = max(
+            (index for index in candidates if index not in seeds),
+            key=lambda index: (
+                min(
+                    haversine_meters(
+                        stops[index].latitude,
+                        stops[index].longitude,
+                        stops[seed].latitude,
+                        stops[seed].longitude,
+                    )
+                    for seed in seeds
+                )
+                + stop_value_score(stops[index]) * 100
+            ),
+        )
+        seeds.append(next_seed)
+
+    return seeds
+
+
+def best_candidate_for_cluster(
+    stops: list[ResolvedStop],
+    *,
+    assigned: set[int],
+    cluster: list[int],
+    current_minutes: int,
+    current_items: int,
+    effective_daily_budget: int,
+    target_items_per_day: int,
+    require_fit: bool,
+) -> int | None:
+    if not cluster:
+        return None
+
+    centroid_lat, centroid_lng = cluster_centroid(cluster, stops)
+    best_candidate = None
+    best_score = float("inf")
+    for candidate in range(len(stops)):
+        if candidate in assigned:
+            continue
+        minute_overflow = max(
+            0,
+            current_minutes + stops[candidate].visit_minutes - effective_daily_budget,
+        )
+        item_overflow = max(0, current_items + 1 - target_items_per_day)
+        if require_fit and (minute_overflow > 0 or item_overflow > 0):
+            continue
+
+        distance = haversine_meters(
+            stops[candidate].latitude,
+            stops[candidate].longitude,
+            centroid_lat,
+            centroid_lng,
+        )
+        score = (
+            distance
+            + minute_overflow * 250
+            + item_overflow * 4_000
+            - stop_value_score(stops[candidate]) * 100
+        )
+        if score < best_score:
+            best_score = score
+            best_candidate = candidate
+
+    return best_candidate
+
+
+def best_overflow_assignment(
+    stops: list[ResolvedStop],
+    *,
+    clusters: list[list[int]],
+    assigned: set[int],
+    cluster_minutes: list[int],
+    cluster_items: list[int],
+    effective_daily_budget: int,
+    target_items_per_day: int,
+) -> tuple[int, int] | None:
+    best_assignment = None
+    best_score = float("inf")
+    for cluster_index, cluster in enumerate(clusters):
+        candidate = best_candidate_for_cluster(
+            stops,
+            assigned=assigned,
+            cluster=cluster,
+            current_minutes=cluster_minutes[cluster_index],
+            current_items=cluster_items[cluster_index],
+            effective_daily_budget=effective_daily_budget,
+            target_items_per_day=target_items_per_day,
+            require_fit=False,
+        )
+        if candidate is None:
+            continue
+        centroid_lat, centroid_lng = cluster_centroid(cluster, stops)
+        distance = haversine_meters(
+            stops[candidate].latitude,
+            stops[candidate].longitude,
+            centroid_lat,
+            centroid_lng,
+        )
+        minute_overflow = max(
+            0,
+            cluster_minutes[cluster_index] + stops[candidate].visit_minutes - effective_daily_budget,
+        )
+        item_overflow = max(0, cluster_items[cluster_index] + 1 - target_items_per_day)
+        score = distance + minute_overflow * 250 + item_overflow * 4_000
+        if score < best_score:
+            best_score = score
+            best_assignment = (candidate, cluster_index)
+
+    return best_assignment
+
+
+def stop_value_score(stop: ResolvedStop) -> float:
+    required_bonus = 80 if stop.required else 0
+    priority_bonus = max(0, stop.priority) * 10
+    duration_bonus = min(stop.visit_minutes, 180) / 30
+    return required_bonus + priority_bonus + duration_bonus
 
 
 def farthest_first_seeds(

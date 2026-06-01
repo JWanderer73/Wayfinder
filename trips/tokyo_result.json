@@ -1,0 +1,541 @@
+{
+  "source_trip": "trips/tokyo_test.json",
+  "destination": "Tokyo",
+  "num_days": 5,
+  "daily_minutes_budget": 660,
+  "matrix_scope": "local_distance_per_day",
+  "anchor_location": {
+    "id": "307368",
+    "name": "Park Hyatt Tokyo",
+    "address": "3-7-1-2 Nishi Shinjuku, Nishishinjuku, Shinjuku 163-1055 Tokyo Prefecture",
+    "latitude": 35.68565,
+    "longitude": 139.69109,
+    "web_url": "https://www.tripadvisor.com/Hotel_Review-g14133673-d307368-Reviews-Park_Hyatt_Tokyo-Nishishinjuku_Shinjuku_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+    "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/32/02/00/aa/caption.jpg",
+    "booking_url": "https://www.tripadvisor.com/Hotel_Review-g14133673-d307368-Reviews-Park_Hyatt_Tokyo-Nishishinjuku_Shinjuku_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+    "booking_links": {
+      "TripAdvisor": "https://www.tripadvisor.com/Hotel_Review-g14133673-d307368-Reviews-Park_Hyatt_Tokyo-Nishishinjuku_Shinjuku_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+      "Booking.com": "https://www.booking.com/search.html?ss=Park%20Hyatt%20Tokyo",
+      "Hotels.com": "https://www.hotels.com/search.do?q-destination=Park%20Hyatt%20Tokyo",
+      "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.68565,139.69109"
+    },
+    "rating": 4.7
+  },
+  "planning_notes": [
+    "Re-estimated recommendation-provided visit times with category/name heuristics and redundancy for 11 stop(s).",
+    "Routing uses local latitude/longitude distance matrices; Google calls are only needed for stops without coordinates.",
+    "Local distance matrix work for this plan: 56 pairwise elements.",
+    "Soft max stops per day was set to 4.",
+    "Clustering method: time_cap_kmeans.",
+    "Using 'Park Hyatt Tokyo' as the daily anchor location.",
+    "Meal/redundancy buffers per day: lunch 60 min, dinner 120 min, slack 30 min.",
+    "Expanded from 3 to 5 day(s) because duration estimates would overload the original plan."
+  ],
+  "days": [
+    {
+      "day_number": 1,
+      "totals": {
+        "visit_minutes": 450,
+        "travel_minutes": 84,
+        "travel_buffer_minutes": 14,
+        "wait_minutes": 0,
+        "lunch_minutes": 60,
+        "dinner_minutes": 120,
+        "redundancy_minutes": 30,
+        "total_minutes": 758,
+        "return_to_anchor_minutes": 42
+      },
+      "warnings": [
+        "Day is overloaded by 98 minutes."
+      ],
+      "stops": [
+        {
+          "id": "320639",
+          "name": "Tokyo DisneySea",
+          "category": "amusement_park",
+          "required": false,
+          "address": "1-13, Maihama, Urayasu 279-0031 Chiba Prefecture",
+          "latitude": 35.62681,
+          "longitude": 139.88501,
+          "visit_minutes": 450,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320639-Reviews-Tokyo_DisneySea-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/16/05/f9/9d/tokyo-disneysea.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320639-Reviews-Tokyo_DisneySea-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320639-Reviews-Tokyo_DisneySea-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Tokyo%20DisneySea&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20DisneySea&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.62681,139.88501"
+          },
+          "rating": 4.3,
+          "score": 6.5,
+          "open_hours_text": [
+            "Monday: 08:00 - 22:00",
+            "Tuesday: 08:00 - 22:00",
+            "Wednesday: 08:00 - 22:00",
+            "Thursday: 08:00 - 22:00",
+            "Friday: 08:00 - 22:00",
+            "Saturday: 08:00 - 22:00",
+            "Sunday: 08:00 - 22:00"
+          ],
+          "arrival_time": "09:49",
+          "start_time": "09:49",
+          "departure_time": "17:19",
+          "travel_minutes_from_previous": 42,
+          "travel_buffer_minutes": 7,
+          "transport_mode_from_previous": "drive",
+          "distance_meters_from_previous": 18702,
+          "wait_minutes": 0,
+          "warnings": [
+            "Time-intensive activity. Consider giving it a dedicated day segment.",
+            "Out-of-the-way stop: adds about 84 minutes of detour."
+          ]
+        }
+      ]
+    },
+    {
+      "day_number": 2,
+      "totals": {
+        "visit_minutes": 450,
+        "travel_minutes": 80,
+        "travel_buffer_minutes": 12,
+        "wait_minutes": 0,
+        "lunch_minutes": 60,
+        "dinner_minutes": 120,
+        "redundancy_minutes": 30,
+        "total_minutes": 752,
+        "return_to_anchor_minutes": 40
+      },
+      "warnings": [
+        "Day is overloaded by 92 minutes."
+      ],
+      "stops": [
+        {
+          "id": "320634",
+          "name": "Tokyo Disneyland",
+          "category": "amusement_park",
+          "required": false,
+          "address": "1-1 Maihama, Maihama, Urayasu 279-0031 Chiba Prefecture",
+          "latitude": 35.632835,
+          "longitude": 139.88039,
+          "visit_minutes": 450,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320634-Reviews-Tokyo_Disneyland-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/16/05/fa/7c/tokyodisneyland.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320634-Reviews-Tokyo_Disneyland-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134868-d320634-Reviews-Tokyo_Disneyland-Maihama_Urayasu_Chiba_Prefecture_Kanto.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Tokyo%20Disneyland&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Disneyland&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.632835,139.88039"
+          },
+          "rating": 4.3,
+          "score": 5.4,
+          "open_hours_text": [
+            "Monday: 08:00 - 22:00",
+            "Tuesday: 08:00 - 22:00",
+            "Wednesday: 08:00 - 22:00",
+            "Thursday: 08:00 - 22:00",
+            "Friday: 08:00 - 22:00",
+            "Saturday: 08:00 - 22:00",
+            "Sunday: 08:00 - 22:00"
+          ],
+          "arrival_time": "09:46",
+          "start_time": "09:46",
+          "departure_time": "17:16",
+          "travel_minutes_from_previous": 40,
+          "travel_buffer_minutes": 6,
+          "transport_mode_from_previous": "drive",
+          "distance_meters_from_previous": 18083,
+          "wait_minutes": 0,
+          "warnings": [
+            "Time-intensive activity. Consider giving it a dedicated day segment.",
+            "Out-of-the-way stop: adds about 80 minutes of detour."
+          ]
+        }
+      ]
+    },
+    {
+      "day_number": 3,
+      "totals": {
+        "visit_minutes": 305,
+        "travel_minutes": 94,
+        "travel_buffer_minutes": 20,
+        "wait_minutes": 0,
+        "lunch_minutes": 60,
+        "dinner_minutes": 120,
+        "redundancy_minutes": 30,
+        "total_minutes": 629,
+        "return_to_anchor_minutes": 25
+      },
+      "stops": [
+        {
+          "id": "320447",
+          "name": "Senso-ji Temple",
+          "category": "landmark",
+          "required": true,
+          "address": "2-3-1, Asakusa, Taito 111-0032 Tokyo Prefecture",
+          "latitude": 35.7147,
+          "longitude": 139.79678,
+          "visit_minutes": 70,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134311-d320447-Reviews-Senso_ji_Temple-Asakusa_Taito_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1a/3d/a5/07/caption.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134311-d320447-Reviews-Senso_ji_Temple-Asakusa_Taito_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134311-d320447-Reviews-Senso_ji_Temple-Asakusa_Taito_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Senso-ji%20Temple&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Senso-ji%20Temple&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.7147,139.79678"
+          },
+          "rating": 4.4,
+          "score": 9.54,
+          "open_hours_text": [
+            "Monday: 06:30 - 17:00",
+            "Tuesday: 06:30 - 17:00",
+            "Wednesday: 06:30 - 17:00",
+            "Thursday: 06:30 - 17:00",
+            "Friday: 06:30 - 17:00",
+            "Saturday: 06:30 - 17:00",
+            "Sunday: 06:30 - 17:00"
+          ],
+          "arrival_time": "09:30",
+          "start_time": "09:30",
+          "departure_time": "10:40",
+          "travel_minutes_from_previous": 25,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "drive",
+          "distance_meters_from_previous": 10076,
+          "wait_minutes": 0
+        },
+        {
+          "id": "1872416",
+          "name": "Tokyo Skytree",
+          "category": "landmark",
+          "required": false,
+          "address": "1 Chome-1-2, Oshiage, Sumida 131-8634 Tokyo Prefecture",
+          "latitude": 35.71007,
+          "longitude": 139.81065,
+          "visit_minutes": 100,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134337-d1872416-Reviews-Tokyo_Skytree-Oshiage_Sumida_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2e/53/a8/1e/lighting-at-night-time.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134337-d1872416-Reviews-Tokyo_Skytree-Oshiage_Sumida_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134337-d1872416-Reviews-Tokyo_Skytree-Oshiage_Sumida_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Tokyo%20Skytree&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Skytree&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.71007,139.81065"
+          },
+          "rating": 4.2,
+          "score": 6.2,
+          "open_hours_text": [
+            "Monday: 10:00 - 22:00",
+            "Tuesday: 10:00 - 22:00",
+            "Wednesday: 10:00 - 22:00",
+            "Thursday: 10:00 - 22:00",
+            "Friday: 10:00 - 22:00",
+            "Saturday: 09:00 - 22:00",
+            "Sunday: 09:00 - 22:00"
+          ],
+          "arrival_time": "10:59",
+          "start_time": "10:59",
+          "departure_time": "12:39",
+          "travel_minutes_from_previous": 14,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "transit",
+          "distance_meters_from_previous": 1354,
+          "wait_minutes": 0
+        },
+        {
+          "id": "14951238",
+          "name": "teamLab Planets TOKYO",
+          "category": "museum",
+          "required": false,
+          "address": "6-1-16, Toyosu, Koto 135-0061 Tokyo Prefecture",
+          "latitude": 35.649307,
+          "longitude": 139.78976,
+          "visit_minutes": 135,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134359-d14951238-Reviews-TeamLab_Planets_TOKYO-Toyosu_Koto_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/1d/3d/68/26/floating-flower-garden.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134359-d14951238-Reviews-TeamLab_Planets_TOKYO-Toyosu_Koto_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134359-d14951238-Reviews-TeamLab_Planets_TOKYO-Toyosu_Koto_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=teamLab%20Planets%20TOKYO&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=teamLab%20Planets%20TOKYO&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.649307,139.78976"
+          },
+          "rating": 4.3,
+          "score": 9.0,
+          "open_hours_text": [
+            "Monday: 09:00 - 22:00",
+            "Tuesday: 09:00 - 22:00",
+            "Wednesday: 09:00 - 22:00",
+            "Thursday: 09:00 - 22:00",
+            "Friday: 09:00 - 22:00",
+            "Saturday: 09:00 - 22:00",
+            "Sunday: 09:00 - 22:00"
+          ],
+          "arrival_time": "13:14",
+          "start_time": "13:14",
+          "departure_time": "15:29",
+          "travel_minutes_from_previous": 30,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "transit",
+          "distance_meters_from_previous": 7015,
+          "wait_minutes": 0
+        }
+      ]
+    },
+    {
+      "day_number": 4,
+      "totals": {
+        "visit_minutes": 275,
+        "travel_minutes": 86,
+        "travel_buffer_minutes": 20,
+        "wait_minutes": 0,
+        "lunch_minutes": 60,
+        "dinner_minutes": 120,
+        "redundancy_minutes": 30,
+        "total_minutes": 591,
+        "return_to_anchor_minutes": 22
+      },
+      "stops": [
+        {
+          "id": "12310322",
+          "name": "Tokyo Localized - Free Walking Tour in Tokyo & More",
+          "category": "tour",
+          "required": false,
+          "address": "Meeting Place: AKB48 Cafe, Chiyoda 110-0006 Tokyo Prefecture",
+          "latitude": 35.699043,
+          "longitude": 139.77283,
+          "visit_minutes": 165,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g1066443-d12310322-Reviews-Tokyo_Localized_Free_Walking_Tour_in_Tokyo_More-Chiyoda_Tokyo_Tokyo_Prefecture_.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0f/93/f1/05/free-walking-tour-tokyo.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g1066443-d12310322-Reviews-Tokyo_Localized_Free_Walking_Tour_in_Tokyo_More-Chiyoda_Tokyo_Tokyo_Prefecture_.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g1066443-d12310322-Reviews-Tokyo_Localized_Free_Walking_Tour_in_Tokyo_More-Chiyoda_Tokyo_Tokyo_Prefecture_.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Tokyo%20Localized%20-%20Free%20Walking%20Tour%20in%20Tokyo%20%26%20More&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Localized%20-%20Free%20Walking%20Tour%20in%20Tokyo%20%26%20More&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.699043,139.77283"
+          },
+          "rating": 4.9,
+          "score": 4.5,
+          "open_hours_text": [
+            "Monday: 09:00 - 17:00",
+            "Tuesday: 09:00 - 17:00",
+            "Wednesday: 09:00 - 17:00",
+            "Thursday: 09:00 - 17:00",
+            "Friday: 09:00 - 17:00",
+            "Saturday: 09:00 - 17:00",
+            "Sunday: 09:00 - 17:00"
+          ],
+          "arrival_time": "09:36",
+          "start_time": "09:36",
+          "departure_time": "12:21",
+          "travel_minutes_from_previous": 31,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "transit",
+          "distance_meters_from_previous": 7531,
+          "wait_minutes": 0
+        },
+        {
+          "id": "550327",
+          "name": "Tokyo Central Railway Station",
+          "category": "transportation",
+          "required": false,
+          "address": "1-9-1, Marunouchi, Chiyoda 100-0005 Tokyo Prefecture",
+          "latitude": 35.681553,
+          "longitude": 139.76544,
+          "visit_minutes": 55,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g14129528-d550327-Reviews-Tokyo_Central_Railway_Station-Marunouchi_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/17/12/a7/68/kitte.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14129528-d550327-Reviews-Tokyo_Central_Railway_Station-Marunouchi_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14129528-d550327-Reviews-Tokyo_Central_Railway_Station-Marunouchi_Chiyoda_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Tokyo%20Central%20Railway%20Station&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Central%20Railway%20Station&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.681553,139.76544"
+          },
+          "rating": 4.2,
+          "score": 0.6,
+          "arrival_time": "12:42",
+          "start_time": "12:42",
+          "departure_time": "13:37",
+          "travel_minutes_from_previous": 16,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "transit",
+          "distance_meters_from_previous": 2056,
+          "wait_minutes": 0
+        },
+        {
+          "id": "1509275",
+          "name": "Tokyo Metro",
+          "category": "transportation",
+          "required": false,
+          "address": "Tokyo Prefecture",
+          "latitude": 35.683125,
+          "longitude": 139.73866,
+          "visit_minutes": 55,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g298184-d1509275-Reviews-Tokyo_Metro-Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/09/95/e8/f2/caption.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g298184-d1509275-Reviews-Tokyo_Metro-Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g298184-d1509275-Reviews-Tokyo_Metro-Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Tokyo%20Metro&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Metro&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.683125,139.73866"
+          },
+          "rating": 4.5,
+          "score": 2.0,
+          "arrival_time": "13:59",
+          "start_time": "13:59",
+          "departure_time": "14:54",
+          "travel_minutes_from_previous": 17,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "transit",
+          "distance_meters_from_previous": 2425,
+          "wait_minutes": 0
+        }
+      ]
+    },
+    {
+      "day_number": 5,
+      "totals": {
+        "visit_minutes": 260,
+        "travel_minutes": 80,
+        "travel_buffer_minutes": 20,
+        "wait_minutes": 0,
+        "lunch_minutes": 60,
+        "dinner_minutes": 120,
+        "redundancy_minutes": 30,
+        "total_minutes": 570,
+        "return_to_anchor_minutes": 19
+      },
+      "stops": [
+        {
+          "id": "320047",
+          "name": "Tokyo Tower",
+          "category": "landmark",
+          "required": true,
+          "address": "4 Chome 2-8, Shibakoen, Minato 105-0011 Tokyo Prefecture",
+          "latitude": 35.65858,
+          "longitude": 139.74544,
+          "visit_minutes": 85,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g14129730-d320047-Reviews-Tokyo_Tower-Shibakoen_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/0b/03/b5/9b/tokyo-tower.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14129730-d320047-Reviews-Tokyo_Tower-Shibakoen_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14129730-d320047-Reviews-Tokyo_Tower-Shibakoen_Minato_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Tokyo%20Tower&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Tokyo%20Tower&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.65858,139.74544"
+          },
+          "rating": 4.2,
+          "score": 9.54,
+          "open_hours_text": [
+            "Monday: 00:00 - 23:59",
+            "Tuesday: 00:00 - 23:59",
+            "Wednesday: 00:00 - 23:59",
+            "Thursday: 00:00 - 23:59",
+            "Friday: 00:00 - 23:59",
+            "Saturday: 00:00 - 23:59",
+            "Sunday: 00:00 - 23:59"
+          ],
+          "arrival_time": "09:31",
+          "start_time": "09:31",
+          "departure_time": "10:56",
+          "travel_minutes_from_previous": 26,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "transit",
+          "distance_meters_from_previous": 5759,
+          "wait_minutes": 0
+        },
+        {
+          "id": "7744338",
+          "name": "Waho-An Nature Tokyo",
+          "category": "wellness",
+          "required": false,
+          "address": "7-8 Dokken-Daikanyama-Heights1F, Daikanyama, Shibuya 150-0034 Tokyo Prefecture",
+          "latitude": 35.650894,
+          "longitude": 139.70523,
+          "visit_minutes": 135,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g14134839-d7744338-Reviews-Waho_An_Nature_Tokyo-Daikanyama_Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1b/f5/5a/96/our-new-store-has-a-nice.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g14134839-d7744338-Reviews-Waho_An_Nature_Tokyo-Daikanyama_Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g14134839-d7744338-Reviews-Waho_An_Nature_Tokyo-Daikanyama_Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Waho-An%20Nature%20Tokyo&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Waho-An%20Nature%20Tokyo&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.650894,139.70523"
+          },
+          "rating": 5.0,
+          "score": 7.5,
+          "open_hours_text": [
+            "Monday: 10:00 - 21:00",
+            "Tuesday: 10:00 - 21:00",
+            "Wednesday: 10:00 - 21:00",
+            "Thursday: 10:00 - 21:00",
+            "Friday: 10:00 - 21:00",
+            "Saturday: 10:00 - 21:00",
+            "Sunday: 10:00 - 21:00"
+          ],
+          "arrival_time": "11:22",
+          "start_time": "11:22",
+          "departure_time": "13:37",
+          "travel_minutes_from_previous": 21,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "transit",
+          "distance_meters_from_previous": 3732,
+          "wait_minutes": 0
+        },
+        {
+          "id": "4403399",
+          "name": "Shibuya Crossing",
+          "category": "landmark",
+          "required": true,
+          "address": "2 Chome-2-1 Dogenzaka, Shibuya 150-0043 Tokyo Prefecture",
+          "latitude": 35.65945,
+          "longitude": 139.70049,
+          "visit_minutes": 40,
+          "visit_minutes_source": "heuristic_redundancy",
+          "web_url": "https://www.tripadvisor.com/Attraction_Review-g1066456-d4403399-Reviews-Shibuya_Crossing-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "photo_url": "https://media-cdn.tripadvisor.com/media/photo-o/1c/7c/eb/cb/photo0jpg.jpg",
+          "booking_url": "https://www.tripadvisor.com/Attraction_Review-g1066456-d4403399-Reviews-Shibuya_Crossing-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+          "booking_links": {
+            "TripAdvisor": "https://www.tripadvisor.com/Attraction_Review-g1066456-d4403399-Reviews-Shibuya_Crossing-Shibuya_Tokyo_Tokyo_Prefecture_Kanto.html?m=66827",
+            "Viator": "https://www.viator.com/search?text=Shibuya%20Crossing&destId=Tokyo",
+            "GetYourGuide": "https://www.getyourguide.com/s/?q=Shibuya%20Crossing&searchSource=1",
+            "Google Maps": "https://www.google.com/maps/search/?api=1&query=35.65945,139.70049"
+          },
+          "rating": 4.2,
+          "score": 9.54,
+          "open_hours_text": [
+            "Monday: 00:00 - 23:59",
+            "Tuesday: 00:00 - 23:59",
+            "Wednesday: 00:00 - 23:59",
+            "Thursday: 00:00 - 23:59",
+            "Friday: 00:00 - 23:59",
+            "Saturday: 00:00 - 23:59",
+            "Sunday: 00:00 - 23:59"
+          ],
+          "arrival_time": "13:56",
+          "start_time": "13:56",
+          "departure_time": "14:36",
+          "travel_minutes_from_previous": 14,
+          "travel_buffer_minutes": 5,
+          "transport_mode_from_previous": "walk",
+          "distance_meters_from_previous": 1043,
+          "wait_minutes": 0
+        }
+      ]
+    }
+  ]
+}

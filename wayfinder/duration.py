@@ -8,41 +8,68 @@ from urllib import error, request
 from .models import StopInput
 
 
+RECOMMENDATION_DURATION_SOURCE = "heuristic_redundancy"
+RECOMMENDATION_REDUNDANCY_RATIO = 0.10
+MIN_RECOMMENDATION_REDUNDANCY_MINUTES = 10
+MAX_RECOMMENDATION_REDUNDANCY_MINUTES = 30
+
 CATEGORY_DEFAULTS = {
     "museum": 150,
     "landmark": 75,
-    "food": 75,
-    "restaurant": 75,
+    "food": 90,
+    "restaurant": 90,
     "viewpoint": 60,
-    "park": 75,
-    "shopping": 90,
+    "park": 90,
+    "shopping": 120,
     "beach": 150,
-    "tour": 120,
+    "tour": 150,
     "nightlife": 120,
     "hike": 180,
     "market": 90,
+    "amusement_park": 420,
+    "transportation": 45,
+    "wellness": 120,
+    "attraction": 90,
 }
 
 KEYWORD_DEFAULTS = [
+    ("disneysea", 420),
+    ("disneyland", 420),
+    ("theme park", 420),
+    ("amusement park", 360),
+    ("teamlab", 120),
+    ("catacombs", 120),
+    ("walking tour", 150),
+    ("food tour", 150),
+    ("bus tour", 120),
     ("museum", 150),
     ("gallery", 120),
     ("market", 90),
-    ("park", 75),
-    ("garden", 75),
+    ("shopping", 120),
+    ("department store", 120),
+    ("park", 90),
+    ("garden", 90),
     ("zoo", 180),
     ("aquarium", 150),
     ("cathedral", 60),
     ("church", 45),
+    ("temple", 60),
+    ("shrine", 60),
     ("pizza", 60),
-    ("restaurant", 75),
+    ("restaurant", 90),
     ("deli", 60),
     ("cafe", 45),
     ("beach", 150),
     ("hike", 180),
     ("trail", 180),
     ("observation", 60),
+    ("skytree", 90),
     ("view", 60),
     ("tower", 75),
+    ("station", 45),
+    ("metro", 45),
+    ("railway", 45),
+    ("crossing", 30),
     ("plaza", 45),
 ]
 
@@ -179,6 +206,9 @@ class DurationEstimator:
         notes: list[str] = []
         updated: list[StopInput] = []
         missing = [stop for stop in stops if not stop.visit_minutes or stop.visit_minutes <= 0]
+        recommendation_estimates = [
+            stop for stop in stops if should_reestimate_recommendation_duration(stop)
+        ]
         llm_estimates: dict[str, dict[str, Any]] = {}
 
         if missing and self.use_llm:
@@ -200,6 +230,16 @@ class DurationEstimator:
                     )
 
         for stop in stops:
+            if should_reestimate_recommendation_duration(stop):
+                updated.append(
+                    replace(
+                        stop,
+                        visit_minutes=estimate_minutes_with_redundancy(stop),
+                        visit_minutes_source=RECOMMENDATION_DURATION_SOURCE,
+                    )
+                )
+                continue
+
             if stop.visit_minutes and stop.visit_minutes > 0:
                 updated.append(
                     replace(
@@ -225,30 +265,63 @@ class DurationEstimator:
             updated.append(
                 replace(
                     stop,
-                    visit_minutes=heuristic_minutes,
-                    visit_minutes_source="heuristic",
+                    visit_minutes=add_redundancy(heuristic_minutes),
+                    visit_minutes_source=RECOMMENDATION_DURATION_SOURCE,
                 )
             )
 
+        if recommendation_estimates:
+            notes.append(
+                "Re-estimated recommendation-provided visit times with category/name heuristics "
+                f"and redundancy for {len(recommendation_estimates)} stop(s)."
+            )
         if missing and not llm_estimates:
             notes.append(
-                "Applied category and keyword-based duration defaults for stops that were missing visit times."
+                "Applied category and keyword-based duration defaults plus redundancy for stops that were missing visit times."
             )
 
         return updated, notes
 
 
+def should_reestimate_recommendation_duration(stop: StopInput) -> bool:
+    return (
+        stop.anchor_kind is None
+        and stop.visit_minutes is not None
+        and stop.visit_minutes > 0
+        and (stop.visit_minutes_source or "").casefold() == "recommendation"
+    )
+
+
+def estimate_minutes_with_redundancy(stop: StopInput) -> int:
+    return add_redundancy(estimate_minutes_heuristic(stop))
+
+
+def add_redundancy(minutes: int) -> int:
+    extra = max(
+        MIN_RECOMMENDATION_REDUNDANCY_MINUTES,
+        min(
+            MAX_RECOMMENDATION_REDUNDANCY_MINUTES,
+            round(minutes * RECOMMENDATION_REDUNDANCY_RATIO),
+        ),
+    )
+    return round_up_to_nearest_five(minutes + extra)
+
+
 def estimate_minutes_heuristic(stop: StopInput) -> int:
     category = (stop.category or "").strip().lower()
-    if category in CATEGORY_DEFAULTS:
-        return CATEGORY_DEFAULTS[category]
-
     name = stop.name.lower()
     for keyword, minutes in KEYWORD_DEFAULTS:
         if keyword in name:
             return minutes
 
+    if category in CATEGORY_DEFAULTS:
+        return CATEGORY_DEFAULTS[category]
+
     return 90
+
+
+def round_up_to_nearest_five(minutes: int) -> int:
+    return ((minutes + 4) // 5) * 5
 
 
 def _extract_output_text(response: dict[str, Any]) -> str:
