@@ -443,6 +443,7 @@ class TripRequest:
     day_start_time: str = "09:00"
     travel_mode: str = "DRIVE"
     routing_strategy: str = "distance"
+    clustering_method: str = "kmeans"
     transport_mode: str = "auto"
     lunch_minutes: int = 60
     dinner_minutes: int = 120
@@ -454,6 +455,10 @@ class TripRequest:
     region_code: str | None = None
     max_stops_per_day: int | None = None
     excluded_stop_names: list[str] = field(default_factory=list)
+
+    preferred_categories: list[str] = field(default_factory=list)
+    excluded_categories: list[str] = field(default_factory=list)
+
     anchor_location: StopInput | None = None
     end_each_day_at_anchor: bool = False
     use_llm_duration_estimates: bool = False
@@ -485,6 +490,7 @@ class TripRequest:
             day_start_time=payload.get("day_start_time", "09:00"),
             travel_mode=payload.get("travel_mode", "DRIVE"),
             routing_strategy=payload.get("routing_strategy", "distance"),
+            clustering_method=payload.get("clustering_method", "kmeans"),
             transport_mode=payload.get("transport_mode", payload.get("travel_mode", "auto")),
             lunch_minutes=int(payload.get("lunch_minutes", 60)),
             dinner_minutes=int(payload.get("dinner_minutes", 120)),
@@ -495,7 +501,15 @@ class TripRequest:
             daily_redundancy_minutes=int(payload.get("daily_redundancy_minutes", 45)),
             region_code=payload.get("region_code"),
             max_stops_per_day=_coerce_optional_int(payload.get("max_stops_per_day")),
-            excluded_stop_names=[str(item) for item in payload.get("excluded_stop_names", [])],
+            excluded_stop_names=[
+                str(item) for item in payload.get("excluded_stop_names", [])
+            ],
+            preferred_categories=[
+                str(item) for item in payload.get("preferred_categories", [])
+            ],
+            excluded_categories=[
+                str(item) for item in payload.get("excluded_categories", [])
+            ],
             anchor_location=anchor_location,
             end_each_day_at_anchor=bool(payload.get("end_each_day_at_anchor", False)),
             use_llm_duration_estimates=bool(payload.get("use_llm_duration_estimates", False)),
