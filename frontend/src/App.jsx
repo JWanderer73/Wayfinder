@@ -14,7 +14,7 @@ const CAT_EMOJI = {
 
 const TRANSPORT_LABEL = {
   walk:    { icon: "🚶", label: "Walk" },
-  transit: { icon: "🚇", label: "Transit" },
+  transit: { icon: "🚇", label: "Public Transit" },
   drive:   { icon: "🚗", label: "Drive" },
   bike:    { icon: "🚲", label: "Bike" },
 };
@@ -190,7 +190,14 @@ function transform(data) {
 
 // ─── Map panel ────────────────────────────────────────────────────────────────
 
-function MapPanel({ trip, activeDay, selectedStop, onSelectStop }) {
+function MapPanel({
+    trip,
+    activeDay,
+    selectedStop,
+    selectedHotel,
+    onSelectHotel,
+    onSelectStop,
+  }) {
   const containerRef = useRef(null);
   const layersRef    = useRef(null);
   const mapRdy       = useRef(null);
@@ -215,17 +222,55 @@ function MapPanel({ trip, activeDay, selectedStop, onSelectStop }) {
     if (!tripData) return;
     const bounds = [];
 
-    // Hotel / anchor marker
-    if (tripData.anchor) {
-      const { lat, lng, name } = tripData.anchor;
-      L.marker([lat, lng], {
+    // Hotel markers
+    (tripData.hotels || []).forEach(h => {
+      if (!h.lat || !h.lng) return;
+
+      const isSelected =
+        selectedHotel?.name === h.name;
+
+      const marker = L.marker([h.lat, h.lng], {
         icon: L.divIcon({
-          html: `<div style="background:#92400E;color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);">🏨</div>`,
-          className: "", iconSize: [32, 32], iconAnchor: [16, 16],
+          html: `
+            <div style="
+              background:${isSelected ? "#2563EB" : "#92400E"};
+              color:#fff;
+              width:${isSelected ? 38 : 30}px;
+              height:${isSelected ? 38 : 30}px;
+              border-radius:8px;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              font-size:16px;
+              border:2px solid #fff;
+              box-shadow:0 2px 8px rgba(0,0,0,.25);
+            ">
+              🏨
+            </div>
+          `,
+          className: "",
+          iconSize: isSelected ? [38, 38] : [30, 30],
+          iconAnchor: isSelected ? [19, 19] : [15, 15],
         }),
-      }).addTo(layersRef.current).bindTooltip(`<b>${name}</b>`, { direction: "top", offset: [0, -18] });
-      bounds.push([lat, lng]);
-    }
+      });
+
+      marker
+        .addTo(layersRef.current)
+        .bindTooltip(`<b>${h.name}</b>`, {
+          direction: "top",
+          offset: [0, -18]
+        });
+
+      marker.on("click", () => {
+        onSelectHotel({
+          name: h.name,
+          lat: h.lat,
+          lng: h.lng,
+        });
+      });
+
+      bounds.push([h.lat, h.lng]);
+    });
 
     const daysToShow = day === 0 ? tripData.days : tripData.days.filter(d => d.day_number === day);
 
@@ -312,7 +357,21 @@ function MapPanel({ trip, activeDay, selectedStop, onSelectStop }) {
   useEffect(() => {
     if (mapRdy.current && Lref.current)
       render(mapRdy.current, Lref.current, trip, activeDay, selectedStop);
-  }, [trip, activeDay, selectedStop]);
+  }, [trip, activeDay, selectedStop, selectedHotel]);
+
+  useEffect(() => {
+    if (
+      mapRdy.current &&
+      selectedHotel?.lat &&
+      selectedHotel?.lng
+    ) {
+      mapRdy.current.flyTo(
+        [selectedHotel.lat, selectedHotel.lng],
+        14,
+        { duration: 0.8 }
+      );
+    }
+  }, [selectedHotel]);
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
@@ -525,6 +584,7 @@ export default function App() {
   const [activeDay, setActiveDay]       = useState(0);
   const [openDays, setOpenDays]         = useState([]);
   const [selectedStop, setSelectedStop] = useState(null);
+  const [selectedHotel, setSelectedHotel] = useState(null);
   const [loading, setLoading]           = useState(false);
   const [error, setError]               = useState("");
   const [tab, setTab]                   = useState("itinerary");
@@ -576,7 +636,17 @@ export default function App() {
       if (!res.ok) throw new Error(`Server returned ${res.status} — is the backend running?`);
       const data = await res.json();
       const t = transform(data);
+
       setTrip(t);
+
+      if (t.anchor) {
+        setSelectedHotel({
+          name: t.anchor.name,
+          lat: t.anchor.lat,
+          lng: t.anchor.lng,
+        });
+      }
+
       setActiveDay(0);
       setOpenDays(t.days.map(d => d.day_number));
     } catch (e) {
@@ -657,7 +727,7 @@ export default function App() {
                 <div>
                   <label style={lbl}>Budget</label>
                   <select style={inp} value={budget} onChange={e => setBudget(e.target.value)}>
-                    <option value="budget">Budget</option>
+                    <option value="budget">Affordable</option>
                     <option value="mid-range">Mid-range</option>
                     <option value="luxury">Luxury</option>
                   </select>
@@ -683,7 +753,7 @@ export default function App() {
                 <div>
                   <label style={lbl}>Transport</label>
                   <select style={inp} value={mode} onChange={e => setMode(e.target.value)}>
-                    <option value="TRANSIT">Transit</option>
+                    <option value="TRANSIT">Public Transit</option>
                     <option value="DRIVE">Drive</option>
                     <option value="WALK">Walk</option>
                   </select>
@@ -831,7 +901,29 @@ export default function App() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   {(!trip.hotels || trip.hotels.length === 0) && <p style={{ fontSize: 12, color: "#9ca3af" }}>No hotel results.</p>}
                   {(trip.hotels || []).map((h, i) => (
-                    <div key={i} style={{ padding: "10px 12px", borderRadius: 8, border: "1px solid #e5e7eb", background: "#fff" }}>
+                    <div
+                      key={i}
+                      onClick={() => {
+                        setSelectedHotel({
+                          name: h.name,
+                          lat: h.lat,
+                          lng: h.lng,
+                        });
+                      }}
+                      style={{
+                        padding: "10px 12px",
+                        borderRadius: 8,
+                        cursor: "pointer",
+                        border:
+                          selectedHotel?.name === h.name
+                            ? "2px solid #2563EB"
+                            : "1px solid #e5e7eb",
+                        background:
+                          selectedHotel?.name === h.name
+                            ? "#eff6ff"
+                            : "#fff"
+                      }}
+                    >
                       <div style={{ fontSize: 13, fontWeight: 600, color: "#111" }}>{h.name}</div>
                       <div style={{ display: "flex", gap: 8, fontSize: 11, color: "#6b7280", marginTop: 2 }}>
                         {h.rating && <span style={{ color: "#f59e0b" }}>★ {h.rating}</span>}
@@ -856,7 +948,14 @@ export default function App() {
 
           {/* Map */}
           <main style={{ flex: 1, overflow: "hidden", position: "relative" }}>
-            <MapPanel trip={trip} activeDay={activeDay} selectedStop={selectedStop} onSelectStop={handleSelectStop} />
+            <MapPanel
+              trip={trip}
+              activeDay={activeDay}
+              selectedStop={selectedStop}
+              selectedHotel={selectedHotel}
+              onSelectHotel={setSelectedHotel}
+              onSelectStop={handleSelectStop}
+            />
           </main>
         </div>
       </div>
